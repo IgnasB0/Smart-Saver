@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Ignas\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Ignas\\.nuget\\packages"
+    ]
+  }
+}
