@@ -46,6 +46,7 @@ namespace Smart_Saver
         private void Add_Click(object sender, EventArgs e)
         {
             richTextBox1.AppendText(expenseName.Text + '\n');
+            richTextBox1.AppendText(string.Format("{0}", expenseAmount.Value) + '\n');
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)

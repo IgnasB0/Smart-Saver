@@ -45,18 +45,19 @@
             // 
             // expenseName
             // 
-            this.expenseName.Location = new System.Drawing.Point(346, 95);
+            this.expenseName.Location = new System.Drawing.Point(395, 127);
+            this.expenseName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.expenseName.Name = "expenseName";
-            this.expenseName.Size = new System.Drawing.Size(214, 23);
+            this.expenseName.Size = new System.Drawing.Size(244, 27);
             this.expenseName.TabIndex = 0;
             this.expenseName.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(255, 98);
+            this.label1.Location = new System.Drawing.Point(291, 131);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 15);
+            this.label1.Size = new System.Drawing.Size(107, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Expense Name";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -64,18 +65,24 @@
             // expenseAmount
             // 
             this.expenseAmount.DecimalPlaces = 2;
-            this.expenseAmount.Location = new System.Drawing.Point(346, 142);
+            this.expenseAmount.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.expenseAmount.Location = new System.Drawing.Point(395, 189);
+            this.expenseAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.expenseAmount.Name = "expenseAmount";
-            this.expenseAmount.Size = new System.Drawing.Size(214, 23);
+            this.expenseAmount.Size = new System.Drawing.Size(245, 27);
             this.expenseAmount.TabIndex = 2;
             this.expenseAmount.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(255, 144);
+            this.label2.Location = new System.Drawing.Point(291, 192);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 15);
+            this.label2.Size = new System.Drawing.Size(62, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Amount";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -88,17 +95,18 @@
             "Food",
             "Health",
             "Entertainment"});
-            this.category.Location = new System.Drawing.Point(346, 187);
+            this.category.Location = new System.Drawing.Point(395, 249);
+            this.category.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.category.Name = "category";
-            this.category.Size = new System.Drawing.Size(214, 23);
+            this.category.Size = new System.Drawing.Size(244, 28);
             this.category.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(255, 190);
+            this.label3.Location = new System.Drawing.Point(291, 253);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 15);
+            this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Category";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -107,33 +115,35 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(346, 27);
+            this.label4.Location = new System.Drawing.Point(395, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 25);
+            this.label4.Size = new System.Drawing.Size(216, 32);
             this.label4.TabIndex = 6;
             this.label4.Text = "Input new expense";
             // 
             // date
             // 
-            this.date.Location = new System.Drawing.Point(346, 237);
+            this.date.Location = new System.Drawing.Point(395, 316);
+            this.date.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.date.Name = "date";
-            this.date.Size = new System.Drawing.Size(214, 23);
+            this.date.Size = new System.Drawing.Size(244, 27);
             this.date.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(255, 243);
+            this.label5.Location = new System.Drawing.Point(291, 324);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 15);
+            this.label5.Size = new System.Drawing.Size(41, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Date";
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(406, 296);
+            this.Add.Location = new System.Drawing.Point(464, 395);
+            this.Add.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(75, 23);
+            this.Add.Size = new System.Drawing.Size(86, 31);
             this.Add.TabIndex = 9;
             this.Add.Text = "Add";
             this.Add.UseVisualStyleBackColor = true;
@@ -141,28 +151,29 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(346, 346);
+            this.richTextBox1.Location = new System.Drawing.Point(395, 461);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(214, 82);
+            this.richTextBox1.Size = new System.Drawing.Size(244, 108);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(255, 349);
+            this.label6.Location = new System.Drawing.Point(291, 465);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 15);
+            this.label6.Size = new System.Drawing.Size(96, 20);
             this.label6.TabIndex = 11;
             this.label6.Text = "Your expense";
             // 
             // InputExpense
             // 
             this.AccessibleName = "Name";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 600);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.Add);
@@ -176,6 +187,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.expenseName);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InputExpense";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.expenseAmount)).EndInit();
