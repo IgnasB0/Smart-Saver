@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj": {}
+    "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj": {
+    "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj",
+        "projectUniqueName": "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
         "projectName": "Smart Saver",
-        "projectPath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj",
-        "packagesPath": "C:\\Users\\aukse\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\obj\\",
+        "projectPath": "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+        "packagesPath": "C:\\Users\\modis\\.nuget\\packages\\",
+        "outputPath": "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "D:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\aukse\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\modis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

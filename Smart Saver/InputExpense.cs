@@ -47,10 +47,16 @@ namespace Smart_Saver
         {
             richTextBox1.AppendText(expenseName.Text + '\n');
             richTextBox1.AppendText(string.Format("{0}", expenseAmount.Value) + '\n');
+            richTextBox1.AppendText(string.Format("{0}", date.Value) + '\n');
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
+        }
+
+        private void InputExpense_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
