@@ -4,5 +4,8 @@
     <Compile Update="InputExpense.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SavingsDepositRepresentation.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

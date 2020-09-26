@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
+    "C:\\Users\\aukse\\source\\repos\\Aukse\\Smart Saver\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
   },
   "projects": {
-    "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {
+    "C:\\Users\\aukse\\source\\repos\\Aukse\\Smart Saver\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+        "projectUniqueName": "C:\\Users\\aukse\\source\\repos\\Aukse\\Smart Saver\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
         "projectName": "Smart Saver",
-        "projectPath": "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
-        "packagesPath": "C:\\Users\\modis\\.nuget\\packages\\",
-        "outputPath": "D:\\Modesto\\VU\\SoftwareEngineering\\Smart-Saver\\Smart Saver\\obj\\",
+        "projectPath": "C:\\Users\\aukse\\source\\repos\\Aukse\\Smart Saver\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+        "packagesPath": "C:\\Users\\aukse\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aukse\\source\\repos\\Aukse\\Smart Saver\\Smart-Saver\\Smart Saver\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\modis\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\aukse\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
