@@ -33,14 +33,12 @@
             this.TotalExpense_TextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TotalIncome_TextBox = new System.Windows.Forms.TextBox();
-
             this.label5 = new System.Windows.Forms.Label();
             this.TimeToDestination_richTextBox = new System.Windows.Forms.RichTextBox();
             this.balanceField = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.amountNeeded = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
-
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +49,6 @@
             this.label1.Location = new System.Drawing.Point(371, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(276, 25);
-
             this.label1.TabIndex = 0;
             this.label1.Text = "Savings Deposit Representation";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -60,30 +57,25 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-
             this.label2.Location = new System.Drawing.Point(225, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Expense total:";
-
             this.label2.Click += new System.EventHandler(this.label1_Click);
             // 
             // TotalExpense_TextBox
             // 
-
             this.TotalExpense_TextBox.Location = new System.Drawing.Point(480, 96);
             this.TotalExpense_TextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TotalExpense_TextBox.Name = "TotalExpense_TextBox";
             this.TotalExpense_TextBox.Size = new System.Drawing.Size(237, 23);
-
             this.TotalExpense_TextBox.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-
             this.label3.Location = new System.Drawing.Point(225, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 19);
@@ -99,22 +91,18 @@
             this.TotalIncome_TextBox.TabIndex = 2;
             this.TotalIncome_TextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-
             this.label5.Location = new System.Drawing.Point(225, 210);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(229, 19);
-
+            this.label5.Size = new System.Drawing.Size(203, 19);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Left time to destination (in months):";
+            this.label5.Text = "Time left to reach goal (in days):";
             // 
             // TimeToDestination_richTextBox
             // 
-
             this.TimeToDestination_richTextBox.Location = new System.Drawing.Point(480, 209);
             this.TimeToDestination_richTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TimeToDestination_richTextBox.Name = "TimeToDestination_richTextBox";
@@ -168,15 +156,12 @@
             this.Controls.Add(this.balanceField);
             this.Controls.Add(this.TimeToDestination_richTextBox);
             this.Controls.Add(this.label5);
-
             this.Controls.Add(this.TotalIncome_TextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TotalExpense_TextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.Name = "SavingsDepositRepresentation";
             this.Text = "SavingsDepositRepresentation";
             this.Load += new System.EventHandler(this.SavingsDepositRepresentation_Load);

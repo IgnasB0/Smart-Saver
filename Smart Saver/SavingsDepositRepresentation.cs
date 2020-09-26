@@ -61,10 +61,12 @@ namespace Smart_Saver
 
             List<Income> incomeList = new List<Income>();
 
-            Income newIncome = new Income(5.11m, new DateTime(2020, 9, 26, 7, 47, 0));
+            Income newIncome = new Income(5.10m, new DateTime(2020, 9, 26, 7, 47, 0));
             incomeList.Add(newIncome);
 
             const decimal goal = 2.01m; //test data
+
+            Goal newGoal = new Goal("test goal", new DateTime(2020, 9, 30, 7, 47, 0), 2.01m);
 
             decimal incomeTotal = 0;
 
@@ -84,14 +86,20 @@ namespace Smart_Saver
 
             balance = incomeTotal - expenseTotal;
 
-            balanceField.AppendText(string.Format("{0}", balance) + '\n');
+            balanceField.AppendText(string.Format("{0}", balance));
 
             decimal amountToReachGoal = goal - balance;
 
             if (amountToReachGoal >= 0)
-                amountNeeded.AppendText(string.Format("{0}", amountToReachGoal) + '\n');
+                amountNeeded.AppendText(string.Format("{0}", amountToReachGoal));
             else
-                amountNeeded.AppendText(string.Format("{0}", 0) + '\n');
+                amountNeeded.AppendText(string.Format("{0}", 0));
+
+            DateTime dateTimeNow = DateTime.Now;
+
+            TimeSpan timeLeft = newGoal.date.Subtract(dateTimeNow);
+
+            TimeToDestination_richTextBox.AppendText(string.Format("{0}", timeLeft.Days));
 
             if (balance >= goal)
                 System.Windows.Forms.MessageBox.Show("Goal Reached");
