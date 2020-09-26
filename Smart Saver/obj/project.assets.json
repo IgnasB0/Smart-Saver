@@ -13,19 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
->>>>>>> Igno
-      "projectName": "Smart Saver",
-      "projectPath": "C:\\Users\\aukse\\source\\repos\\Aukse\\Smart Saver\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
-      "packagesPath": "C:\\Users\\aukse\\.nuget\\packages\\",
-
-=======
       "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
       "projectName": "Smart Saver",
       "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
       "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
       "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
->>>>>>> Stashed changes
->>>>>>> Igno
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ignas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -72,5 +64,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

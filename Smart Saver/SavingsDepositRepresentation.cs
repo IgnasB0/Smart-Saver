@@ -10,11 +10,6 @@ namespace Smart_Saver
 {
     public partial class SavingsDepositRepresentation : Form
     {
-<<<<<<< HEAD
-        public SavingsDepositRepresentation()
-        {
-            InitializeComponent();
-=======
         struct Goal
         {
             public string name;
@@ -77,7 +72,7 @@ namespace Smart_Saver
             {
                 incomeTotal += income.amount;
             }
-            TotalIncome_TextBox.AppendText( string.Format("{0}", incomeTotal) );
+            TotalIncome_TextBox.AppendText(string.Format("{0}", incomeTotal));
 
             decimal expenseTotal = 0;
 
@@ -85,11 +80,11 @@ namespace Smart_Saver
             {
                 expenseTotal += expense.amount;
             }
-            TotalExpense_TextBox.AppendText(string.Format("{0}", expenseTotal) );
+            TotalExpense_TextBox.AppendText(string.Format("{0}", expenseTotal));
 
             balance = incomeTotal - expenseTotal;
 
-            balanceField.AppendText( string.Format("{0}", balance) + '\n');
+            balanceField.AppendText(string.Format("{0}", balance) + '\n');
 
             decimal amountToReachGoal = goal - balance;
 
@@ -100,7 +95,6 @@ namespace Smart_Saver
 
             if (balance >= goal)
                 System.Windows.Forms.MessageBox.Show("Goal Reached");
->>>>>>> Igno
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -117,13 +111,11 @@ namespace Smart_Saver
         {
 
         }
-<<<<<<< HEAD
-=======
+
 
         private void label6_Click(object sender, EventArgs e)
         {
 
         }
->>>>>>> Igno
     }
 }

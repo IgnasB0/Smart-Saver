@@ -1,20 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "Z4FQ7QYcnePE3z5CkwCyd45S2+pu7JkTUgCTl0lS2gvImdhfHn4WSUI2VzfZpr/Jgs9nczBr4MC0fxneivHg6g==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\aukse\\source\\repos\\Aukse\\Smart Saver\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
-=======
-<<<<<<< Updated upstream
-  "dgSpecHash": "+U9raVAIs+B2YuyazvmokKE62mhdE/IPO5llohLeiyXPsASDHVwSGmUvP97jFMp/d4AVvxaMd0pExkNTJag+/A==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj",
-=======
   "dgSpecHash": "a4qIFO9JSIKHZxerqLzNbJ30F8WY+XOLcNvYhpBPTMvpmDN1cp9nGK0ybkCyWDQniQy5UD/9riPIFk1QjxPqKA==",
   "success": true,
   "projectFilePath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
->>>>>>> Stashed changes
->>>>>>> Igno
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
