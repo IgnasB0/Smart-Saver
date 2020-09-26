@@ -62,6 +62,11 @@ C:\Users\aukse\Source\Repos\Smart-Saver2\Smart Saver\obj\Debug\netcoreapp3.1\Sma
 C:\Users\aukse\Source\Repos\Smart-Saver2\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
 C:\Users\aukse\Source\Repos\Smart-Saver2\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
 C:\Users\aukse\Source\Repos\Smart-Saver2\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Igno
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.exe
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.deps.json
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.runtimeconfig.json
@@ -94,3 +99,24 @@ C:\Users\aukse\source\repos\Aukse\Smart Saver\Smart-Saver\Smart Saver\obj\Debug\
 C:\Users\aukse\source\repos\Aukse\Smart Saver\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
 C:\Users\aukse\source\repos\Aukse\Smart Saver\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
 C:\Users\aukse\source\repos\Aukse\Smart Saver\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
+<<<<<<< HEAD
+=======
+D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.exe
+D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.deps.json
+D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.runtimeconfig.json
+D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.runtimeconfig.dev.json
+D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.dll
+D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.pdb
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csprojAssemblyReference.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.InputExpense.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Properties.Resources.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.SavingsDepositRepresentation.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.GenerateResource.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfoInputs.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfo.cs
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.CoreCompileInputs.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
+>>>>>>> Stashed changes
+>>>>>>> Igno
