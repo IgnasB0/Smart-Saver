@@ -1,0 +1,38 @@
+Nauji dalykai:
+------------------------------------------------------------------------------------
+3 klases:
+
+User - apibrezia vartotoja (id, varda(vardus), pavarde, email, pajamas):
+Metodai:
+
+Kiekvieno is nurodytu parametru { get; set; }.
+Taip pat galima nurodyti parametrus kuriant vartotoja (konstruktoriuje)
+[pvz: User newUser = new User(1, jonas, basanavicius, j.basanke@gmail.com, 5000);]
+
+Parametrai:
+int id, string firstNames, string surname, string email, int income.
+
+----
+
+DBmanager - statine klase, naudojama bendravimui su "dUoMEnU bAZe":
+Metodai (visi statiski):
+
+DBmanager.AddUserToDB(User user) - ideda vartotoja i "DuoMEnU BAzE"
+DBmanager.ClearUserDB() - pravalo "duOMeNu baZE"
+DBmanager.GetUserById(int id) - grazina vartotoja pagal id is "duOmENu BaZeS"
+
+
+-----
+
+Logger - statine klase klaidu, exceptionu isvedimui i tekstini faila
+(labai gera destytojo pakista ideja):
+
+Logger.Log(string message) - isveda zinute i log.txt faila Smart Saver aplankale.
+-------------------------------------------------------------------------------------
+
+"DuOmENu bAZe" - UserDB.csv failas
+
+-------------------------------------------------------------------------------------
+
+Sprendziant uzdavinius del islaidu kategorizavimo, greiciausiai padarysiu dar viena DB
+Sios klases ko gero dar bus pildomos metodais, butinai rasykite, jei turite kokiu metodu pageidavimu

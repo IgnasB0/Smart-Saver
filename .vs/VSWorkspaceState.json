@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Smart Saver",
+    "\\Smart Saver\\bin",
+    "\\Smart Saver\\bin\\Debug",
+    "\\Smart Saver\\bin\\Debug\\netcoreapp3.1"
   ],
-  "SelectedNode": "\\Smart Saver.sln",
   "PreviewInSolutionExplorer": false
 }
