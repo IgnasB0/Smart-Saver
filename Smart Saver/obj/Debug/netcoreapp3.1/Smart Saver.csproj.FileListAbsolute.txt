@@ -28,3 +28,24 @@ D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csprojAssemblyReference.cache
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.exe
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.deps.json
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.runtimeconfig.json
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.runtimeconfig.dev.json
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.dll
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.pdb
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csprojAssemblyReference.cache
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.IncomeInput.resources
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.InputExpense.resources
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Properties.Resources.resources
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.SavingsDepositRepresentation.resources
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.GenerateResource.cache
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfoInputs.cache
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfo.cs
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.CoreCompileInputs.cache
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Categories.resources
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.MainForm.resources
+C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Category_Show.resources

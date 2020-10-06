@@ -9,6 +9,14 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\income.png" />
+    <None Remove="Resources\income1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <DesignData Include="Resources\income.png" />
+    <DesignData Include="Resources\income1.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
