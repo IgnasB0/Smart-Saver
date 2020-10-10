@@ -16,7 +16,8 @@ namespace Smart_Saver
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SavingsDepositRepresentation());
+            //Application.Run(new SavingsDepositRepresentation());
+            Application.Run(new MainForm());
         }
     }
 }

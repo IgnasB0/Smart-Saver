@@ -3,8 +3,8 @@
     "",
     "\\Smart Saver",
     "\\Smart Saver\\bin",
-    "\\Smart Saver\\bin\\Debug",
-    "\\Smart Saver\\bin\\Debug\\netcoreapp3.1"
+    "\\Smart Saver\\bin\\Debug"
   ],
+  "SelectedNode": "\\Smart Saver.sln",
   "PreviewInSolutionExplorer": false
 }

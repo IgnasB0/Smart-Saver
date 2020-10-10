@@ -1,0 +1,2 @@
+pasidomet apie git ignore
+Pasidometi apie single-tone dalyka, klase ne statine, taciau turi statini instance
