@@ -36,3 +36,55 @@ Logger.Log(string message) - isveda zinute i log.txt faila Smart Saver aplankale
 
 Sprendziant uzdavinius del islaidu kategorizavimo, greiciausiai padarysiu dar viena DB
 Sios klases ko gero dar bus pildomos metodais, butinai rasykite, jei turite kokiu metodu pageidavimu
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+//------2020-10-12-----UPDATE--------------------------------------------------------------//
+/////////////////////////////////////////////////////////////////////////////////////////////
+DBmanager klase pasipilde daugiau metodu, kad galima butu kalbetis su islaidu DB (askiru csv)
+
+public static void DisplayExpenseDB() - konsoleje parodo duomenu bazes turini
+
+public static void AddCategoryToDB(string category)
+public static void AddCategoryToDB(string category, int amount) - prideda islaidu kategorija
+i duomenu baze. Galima prideti su suma iskart arba be
+
+ public static int GetExpenseAmountFromDB(string category) - grazina reiksme skaiciaus,
+ kuris parodo nurodytos kategorijos islaidu suma
+
+ public static void IncreaseExpenseAmount(string category, int amount) - padidina nurodytos
+ kategorijos islaidu suma nurodytu kiekiu
+
+ public static void ChangeExpenseAmount(string category, int amount) - pakeicia nurodytos
+ kategorijos suma nurodytu kiekiu
+
+ public static void RemoveExpenseCategory(string category) - pasalina nurodyta kategorija
+ is duomenu bazes
+
+ public static void InitialiseExpenseDB() - i duomenu baze sumeta iprastas kategorijas:
+ Food, Transport, Clothing, Leisure Activities, Taxes, Entertainment, Work, Investments,
+ Savings, Household Items, Real Estate.
+
+ public static void ClearExpenseDB() - isvalo duomenu baze
+
+ DUOMEN? PRID?JIMAS IR/ARBA INICIJAVIMAS VEIKIA IR CSV FAILUI NEEGZISTUOJANT. SUKURIAMAS NAUJAS
+ FAILAS TOKIU ATVEJU.
+
+ Galite š? pavyzdin? kod? perkelti ? Program.cs klases Main metoda ir pasiži?r?ti, kaip
+ veikia duomen? baz?:
+
+            DBmanager.InitialiseExpenseDB();
+            DBmanager.DisplayExpenseDB();
+            Console.WriteLine("");
+            DBmanager.AddCategoryToDB("Other", 12);
+            DBmanager.DisplayExpenseDB();
+            Console.WriteLine("");
+            DBmanager.IncreaseExpenseAmount("Food", 75);
+            DBmanager.IncreaseExpenseAmount("Taxes", 50);
+            DBmanager.IncreaseExpenseAmount("Other", 57);
+            DBmanager.DisplayExpenseDB();
+            Console.WriteLine(DBmanager.GetExpenseAmountFromDB("Transport"));
+            DBmanager.ClearExpenseDB();
+            DBmanager.DisplayExpenseDB(); //--- Nothing to show
+            DBmanager.GetExpenseAmountFromDB("Cadillac"); //--- Exception is thrown
+

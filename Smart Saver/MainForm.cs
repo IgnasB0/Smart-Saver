@@ -37,7 +37,14 @@ namespace Smart_Saver
                     listA.Add(values[2]);
 
                 }
-                Usertextarea.AppendText(listA[1] + " " + listA[2]);
+                try //Exception is thrown
+                {
+                    Usertextarea.AppendText(listA[1] + " " + listA[2]);
+                }
+                catch (Exception e)
+                {
+                    Logger.Log(e.ToString());
+                }
             }
         }
 
