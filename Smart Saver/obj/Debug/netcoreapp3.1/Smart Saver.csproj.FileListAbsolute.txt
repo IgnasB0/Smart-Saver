@@ -4,17 +4,6 @@ D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.runtimeconfig.dev.json
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.dll
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.pdb
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Schema.Sql.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Utilities.dll
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Microsoft.SqlServer.TransactSql.ScriptDom.dll
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.IncomeInput.resources
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.InputExpense.resources
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Properties.Resources.resources
@@ -23,7 +12,6 @@ D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfoInputs.cache
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfo.cs
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.CoreCompileInputs.cache
-D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.CopyComplete
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
@@ -49,3 +37,6 @@ C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart
 C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Categories.resources
 C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.MainForm.resources
 C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Category_Show.resources
+D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Categories.resources
+D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Category_Show.resources
+D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.MainForm.resources

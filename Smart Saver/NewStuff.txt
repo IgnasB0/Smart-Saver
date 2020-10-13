@@ -67,11 +67,19 @@ i duomenu baze. Galima prideti su suma iskart arba be
 
  public static void ClearExpenseDB() - isvalo duomenu baze
 
+<<<<<<< HEAD
  DUOMENŲ PRIDĖJIMAS IR/ARBA INICIJAVIMAS VEIKIA IR CSV FAILUI NEEGZISTUOJANT. SUKURIAMAS NAUJAS
  FAILAS TOKIU ATVEJU.
 
  Galite šį pavyzdinį kodą perkelti į Program.cs klases Main metoda ir pasižiūrėti, kaip
  veikia duomenų bazė:
+=======
+ DUOMEN? PRID?JIMAS IR/ARBA INICIJAVIMAS VEIKIA IR CSV FAILUI NEEGZISTUOJANT. SUKURIAMAS NAUJAS
+ FAILAS TOKIU ATVEJU.
+
+ Galite �? pavyzdin? kod? perkelti ? Program.cs klases Main metoda ir pasi�i?r?ti, kaip
+ veikia duomen? baz?:
+>>>>>>> modesto
 
             DBmanager.InitialiseExpenseDB();
             DBmanager.DisplayExpenseDB();

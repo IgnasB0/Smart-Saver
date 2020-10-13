@@ -7,7 +7,7 @@ namespace Smart_Saver
     {
         public static void Log(string message)
         {
-            logFileWriter.WriteLine(DateTime.Now +"|:   " + message);
+            logFileWriter.WriteLine(DateTime.Now.ToString() +"|:   " + message);
             logFileWriter.Flush();
         }
 

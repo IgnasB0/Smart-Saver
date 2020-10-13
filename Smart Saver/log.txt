@@ -1,0 +1,21 @@
+10/12/2020 7:26:56 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Smart_Saver.MainForm.userinfo() in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\MainForm.cs:line 42
+10/12/2020 7:26:58 PM|:   System.IO.IOException: The process cannot access the file 'D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\ExpenseDB.csv' because it is being used by another process.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding)
+   at System.IO.File.InternalReadAllLines(String path, Encoding encoding)
+   at System.IO.File.ReadAllLines(String path)
+   at Smart_Saver.DBmanager.DisplayExpenseDB() in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 84
+10/12/2020 7:26:58 PM|:   System.IO.IOException: The process cannot access the file 'D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\ExpenseDB.csv' because it is being used by another process.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding)
+   at System.IO.File.InternalReadAllLines(String path, Encoding encoding)
+   at System.IO.File.ReadAllLines(String path)
+   at Smart_Saver.DBmanager.GetExpenseAmountFromDB(String category) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 163
