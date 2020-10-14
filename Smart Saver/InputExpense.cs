@@ -14,6 +14,7 @@ namespace Smart_Saver
 
     public partial class InputExpense : Form
     {
+
         public InputExpense()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Smart_Saver
             category.Items.Add("Taxes");
             category.Items.Add("Household items");
             category.Items.Add("Outfit");
-            category.Items.Add("investments");
+            category.Items.Add("Investments");
 
         }
         public InputExpense(string Category)
@@ -65,26 +66,35 @@ namespace Smart_Saver
             richTextBox1.AppendText(string.Format("{0}", expenseAmount.Value) + '\n');
             richTextBox1.AppendText(expenseName.Text + '\n');
             richTextBox1.AppendText(string.Format("{0}", date.Value) + '\n');
-            rasytiifaila(category.Text,expenseAmount.Value,expenseName.Text, date.Value);
+            WriteToFile(category.Text,expenseAmount.Value,expenseName.Text, date.Value);
+            MessageBox.Show("Expense was added successfully");
 
         }
 
-        private void rasytiifaila(string text1, decimal value1, string text2, DateTime value2)
+        private void WriteToFile(string text1, decimal value1, string text2, DateTime value2)
         {
-            List<string> lines = new List<string>();
-            lines.Add(text1);
-            lines.Add(Convert.ToString(value1));
-            lines.Add(text2);
-            lines.Add(Convert.ToString(value2));
-
-            using (StreamWriter outputFile = new StreamWriter("..\\..\\..\\output.txt", true))
+            
+            try
             {
-                foreach (string line in lines)
+                List<string> lines = new List<string>();
+                lines.Add(text1);
+                lines.Add(Convert.ToString(value1));
+                lines.Add(text2);
+                lines.Add(Convert.ToString(value2));
+                using (StreamWriter outputFile = new StreamWriter("..\\..\\..\\output.txt", true))
                 {
-                    outputFile.WriteLine(line);
+                    foreach (string line in lines)
+                    {
+                        outputFile.WriteLine(line);
+                    }
+
                 }
-                   
             }
+            catch(Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+            
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
@@ -103,9 +113,10 @@ namespace Smart_Saver
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Close();
             var m = new MainForm();
             m.Show();
-            this.Close();
         }
+
     }
 }

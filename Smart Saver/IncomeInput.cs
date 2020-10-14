@@ -14,5 +14,12 @@ namespace Smart_Saver
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var m = new MainForm();
+            m.Show();
+        }
     }
 }

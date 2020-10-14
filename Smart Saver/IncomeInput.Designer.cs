@@ -36,6 +36,7 @@
             this.AddIncomeBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.IncomeOutputField = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Amount_Income)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,11 +117,22 @@
             this.IncomeOutputField.TabIndex = 7;
             this.IncomeOutputField.Text = "";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(504, 257);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 28);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // IncomeInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 498);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.IncomeOutputField);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.AddIncomeBtn);
@@ -147,5 +159,6 @@
         private System.Windows.Forms.Button AddIncomeBtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox IncomeOutputField;
+        private System.Windows.Forms.Button button1;
     }
 }

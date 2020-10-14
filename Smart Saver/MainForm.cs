@@ -16,10 +16,6 @@ namespace Smart_Saver
         public MainForm()
         {
             InitializeComponent();
-            userinfo();
-
-
-
         }
 
         private void userinfo()
@@ -82,16 +78,20 @@ namespace Smart_Saver
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             if (item.Text == "Add Income")
             {
+                this.Hide();
                 var m = new IncomeInput();
-                m.Show();
+                m.Show();     
             }
             else if (item.Text == "Add Expense")
             {
+                this.Hide();
                 var m = new InputExpense();
                 m.Show();
+
             }
             else if (item.Text == "Add Category")
             {
+                this.Hide();
                 var m = new Categories();
                 m.Show();
             }
@@ -154,6 +154,19 @@ namespace Smart_Saver
         {
             var m = new Category_Show();
             m.Show();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var m = new SavingsDepositRepresentation();
+            m.Show();
+
         }
     }
 }
