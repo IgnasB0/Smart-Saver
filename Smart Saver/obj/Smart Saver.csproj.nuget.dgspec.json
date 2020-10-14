@@ -2,6 +2,7 @@
   "format": 1,
   "restore": {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj": {}
   },
   "projects": {
@@ -13,6 +14,19 @@
         "projectPath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj",
         "packagesPath": "C:\\Users\\aukse\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\obj\\",
+=======
+    "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
+  },
+  "projects": {
+    "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+        "projectName": "Smart Saver",
+        "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+        "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
+        "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
+>>>>>>> Stashed changes
 =======
     "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
   },
