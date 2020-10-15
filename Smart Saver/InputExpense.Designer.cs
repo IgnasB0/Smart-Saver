@@ -40,12 +40,13 @@
             this.Add = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.expenseAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // expenseName
             // 
-            this.expenseName.Location = new System.Drawing.Point(395, 127);
+            this.expenseName.Location = new System.Drawing.Point(395, 202);
             this.expenseName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.expenseName.Name = "expenseName";
             this.expenseName.Size = new System.Drawing.Size(244, 27);
@@ -55,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 131);
+            this.label1.Location = new System.Drawing.Point(280, 205);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 20);
             this.label1.TabIndex = 1;
@@ -70,7 +71,7 @@
             0,
             0,
             131072});
-            this.expenseAmount.Location = new System.Drawing.Point(395, 189);
+            this.expenseAmount.Location = new System.Drawing.Point(395, 253);
             this.expenseAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.expenseAmount.Name = "expenseAmount";
             this.expenseAmount.Size = new System.Drawing.Size(245, 27);
@@ -80,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 192);
+            this.label2.Location = new System.Drawing.Point(280, 255);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 20);
             this.label2.TabIndex = 3;
@@ -90,21 +91,17 @@
             // category
             // 
             this.category.FormattingEnabled = true;
-            this.category.Items.AddRange(new object[] {
-            "Transportation",
-            "Food",
-            "Health",
-            "Entertainment"});
-            this.category.Location = new System.Drawing.Point(395, 249);
+            this.category.Location = new System.Drawing.Point(395, 155);
             this.category.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.category.Name = "category";
             this.category.Size = new System.Drawing.Size(244, 28);
             this.category.TabIndex = 4;
+            this.category.SelectedIndexChanged += new System.EventHandler(this.category_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(291, 253);
+            this.label3.Location = new System.Drawing.Point(280, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 5;
@@ -132,7 +129,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(291, 324);
+            this.label5.Location = new System.Drawing.Point(280, 321);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 20);
             this.label5.TabIndex = 8;
@@ -140,10 +137,10 @@
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(464, 395);
+            this.Add.Location = new System.Drawing.Point(540, 386);
             this.Add.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(86, 31);
+            this.Add.Size = new System.Drawing.Size(100, 31);
             this.Add.TabIndex = 9;
             this.Add.Text = "Add";
             this.Add.UseVisualStyleBackColor = true;
@@ -167,6 +164,16 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Your expense";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(372, 386);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(108, 27);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // InputExpense
             // 
             this.AccessibleName = "Name";
@@ -174,6 +181,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.Add);
@@ -190,6 +198,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InputExpense";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.InputExpense_Load);
             ((System.ComponentModel.ISupportInitialize)(this.expenseAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -210,6 +219,7 @@
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
     }
 }
 

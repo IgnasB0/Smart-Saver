@@ -1,21 +1,31 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
     "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj": {}
+=======
+    "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\Smart Saver.csproj": {}
+
   },
   "projects": {
-    "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj": {
+    "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\Smart Saver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj",
+        "projectUniqueName": "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\Smart Saver.csproj",
         "projectName": "Smart Saver",
-        "projectPath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj",
+        "projectPath": "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\Smart Saver.csproj",
         "packagesPath": "C:\\Users\\aukse\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\obj\\",
-=======
+  },
+  "projects": {
+    "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+        "projectName": "Smart Saver",
+        "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+        "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
+        "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
     "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
   },
   "projects": {
@@ -27,8 +37,7 @@
         "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
         "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
         "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
->>>>>>> Stashed changes
-=======
+
     "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
   },
   "projects": {
@@ -40,23 +49,16 @@
         "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
         "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
         "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
->>>>>>> Stashed changes
-=======
-    "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {}
-  },
-  "projects": {
-    "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
-        "projectName": "Smart Saver",
-        "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
-        "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
-        "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
->>>>>>> Stashed changes
+
+
+        "outputPath": "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\obj\\",
+
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ignas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aukse\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

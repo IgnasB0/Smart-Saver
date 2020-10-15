@@ -6,17 +6,21 @@ using System.Linq;
 using System.Windows.Forms.VisualStyles;
 
 
+
 //static class DBmanager - DataBase manager
 
 namespace Smart_Saver
 {
     static class DBmanager
     {
+
+
         /*
          * ---------------------------------------------------------------------------------------------------------------
          * Functions for User Database
          * ---------------------------------------------------------------------------------------------------------------
          */
+
 
         public struct Expense
         {
@@ -120,11 +124,7 @@ namespace Smart_Saver
                 Logger.Log(e.ToString());
             }
 
-<<<<<<< Updated upstream
             foreach(Expense oneExpense in expenses)
-=======
-            foreach (Expense oneExpense in expenses)
->>>>>>> Stashed changes
             {
                 Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
             }
@@ -134,7 +134,6 @@ namespace Smart_Saver
 
         public static void DisplayExpenseDB()
         {
-            Console.WriteLine("Veikia");
             try
             {
                 List<string> items = new List<string>();
@@ -350,4 +349,5 @@ namespace Smart_Saver
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
         private static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
     }
+
 }

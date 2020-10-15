@@ -1,3 +1,5 @@
+
 10/13/2020 10:00:58 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
    at System.Collections.Generic.List`1.get_Item(Int32 index)
    at Smart_Saver.MainForm.userinfo() in D:\Studijos\Github\Smart-Saver\Smart Saver\MainForm.cs:line 42
+
