@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
+
 
 
 //static class DBmanager - DataBase manager
@@ -12,11 +14,23 @@ namespace Smart_Saver
     static class DBmanager
     {
 
+
         /*
          * ---------------------------------------------------------------------------------------------------------------
          * Functions for User Database
          * ---------------------------------------------------------------------------------------------------------------
          */
+
+
+        public struct Expense
+        {
+            public String name;
+            public Decimal amount;
+            public DateTime expenseDate;
+            public String category;
+        }
+
+
         public static void AddUserToDB(User user)
         {
             try
@@ -75,6 +89,48 @@ namespace Smart_Saver
          * Functions for Expense Database
          * ---------------------------------------------------------------------------------------------------------------
          */
+
+        public static List<Expense> ParseExpenses()
+        {
+            List<Expense> expenses = new List<Expense>();
+
+            try
+            {
+
+                List<string> items = new List<string>();
+                items = File.ReadAllLines(expenseDBFilePath).ToList();
+
+                foreach (string item in items)
+                {
+                    String[] elements = item.Split(',');
+
+                    String expenseName = elements[0];
+                    Decimal expenseAmount = Decimal.Parse(elements[1]);
+                    DateTime expenseDate = DateTime.Parse(elements[2]);
+                    String category = elements[3];
+
+                    Expense newExpense = new Expense();
+                    newExpense.name = expenseName;
+                    newExpense.amount = expenseAmount;
+                    newExpense.expenseDate = expenseDate;
+                    newExpense.category = category;
+
+                    expenses.Add(newExpense);
+                    //Console.WriteLine(item);
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+
+            foreach(Expense oneExpense in expenses)
+            {
+                Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
+            }
+
+            return expenses;
+        }
 
         public static void DisplayExpenseDB()
         {
@@ -293,4 +349,5 @@ namespace Smart_Saver
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
         private static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
     }
+
 }

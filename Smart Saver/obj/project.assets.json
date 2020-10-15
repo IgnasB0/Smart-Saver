@@ -14,11 +14,38 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+
+      "projectUniqueName": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\Smart Saver.csproj",
+
       "projectUniqueName": "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\Smart Saver.csproj",
+
       "projectName": "Smart Saver",
       "projectPath": "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\Smart Saver.csproj",
       "packagesPath": "C:\\Users\\aukse\\.nuget\\packages\\",
+
+      "outputPath": "C:\\Users\\aukse\\Source\\Repos\\Smart-Saver2\\Smart Saver\\obj\\",
+
+      "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+      "projectName": "Smart Saver",
+      "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+      "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
+      "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
+
+
+      "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+      "projectName": "Smart Saver",
+      "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+      "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
+      "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
+
+      "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+      "projectName": "Smart Saver",
+      "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+      "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
+      "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
+
       "outputPath": "C:\\Users\\aukse\\Desktop\\MIMA\\Smart Saver\\obj\\",
+
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

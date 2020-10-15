@@ -16,6 +16,7 @@ namespace Smart_Saver
         public MainForm()
         {
             InitializeComponent();
+            userinfo();
         }
 
         private void userinfo()
@@ -147,7 +148,17 @@ namespace Smart_Saver
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("0");
+            List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
+
+            decimal expenseTotal = 0;
+
+            foreach (DBmanager.Expense oneExpense in expenses)
+            {
+                expenseTotal += oneExpense.amount;
+            }
+
+
+            MessageBox.Show( string.Format("{0}", expenseTotal) );
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -166,7 +177,6 @@ namespace Smart_Saver
             this.Hide();
             var m = new SavingsDepositRepresentation();
             m.Show();
-
         }
     }
 }
