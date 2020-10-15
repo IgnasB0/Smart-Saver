@@ -120,7 +120,11 @@ namespace Smart_Saver
                 Logger.Log(e.ToString());
             }
 
+<<<<<<< Updated upstream
             foreach(Expense oneExpense in expenses)
+=======
+            foreach (Expense oneExpense in expenses)
+>>>>>>> Stashed changes
             {
                 Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
             }

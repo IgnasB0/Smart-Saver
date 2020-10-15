@@ -23,17 +23,7 @@ namespace Smart_Saver
                 amount = goalAmount;
             }
         }
-        struct Expense
-        {
-            public decimal amount;
-            public DateTime date;
 
-            public Expense(decimal expenseAmount, DateTime expenseDate)
-            {
-                amount = expenseAmount;
-                date = expenseDate;
-            }
-        }
         struct Income
         {
             public decimal amount;
@@ -48,16 +38,11 @@ namespace Smart_Saver
 
         public SavingsDepositRepresentation()
         {
+            List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
+
             InitializeComponent();
             decimal balance = 0;
 
-            List<Expense> expenseList = new List<Expense>();
-
-            Expense newExpense = new Expense(1.12m, new DateTime(2020, 9, 26, 7, 47, 0));
-            expenseList.Add(newExpense);
-
-            newExpense = new Expense(2.31m, new DateTime(2020, 9, 26, 7, 47, 0));
-            expenseList.Add(newExpense);
 
             List<Income> incomeList = new List<Income>();
 
@@ -76,15 +61,24 @@ namespace Smart_Saver
 
             decimal expenseTotal = 0;
 
-            foreach (Expense expense in expenseList)
+            foreach (DBmanager.Expense oneExpense in expenses)
             {
-                expenseTotal += expense.amount;
+                expenseTotal += oneExpense.amount;
             }
+<<<<<<< Updated upstream
             TotalExpense_TextBox.AppendText(string.Format("{0}", expenseTotal) );
 
             balance = incomeTotal - expenseTotal;
 
             balanceField.AppendText( string.Format("{0}", balance) + '\n');
+=======
+
+            TotalExpense_TextBox.AppendText(string.Format("{0}", expenseTotal));
+
+            balance = incomeTotal - expenseTotal;
+
+            balanceField.AppendText(string.Format("{0}", balance) + '\n');
+>>>>>>> Stashed changes
 
             decimal amountToReachGoal = goal - balance;
 

@@ -147,7 +147,22 @@ namespace Smart_Saver
 
         private void button2_Click(object sender, EventArgs e)
         {
+<<<<<<< Updated upstream
             
+=======
+            List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
+
+            decimal expenseTotal = 0;
+
+            foreach (DBmanager.Expense oneExpense in expenses)
+            {
+                expenseTotal += oneExpense.amount;
+            }
+
+
+            MessageBox.Show( string.Format("{0}", expenseTotal) );
+        }
+>>>>>>> Stashed changes
 
             List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
 
