@@ -69,6 +69,11 @@
             0,
             131072});
             this.Amount_Income.Location = new System.Drawing.Point(518, 120);
+            this.Amount_Income.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.Amount_Income.Name = "Amount_Income";
             this.Amount_Income.Size = new System.Drawing.Size(240, 27);
             this.Amount_Income.TabIndex = 2;
@@ -98,6 +103,7 @@
             this.AddIncomeBtn.TabIndex = 5;
             this.AddIncomeBtn.Text = "Add";
             this.AddIncomeBtn.UseVisualStyleBackColor = true;
+            this.AddIncomeBtn.Click += new System.EventHandler(this.AddIncomeBtn_Click);
             // 
             // label4
             // 

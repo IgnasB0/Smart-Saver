@@ -72,6 +72,7 @@
             this.TotalExpense_TextBox.Name = "TotalExpense_TextBox";
             this.TotalExpense_TextBox.Size = new System.Drawing.Size(270, 27);
             this.TotalExpense_TextBox.TabIndex = 2;
+            this.TotalExpense_TextBox.TextChanged += new System.EventHandler(this.TotalExpense_TextBox_TextChanged);
             // 
             // label3
             // 

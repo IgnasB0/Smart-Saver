@@ -30,6 +30,12 @@ namespace Smart_Saver
             public String category;
         }
 
+        public struct Income
+        {
+            public decimal amount;
+            public DateTime date;
+        }
+
 
         public static void AddUserToDB(User user)
         {
@@ -89,7 +95,33 @@ namespace Smart_Saver
          * Functions for Expense Database
          * ---------------------------------------------------------------------------------------------------------------
          */
+        public static List<Income> ParseIncomes()
+        {
+            List<Income> income = new List<Income>();
+            try
+            {
+                List<string> item = new List<string>();
+                item = File.ReadAllLines(incomeFilePath).ToList();
 
+                foreach (string it in item)
+                {
+                    string[] elements = it.Split(',');
+                    decimal incomeAmount = decimal.Parse(elements[0]);
+                    DateTime incomeDate = DateTime.Parse(elements[1]);
+
+                    Income newIncome = new Income();
+                    newIncome.amount = incomeAmount;
+                    newIncome.date = incomeDate;
+
+                    income.Add(newIncome);
+                }
+            }
+            catch(Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+            return income;
+        }
         public static List<Expense> ParseExpenses()
         {
             List<Expense> expenses = new List<Expense>();
@@ -348,6 +380,7 @@ namespace Smart_Saver
         }
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
         private static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
+        private static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
     }
 
 }

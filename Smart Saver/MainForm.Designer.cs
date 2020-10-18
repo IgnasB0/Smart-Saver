@@ -120,7 +120,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(219, 116);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Total Income";
+            this.button1.Text = "Monthly Income";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -130,7 +130,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(224, 116);
             this.button2.TabIndex = 5;
-            this.button2.Text = "Total Expense";
+            this.button2.Text = "Monthly Expense";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -152,6 +152,7 @@
             this.button4.TabIndex = 7;
             this.button4.Text = "Monthly Balance";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -165,9 +166,9 @@
             // 
             // Exit
             // 
-            this.Exit.Location = new System.Drawing.Point(756, 344);
+            this.Exit.Location = new System.Drawing.Point(750, 329);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(203, 101);
+            this.Exit.Size = new System.Drawing.Size(214, 116);
             this.Exit.TabIndex = 9;
             this.Exit.Text = "Exit";
             this.Exit.UseVisualStyleBackColor = true;
