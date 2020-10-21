@@ -22,7 +22,7 @@ namespace Smart_Saver
             
             Application.Run(new MainForm());
 
-
+            Console.WriteLine("Total Expense Amount: {0}", DBmanager.GetTotalExpenseAmount());
         }
     }
 }

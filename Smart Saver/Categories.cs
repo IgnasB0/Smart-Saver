@@ -15,7 +15,7 @@ namespace Smart_Saver
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Siulau nedeti sito pasirinkimo cia (Modestas)
         {
            
             string category = CategoryName.Text;
@@ -40,6 +40,7 @@ namespace Smart_Saver
             }
             else
             {
+                DBmanager.ExpenseCategories.Add(category);
                 MessageBox.Show("Category was added successfully");
             }
            
