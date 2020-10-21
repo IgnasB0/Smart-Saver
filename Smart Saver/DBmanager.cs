@@ -180,81 +180,54 @@ namespace Smart_Saver
                 Logger.Log(e.ToString());
             }
         }
-        public static void AddCategoryToDB(string category)
+        public static void AddCategory(string categoryToAdd)
         {
             try
             {
-                //Check if file exists, if not - create
-                if (!File.Exists(expenseDBFilePath))
-                {
-                    FileStream fs = File.Create(expenseDBFilePath);
-                    fs.Close();
-                }
-                //Check if category already exists in the DB
-                List<string> items = new List<string>();
-                items = File.ReadAllLines(expenseDBFilePath).ToList();
-                foreach (string item in items)
-                {
-                    string[] elements = item.Split(',');
-                    if (elements[0] == category) throw new Exception("Specified category already exists");
-                }
-
-                //If catgory is new, then it is added to DB
-                using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
-                {
-                    expenseDBFileWriter.WriteLine($"{category},{0}");
-                    expenseDBFileWriter.Flush();
-                }
+                ExpenseCategories.Add(categoryToAdd);
             }
             catch (Exception e)
             {
                 Logger.Log(e.ToString());
             }
         }
-        public static void AddCategoryToDB(string category, int amount)
+        public static decimal GetCategoryExpenseAmount(string neededCategory)
         {
             try
             {
-                //Check if file exists, if not - create
-                if (!File.Exists(expenseDBFilePath))
-                {
-                    FileStream fs = File.Create(expenseDBFilePath);
-                    fs.Close();
-                }
-                //Check if category already exists in the DB
                 List<string> items = new List<string>();
+                List<Expense> expenses = new List<Expense>();
+                
+                //Gather information from database
                 items = File.ReadAllLines(expenseDBFilePath).ToList();
                 foreach (string item in items)
                 {
-                    string[] elements = item.Split(',');
-                    if (elements[0] == category) throw new Exception("Specified category already exists");
+                    String[] elements = item.Split(',');
+
+                    String expenseName = elements[0];
+                    Decimal expenseAmount = Decimal.Parse(elements[1]);
+                    DateTime expenseDate = DateTime.Parse(elements[2]);
+                    String expenseCategory = elements[3];
+
+                    Expense newExpense = new Expense();
+                    newExpense.name = expenseName;
+                    newExpense.amount = expenseAmount;
+                    newExpense.expenseDate = expenseDate;
+                    newExpense.category = expenseCategory;
+                    expenses.Add(newExpense);
                 }
 
-                //If catgory is new, then it is added to DB
-                using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
-                {
-                    expenseDBFileWriter.WriteLine($"{category},{amount}");
-                    expenseDBFileWriter.Flush();
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Log(e.ToString());
-            }
-        }
-        public static int GetExpenseAmountFromDB(string category)
-        {
-            try
-            {
+                //Group expenses by categories
+                var categories = from expense in expenses
+                                 group expense.amount by expense.category into categoryGroup //<-----------------------------------LINQ
+                                 select new { Name = categoryGroup.Key, Amount = categoryGroup.Sum() };
+
                 //Check if category exists in the DB, then parse the amount of expense
-                List<string> items = new List<string>();
-                items = File.ReadAllLines(expenseDBFilePath).ToList();
-                foreach (string item in items)
+                foreach (var category in categories)
                 {
-                    string[] elements = item.Split(',');
-                    if (elements[0] == category)
+                    if (category.Name == neededCategory)
                     {
-                        return int.Parse(elements[1]);
+                        return category.Amount;
                     }
                 }
                 //If category wasn;t found throw exception
@@ -266,7 +239,26 @@ namespace Smart_Saver
                 return -1;
             }
         }
-        public static void IncreaseExpenseAmount(string category, int amount)
+        
+        public static void AddExpense(Expense expenseToAdd)
+        {
+            try
+            {
+                //Generate entry string
+                string expenseToAddString = $"{expenseToAdd.name},{expenseToAdd.amount},{expenseToAdd.expenseDate},{expenseToAdd.category}";
+                //Add new expense
+                using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
+                {
+                    expenseDBFileWriter.WriteLine(expenseToAddString);
+                    expenseDBFileWriter.Flush();
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+        }
+        public static void RemoveExpenseFromCategory(string neededCategory, string neededName)
         {
             try
             {
@@ -274,14 +266,13 @@ namespace Smart_Saver
                 List<string> items = new List<string>();
                 items = File.ReadAllLines(expenseDBFilePath).ToList();
                 bool categoryWasNotFound = true;
+                int numberOfItem = -1;
                 for (int i = 0; i < items.Count; i++)
                 {
                     string[] elements = items[i].Split(',');
-                    if (elements[0] == category)
+                    if (elements[0] == neededName && elements[3] == neededCategory)
                     {
-                        int increasedAmount = int.Parse(elements[1]);
-                        increasedAmount += amount;
-                        items[i] = $"{elements[0]}, {increasedAmount}";
+                        numberOfItem = i;
                         categoryWasNotFound = false;
                         break;
                     }
@@ -289,6 +280,7 @@ namespace Smart_Saver
                 //If category wasn't fount - throw exception
                 if (categoryWasNotFound) throw new Exception("Specified category was not found");
                 //Else proceed with adding the data
+                items.RemoveAt(numberOfItem);
                 File.WriteAllLines(expenseDBFilePath, items);
             }
             catch (Exception e)
@@ -296,54 +288,22 @@ namespace Smart_Saver
                 Logger.Log(e.ToString());
             }
         }
-        public static void ChangeExpenseAmount(string category, int amount)
+        public static void RemoveExpenseCategory(string neededCategory)
         {
             try
             {
-                //Find category in DB
+                //Find all items of specified category in DB adn clear them
                 List<string> items = new List<string>();
                 items = File.ReadAllLines(expenseDBFilePath).ToList();
-                bool categoryWasNotFound = true;
                 for (int i = 0; i < items.Count; i++)
                 {
                     string[] elements = items[i].Split(',');
-                    if (elements[0] == category)
-                    {
-                        items[i] = $"{elements[0]}, {amount}";
-                        categoryWasNotFound = false;
-                        break;
-                    }
-                }
-                //If category wasn't fount - throw exception
-                if (categoryWasNotFound) throw new Exception("Specified category was not found");
-                //Else proceed with adding the data
-                File.WriteAllLines(expenseDBFilePath, items);
-            }
-            catch (Exception e)
-            {
-                Logger.Log(e.ToString());
-            }
-        }
-        public static void RemoveExpenseCategory(string category)
-        {
-            try
-            {
-                //Find category in DB
-                List<string> items = new List<string>();
-                items = File.ReadAllLines(expenseDBFilePath).ToList();
-                bool categoryWasNotFound = true;
-                for (int i = 0; i < items.Count; i++)
-                {
-                    string[] elements = items[i].Split(',');
-                    if (elements[0] == category)
+                    if (elements[3] == neededCategory)
                     {
                         items.RemoveAt(i);
-                        categoryWasNotFound = false;
-                        break;
+                        i--;
                     }
                 }
-                //If category wasn't fount - throw exception
-                if (categoryWasNotFound) throw new Exception("Specified category was not found");
                 //Else proceed with adding the data
                 File.WriteAllLines(expenseDBFilePath, items);
             }
@@ -351,20 +311,6 @@ namespace Smart_Saver
             {
                 Logger.Log(e.ToString());
             }
-        }
-        public static void InitialiseExpenseDB()
-        {
-            DBmanager.AddCategoryToDB("Food");
-            DBmanager.AddCategoryToDB("Transport");
-            DBmanager.AddCategoryToDB("Clothing");
-            DBmanager.AddCategoryToDB("Leisure Activities");
-            DBmanager.AddCategoryToDB("Taxes");
-            DBmanager.AddCategoryToDB("Entertainment");
-            DBmanager.AddCategoryToDB("Work");
-            DBmanager.AddCategoryToDB("Investments");
-            DBmanager.AddCategoryToDB("Savings");
-            DBmanager.AddCategoryToDB("Household Items");
-            DBmanager.AddCategoryToDB("Real Estate");
         }
         public static void ClearExpenseDB()
         {
@@ -381,6 +327,8 @@ namespace Smart_Saver
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
         private static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
         private static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
+        public static List<string> ExpenseCategories = new List<string>
+        { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health" };
     }
 
 }
