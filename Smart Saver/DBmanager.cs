@@ -239,6 +239,19 @@ namespace Smart_Saver
                 return -1;
             }
         }
+        public static decimal GetTotalExpenseAmount()
+        {
+            List<string> items = new List<string>();
+            items = File.ReadAllLines(expenseDBFilePath).ToList();
+            Decimal totalAmount = 0;
+            foreach (string item in items)
+            {
+                String[] elements = item.Split(',');
+                Decimal expenseAmount = Decimal.Parse(elements[1]);
+                totalAmount += expenseAmount;
+            }
+            return totalAmount;
+        }
         
         public static void AddExpense(Expense expenseToAdd)
         {

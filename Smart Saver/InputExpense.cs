@@ -19,14 +19,7 @@ namespace Smart_Saver
         public InputExpense()
         {
             InitializeComponent();
-            category.Items.Add("Transportation");
-            category.Items.Add("Food");
-            category.Items.Add("Health");
-            category.Items.Add("Entertainment");
-            category.Items.Add("Taxes");
-            category.Items.Add("Household items");
-            category.Items.Add("Outfit");
-            category.Items.Add("Investments");
+            category.Items.AddRange(DBmanager.ExpenseCategories.ToArray());
 
         }
         public InputExpense(string Category)
