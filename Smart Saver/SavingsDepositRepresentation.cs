@@ -38,11 +38,14 @@ namespace Smart_Saver
 
         public SavingsDepositRepresentation()
         {
+<<<<<<< Updated upstream
             List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
 
+=======
+>>>>>>> Stashed changes
             InitializeComponent();
-            decimal balance = 0;
 
+<<<<<<< Updated upstream
 
             List<Income> incomeList = new List<Income>();
 
@@ -50,11 +53,14 @@ namespace Smart_Saver
             incomeList.Add(newIncome);
 
             const decimal goal = 2.01m; //test data
+=======
+            DBmanager.Goal goal = DBmanager.ParseGoal();
+>>>>>>> Stashed changes
 
-            Goal newGoal = new Goal("test goal", new DateTime(2020, 9, 30, 7, 47, 0), 2.01m);
 
-            decimal incomeTotal = 0;
+            decimal monthlyExpenses = DBmanager.MonthlyExpenses();
 
+<<<<<<< Updated upstream
             foreach (Income income in incomeList)
             {
                 incomeTotal += income.amount;
@@ -69,12 +75,19 @@ namespace Smart_Saver
             }
 
             TotalExpense_TextBox.AppendText(string.Format("{0}", expenseTotal));
+=======
+            TotalExpense_TextBox.AppendText(string.Format("{0}", monthlyExpenses));
 
-            balance = incomeTotal - expenseTotal;
+            decimal monthlyIncome = DBmanager.MonthlyIncome();
+
+            TotalIncome_TextBox.AppendText(string.Format("{0}", monthlyIncome));
+>>>>>>> Stashed changes
+
+            decimal balance = monthlyIncome - monthlyExpenses;
 
             balanceField.AppendText(string.Format("{0}", balance) + '\n');
 
-            decimal amountToReachGoal = goal - balance;
+            decimal amountToReachGoal = goal.amount - balance;
 
             if (amountToReachGoal >= 0)
                 amountNeeded.AppendText(string.Format("{0}", amountToReachGoal));
@@ -83,11 +96,11 @@ namespace Smart_Saver
 
             DateTime dateTimeNow = DateTime.Now;
 
-            TimeSpan timeLeft = newGoal.date.Subtract(dateTimeNow);
+            TimeSpan timeLeft = goal.date.Subtract(dateTimeNow);
 
             TimeToDestination_richTextBox.AppendText(string.Format("{0}", timeLeft.Days));
 
-            if (balance >= goal)
+            if (balance >= goal.amount)
                 System.Windows.Forms.MessageBox.Show("Goal Reached");
         }
 

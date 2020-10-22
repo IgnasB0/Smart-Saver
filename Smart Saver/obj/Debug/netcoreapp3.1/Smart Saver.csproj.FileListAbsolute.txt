@@ -70,3 +70,17 @@ D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.r
 D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.dll
 D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.pdb
 D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csprojAssemblyReference.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Categories.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Category_Show.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.IncomeInput.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.InputExpense.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.MainForm.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.Properties.Resources.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart_Saver.SavingsDepositRepresentation.resources
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.GenerateResource.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfoInputs.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.AssemblyInfo.cs
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csproj.CoreCompileInputs.cache
+D:\Studijos\Github\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache

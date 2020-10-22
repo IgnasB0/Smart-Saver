@@ -36,12 +36,15 @@
             this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
             this.Usertextarea = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
+            this.expensesLabel = new System.Windows.Forms.Label();
+            this.incomeLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.balanceLabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +67,11 @@
             this.toolStripDropDownButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
+<<<<<<< Updated upstream
             this.toolStrip1.Size = new System.Drawing.Size(1232, 27);
+=======
+            this.toolStrip1.Size = new System.Drawing.Size(833, 25);
+>>>>>>> Stashed changes
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -114,6 +121,7 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Main Smart Saving Form";
             // 
+<<<<<<< Updated upstream
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(27, 155);
@@ -134,6 +142,8 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+=======
+>>>>>>> Stashed changes
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(173, 329);
@@ -144,6 +154,7 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+<<<<<<< Updated upstream
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(622, 155);
@@ -153,6 +164,8 @@
             this.button4.Text = "Monthly Balance";
             this.button4.UseVisualStyleBackColor = true;
             // 
+=======
+>>>>>>> Stashed changes
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(442, 329);
@@ -173,17 +186,81 @@
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
+            // expensesLabel
+            // 
+            this.expensesLabel.AutoSize = true;
+            this.expensesLabel.Location = new System.Drawing.Point(393, 163);
+            this.expensesLabel.Name = "expensesLabel";
+            this.expensesLabel.Size = new System.Drawing.Size(13, 15);
+            this.expensesLabel.TabIndex = 10;
+            this.expensesLabel.Text = "0";
+            this.expensesLabel.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // incomeLabel
+            // 
+            this.incomeLabel.AutoSize = true;
+            this.incomeLabel.Location = new System.Drawing.Point(133, 163);
+            this.incomeLabel.Name = "incomeLabel";
+            this.incomeLabel.Size = new System.Drawing.Size(13, 15);
+            this.incomeLabel.TabIndex = 11;
+            this.incomeLabel.Text = "0";
+            this.incomeLabel.Click += new System.EventHandler(this.incomeLabel_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(32, 163);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 15);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Monthly Income";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(284, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 15);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Monthly Expenses";
+            // 
+            // balanceLabel
+            // 
+            this.balanceLabel.AutoSize = true;
+            this.balanceLabel.Location = new System.Drawing.Point(646, 163);
+            this.balanceLabel.Name = "balanceLabel";
+            this.balanceLabel.Size = new System.Drawing.Size(13, 15);
+            this.balanceLabel.TabIndex = 14;
+            this.balanceLabel.Text = "0";
+            this.balanceLabel.Click += new System.EventHandler(this.balanceLabel_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(544, 163);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 15);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Monthly Balance";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< Updated upstream
             this.ClientSize = new System.Drawing.Size(1232, 533);
+=======
+            this.ClientSize = new System.Drawing.Size(833, 470);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.balanceLabel);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.incomeLabel);
+            this.Controls.Add(this.expensesLabel);
+>>>>>>> Stashed changes
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Usertextarea);
             this.Controls.Add(this.toolStrip1);
@@ -207,11 +284,14 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.TextBox Usertextarea;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Label expensesLabel;
+        private System.Windows.Forms.Label incomeLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label balanceLabel;
+        private System.Windows.Forms.Label label5;
     }
 }
