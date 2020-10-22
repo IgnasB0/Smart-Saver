@@ -1,2 +1,0 @@
-10/21/2020 12:49:52 PM|:   System.Exception: Specified category was not found in the database.
-   at Smart_Saver.DBmanager.GetCategoryExpenseAmount(String neededCategory) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 234
