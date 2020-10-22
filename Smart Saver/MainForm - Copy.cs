@@ -16,19 +16,7 @@ namespace Smart_Saver
         public MainForm()
         {
             InitializeComponent();
-            userinfo();
-
-            // userinfo();
-
-            decimal monthlyExpenses = DBmanager.MonthlyExpenses();
-
-            expensesLabel.Text = string.Format("{0}", monthlyExpenses);
-
-            decimal monthlyIncome = DBmanager.MonthlyIncome();
-
-            incomeLabel.Text = string.Format("{0}", monthlyIncome);
-
-            balanceLabel.Text = string.Format("{0}", monthlyIncome - monthlyExpenses);
+           // userinfo();
         }
 
         private void userinfo()
@@ -152,6 +140,61 @@ namespace Smart_Saver
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            MessageBox.Show(string.Format("{0}", Income()));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            MessageBox.Show( string.Format("{0}", Expense()));
+        }
+        public decimal Expense()
+        {
+            List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
+
+            decimal expenseTotal = 0;
+            foreach (DBmanager.Expense oneExpense in expenses)
+            {
+                expenseTotal = CheckMonth(oneExpense.expenseDate, oneExpense.amount, expenseTotal);
+            }
+            return expenseTotal;
+        }
+        public decimal Income()
+        {
+            //Show total montly income amount
+            List<DBmanager.Income> income = DBmanager.ParseIncomes();
+
+            decimal IncomeTotal = 0;
+
+            foreach (DBmanager.Income oneIncome in income)
+            {
+                IncomeTotal = CheckMonth(oneIncome.date, oneIncome.amount, IncomeTotal);
+            }
+            return IncomeTotal;
+        }
+        public decimal Balance()
+        {
+            return Income() - Expense();
+        }
+        public decimal CheckMonth(DateTime expenseDate, decimal amount, decimal expenseTotal)
+        {
+            DateTime thisDay = Convert.ToDateTime(DateTime.Now);
+            int monthdt = expenseDate.Month;
+            int monththis = thisDay.Month;
+            if (monthdt == monththis)
+            {
+                return expenseTotal += amount;
+            }
+            else
+            {
+                return expenseTotal;
+            }
+           
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             var m = new Category_Show();
@@ -170,19 +213,9 @@ namespace Smart_Saver
             m.Show();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void incomeLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void balanceLabel_Click(object sender, EventArgs e)
-        {
-
+            MessageBox.Show(string.Format("{0}", Balance()));
         }
     }
 }

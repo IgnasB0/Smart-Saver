@@ -1,2 +1,6 @@
-10/21/2020 12:49:52 PM|:   System.Exception: Specified category was not found in the database.
-   at Smart_Saver.DBmanager.GetCategoryExpenseAmount(String neededCategory) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 234
+10/22/2020 7:54:13 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Smart_Saver.MainForm.userinfo() in D:\Studijos\Github\Smart-Saver\Smart Saver\MainForm.cs:line 51
+10/22/2020 7:54:18 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Smart_Saver.MainForm.userinfo() in D:\Studijos\Github\Smart-Saver\Smart Saver\MainForm.cs:line 51

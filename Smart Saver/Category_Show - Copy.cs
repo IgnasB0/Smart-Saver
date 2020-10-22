@@ -8,18 +8,11 @@ using System.Windows.Forms;
 
 namespace Smart_Saver
 {
-    public partial class IncomeInput : Form
+    public partial class Category_Show : Form
     {
-        public IncomeInput()
+        public Category_Show()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            var m = new MainForm();
-            m.Show();
         }
     }
 }

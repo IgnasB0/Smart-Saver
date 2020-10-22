@@ -35,12 +35,7 @@ namespace Smart_Saver
             public decimal amount;
             public DateTime date;
         }
-        public struct Goal
-        {
-            public string name;
-            public DateTime date;
-            public decimal amount;
-        }
+
 
         public static void AddUserToDB(User user)
         {
@@ -100,37 +95,6 @@ namespace Smart_Saver
          * Functions for Expense Database
          * ---------------------------------------------------------------------------------------------------------------
          */
-
-        public static Goal ParseGoal()
-        {
-            //List<Goal> Goals = new Goal();
-            Goal newGoal = new Goal();
-            try
-            {
-                List<string> item = new List<string>();
-                item = File.ReadAllLines(GoalFilePath).ToList();
-
-                foreach (string it in item)
-                {
-                    string[] elements = it.Split(',');
-                    string goalName = elements[0];
-                    decimal goalAmount = decimal.Parse(elements[1]);
-                    DateTime goalDate = DateTime.Parse(elements[2]);
-
-                    newGoal.name = goalName;
-                    newGoal.amount = goalAmount;
-                    newGoal.date = goalDate;
-                    
-                    //Goals.Add(newGoal);
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Log(e.ToString());
-            }
-            return newGoal;
-        }
-
         public static List<Income> ParseIncomes()
         {
             List<Income> income = new List<Income>();
@@ -198,53 +162,6 @@ namespace Smart_Saver
             }
 
             return expenses;
-        }
-
-
-
-        public static decimal MonthlyExpenses()
-        {
-            List<Expense> expenses = DBmanager.ParseExpenses();
-
-            decimal expenseTotal = 0;
-
-            foreach (DBmanager.Expense oneExpense in expenses)
-            {
-                expenseTotal = CheckMonth(oneExpense.expenseDate, oneExpense.amount, expenseTotal);
-            }
-
-            return expenseTotal;
-        }
-
-        public static decimal MonthlyIncome()
-        {
-            List<Income> income = DBmanager.ParseIncomes();
-
-            decimal incomeTotal = 0;
-
-            foreach (DBmanager.Income oneIncome in income)
-            {
-                incomeTotal = CheckMonth(oneIncome.date, oneIncome.amount, incomeTotal);
-            }
-
-            return incomeTotal;
-        }
-
-
-        private static decimal CheckMonth(DateTime date, decimal amount, decimal Total)
-        {
-
-            DateTime thisDay = Convert.ToDateTime(DateTime.Now);
-            int monthdt = date.Month;
-            int monththis = thisDay.Month;
-            if (monthdt == monththis)
-            {
-                return Total += amount;
-            }
-            else
-            {
-                return Total;
-            }
         }
 
         public static void DisplayExpenseDB()
@@ -423,7 +340,6 @@ namespace Smart_Saver
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
         private static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
         private static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
-        private static readonly string GoalFilePath = "..\\..\\..\\GoalDB.csv";
         public static List<string> ExpenseCategories = new List<string>
         { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health" };
     }

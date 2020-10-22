@@ -20,9 +20,9 @@ namespace Smart_Saver
             Application.SetCompatibleTextRenderingDefault(false);
 
             
-
             Application.Run(new MainForm());
-           
+
+            Console.WriteLine("Total Expense Amount: {0}", DBmanager.GetTotalExpenseAmount());
         }
     }
 }

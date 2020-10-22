@@ -36,15 +36,12 @@
             this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
             this.Usertextarea = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
-            this.expensesLabel = new System.Windows.Forms.Label();
-            this.incomeLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.balanceLabel = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,9 +115,31 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Main Smart Saving Form";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(32, 116);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(192, 87);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Monthly Income";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(284, 116);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(196, 87);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Monthly Expense";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(151, 247);
+            this.button3.Location = new System.Drawing.Point(32, 343);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(198, 87);
@@ -129,9 +148,20 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(544, 116);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(210, 87);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Monthly Balance";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(387, 247);
+            this.button5.Location = new System.Drawing.Point(284, 343);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(214, 87);
@@ -142,86 +172,26 @@
             // 
             // Exit
             // 
-            this.Exit.Location = new System.Drawing.Point(662, 247);
+            this.Exit.Location = new System.Drawing.Point(544, 343);
             this.Exit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(192, 87);
+            this.Exit.Size = new System.Drawing.Size(187, 87);
             this.Exit.TabIndex = 9;
             this.Exit.Text = "Exit";
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // expensesLabel
-            // 
-            this.expensesLabel.AutoSize = true;
-            this.expensesLabel.Location = new System.Drawing.Point(519, 122);
-            this.expensesLabel.Name = "expensesLabel";
-            this.expensesLabel.Size = new System.Drawing.Size(13, 15);
-            this.expensesLabel.TabIndex = 10;
-            this.expensesLabel.Text = "0";
-            this.expensesLabel.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // incomeLabel
-            // 
-            this.incomeLabel.AutoSize = true;
-            this.incomeLabel.Location = new System.Drawing.Point(264, 122);
-            this.incomeLabel.Name = "incomeLabel";
-            this.incomeLabel.Size = new System.Drawing.Size(13, 15);
-            this.incomeLabel.TabIndex = 11;
-            this.incomeLabel.Text = "0";
-            this.incomeLabel.Click += new System.EventHandler(this.incomeLabel_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(163, 122);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 15);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Monthly Income";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(410, 122);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 15);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Monthly Expenses";
-            // 
-            // balanceLabel
-            // 
-            this.balanceLabel.AutoSize = true;
-            this.balanceLabel.Location = new System.Drawing.Point(781, 122);
-            this.balanceLabel.Name = "balanceLabel";
-            this.balanceLabel.Size = new System.Drawing.Size(13, 15);
-            this.balanceLabel.TabIndex = 14;
-            this.balanceLabel.Text = "0";
-            this.balanceLabel.Click += new System.EventHandler(this.balanceLabel_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(679, 122);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 15);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Monthly Balance";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1078, 400);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.balanceLabel);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.incomeLabel);
-            this.Controls.Add(this.expensesLabel);
+            this.ClientSize = new System.Drawing.Size(833, 470);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Usertextarea);
             this.Controls.Add(this.toolStrip1);
@@ -246,14 +216,11 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.TextBox Usertextarea;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Label expensesLabel;
-        private System.Windows.Forms.Label incomeLabel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label balanceLabel;
-        private System.Windows.Forms.Label label5;
     }
 }
