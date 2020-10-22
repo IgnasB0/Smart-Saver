@@ -1,18 +1,6 @@
-<<<<<<< Updated upstream
-
-10/13/2020 10:00:58 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+10/22/2020 7:54:13 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
    at System.Collections.Generic.List`1.get_Item(Int32 index)
-   at Smart_Saver.MainForm.userinfo() in D:\Studijos\Github\Smart-Saver\Smart Saver\MainForm.cs:line 42
-
-=======
-10/22/2020 7:25:59 PM|:   System.IO.FileNotFoundException: Could not find file 'D:\Studijos\Github\Smart-Saver\Smart Saver\GoalDB.csv'.
-File name: 'D:\Studijos\Github\Smart-Saver\Smart Saver\GoalDB.csv'
-   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
-   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
-   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
-   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
-   at System.IO.StreamReader..ctor(String path, Encoding encoding)
-   at System.IO.File.InternalReadAllLines(String path, Encoding encoding)
-   at System.IO.File.ReadAllLines(String path)
-   at Smart_Saver.DBmanager.ParseGoal() in D:\Studijos\Github\Smart-Saver\Smart Saver\DBmanager.cs:line 111
->>>>>>> Stashed changes
+   at Smart_Saver.MainForm.userinfo() in D:\Studijos\Github\Smart-Saver\Smart Saver\MainForm.cs:line 51
+10/22/2020 7:54:18 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Smart_Saver.MainForm.userinfo() in D:\Studijos\Github\Smart-Saver\Smart Saver\MainForm.cs:line 51

@@ -15,7 +15,6 @@ D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
-
 D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.csprojAssemblyReference.cache
 C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.exe
 C:\Users\aukse\source\repos\Aukse\MIMA\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.deps.json
@@ -62,7 +61,6 @@ C:\Users\aukse\Desktop\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.cspr
 C:\Users\aukse\Desktop\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.dll
 C:\Users\aukse\Desktop\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.pdb
 C:\Users\aukse\Desktop\MIMA\Smart Saver\obj\Debug\netcoreapp3.1\Smart Saver.genruntimeconfig.cache
-
 D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.exe
 D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.deps.json
 D:\Studijos\Github\Smart-Saver\Smart Saver\bin\Debug\netcoreapp3.1\Smart Saver.runtimeconfig.json

@@ -16,9 +16,8 @@ namespace Smart_Saver
         public MainForm()
         {
             InitializeComponent();
-<<<<<<< Updated upstream
             userinfo();
-=======
+
             // userinfo();
 
             decimal monthlyExpenses = DBmanager.MonthlyExpenses();
@@ -30,7 +29,6 @@ namespace Smart_Saver
             incomeLabel.Text = string.Format("{0}", monthlyIncome);
 
             balanceLabel.Text = string.Format("{0}", monthlyIncome - monthlyExpenses);
->>>>>>> Stashed changes
         }
 
         private void userinfo()
@@ -154,27 +152,6 @@ namespace Smart_Saver
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Show total montly income amount
-            MessageBox.Show("0");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
-
-            decimal expenseTotal = 0;
-
-            foreach (DBmanager.Expense oneExpense in expenses)
-            {
-                expenseTotal += oneExpense.amount;
-            }
-
-
-            MessageBox.Show( string.Format("{0}", expenseTotal) );
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             var m = new Category_Show();
@@ -192,13 +169,6 @@ namespace Smart_Saver
             var m = new SavingsDepositRepresentation();
             m.Show();
         }
-<<<<<<< Updated upstream
-=======
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(string.Format("{0}", Balance()));
-        }
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -214,6 +184,5 @@ namespace Smart_Saver
         {
 
         }
->>>>>>> Stashed changes
     }
 }
