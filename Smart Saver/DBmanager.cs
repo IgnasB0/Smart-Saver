@@ -425,7 +425,7 @@ namespace Smart_Saver
         private static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
         private static readonly string GoalFilePath = "..\\..\\..\\GoalDB.csv";
         public static List<string> ExpenseCategories = new List<string>
-        { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health" };
+        { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health", "Entertainment" };
     }
 
 }
