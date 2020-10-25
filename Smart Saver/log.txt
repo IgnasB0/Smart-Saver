@@ -1,2 +1,8 @@
-10/21/2020 12:49:52 PM|:   System.Exception: Specified category was not found in the database.
+10/25/2020 3:36:45 PM|:   System.Exception: Specified category was not found in the database.
+   at Smart_Saver.DBmanager.GetCategoryExpenseAmount(String neededCategory) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 234
+10/25/2020 3:36:50 PM|:   System.Exception: Specified category was not found in the database.
+   at Smart_Saver.DBmanager.GetCategoryExpenseAmount(String neededCategory) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 234
+10/25/2020 3:37:10 PM|:   System.Exception: Specified category was not found in the database.
+   at Smart_Saver.DBmanager.GetCategoryExpenseAmount(String neededCategory) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 234
+10/25/2020 3:37:21 PM|:   System.Exception: Specified category was not found in the database.
    at Smart_Saver.DBmanager.GetCategoryExpenseAmount(String neededCategory) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 234
