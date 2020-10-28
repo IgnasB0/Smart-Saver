@@ -18,14 +18,7 @@ namespace Smart_Saver
         public InputExpense()
         {
             InitializeComponent();
-            category.Items.Add("Transportation");
-            category.Items.Add("Food");
-            category.Items.Add("Health");
-            category.Items.Add("Entertainment");
-            category.Items.Add("Taxes");
-            category.Items.Add("Household items");
-            category.Items.Add("Outfit");
-            category.Items.Add("Investments");
+            category.Items.AddRange(DBmanager.ExpenseCategories.ToArray());
 
         }
         public InputExpense(string Category)
@@ -78,14 +71,19 @@ namespace Smart_Saver
             {
                 List<string> lines = new List<string>();
                 lines.Add(text1);
+                lines.Add(",");
                 lines.Add(Convert.ToString(value1));
+                lines.Add(",");
+                DateTime date = DateTime.Parse(Convert.ToString(value2));
+                lines.Add(date.ToString("yyyy-MM-dd"));
+                lines.Add(",");
                 lines.Add(text2);
-                lines.Add(Convert.ToString(value2));
-                using (StreamWriter outputFile = new StreamWriter("..\\..\\..\\output.txt", true))
+                lines.Add(Environment.NewLine);
+                using (StreamWriter outputFile = new StreamWriter(DBmanager.expenseDBFilePath, true))
                 {
                     foreach (string line in lines)
                     {
-                        outputFile.WriteLine(line);
+                        outputFile.Write(line);
                     }
 
                 }

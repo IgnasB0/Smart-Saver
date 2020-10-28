@@ -25,5 +25,17 @@ namespace Smart_Saver
         {
             MessageBox.Show(DBmanager.GetCategoryExpenseAmount(categories.Text).ToString());
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var c = new MainForm();
+            c.Show();
+        }
+
+        private void Category_Show_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

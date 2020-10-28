@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 
@@ -199,9 +203,6 @@ namespace Smart_Saver
 
             return expenses;
         }
-
-
-
         public static decimal MonthlyExpenses()
         {
             List<Expense> expenses = DBmanager.ParseExpenses();
@@ -421,9 +422,11 @@ namespace Smart_Saver
             }
         }
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
-        private static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
-        private static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
+        public static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
+        public static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
         private static readonly string GoalFilePath = "..\\..\\..\\GoalDB.csv";
+        public static readonly string Index = "..\\..\\..\\index.html";
+        public static readonly string OUTPUT = "..\\..\\..\\output.html";
         public static List<string> ExpenseCategories = new List<string>
         { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health", "Entertainment" };
     }
