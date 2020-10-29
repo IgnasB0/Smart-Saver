@@ -98,6 +98,7 @@
             this.AddIncomeBtn.TabIndex = 5;
             this.AddIncomeBtn.Text = "Add";
             this.AddIncomeBtn.UseVisualStyleBackColor = true;
+            this.AddIncomeBtn.Click += new System.EventHandler(this.AddIncomeBtn_Click);
             // 
             // label4
             // 
