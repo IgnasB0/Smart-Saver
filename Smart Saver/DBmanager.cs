@@ -238,23 +238,6 @@ namespace Smart_Saver
             return incomeTotal;
         }
 
-
-        private static decimal CheckMonth(DateTime date, decimal amount, decimal Total)
-        {
-
-            DateTime thisDay = Convert.ToDateTime(DateTime.Now);
-            int monthdt = date.Month;
-            int monththis = thisDay.Month;
-            if (monthdt == monththis)
-            {
-                return Total += amount;
-            }
-            else
-            {
-                return Total;
-            }
-        }
-
         public static void DisplayExpenseDB()
         {
             try
