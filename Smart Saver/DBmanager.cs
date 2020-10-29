@@ -124,13 +124,13 @@ namespace Smart_Saver
                     newGoal.name = goalName;
                     newGoal.amount = goalAmount;
                     newGoal.date = goalDate;
-                    
+
                     //Goals.Add(newGoal);
                 }
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Log(message: e.ToString());
             }
             return newGoal;
         }
@@ -156,7 +156,7 @@ namespace Smart_Saver
                     income.Add(newIncome);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.Log(e.ToString());
             }
@@ -196,7 +196,7 @@ namespace Smart_Saver
                 Logger.Log(e.ToString());
             }
 
-            foreach(Expense oneExpense in expenses)
+            foreach (Expense oneExpense in expenses)
             {
                 Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
             }
@@ -281,7 +281,7 @@ namespace Smart_Saver
             {
                 List<string> items = new List<string>();
                 List<Expense> expenses = new List<Expense>();
-                
+
                 //Gather information from database
                 items = File.ReadAllLines(expenseDBFilePath).ToList();
                 foreach (string item in items)
@@ -336,7 +336,7 @@ namespace Smart_Saver
             }
             return totalAmount;
         }
-        
+
         public static void AddExpense(Expense expenseToAdd)
         {
             try
