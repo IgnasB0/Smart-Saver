@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 
@@ -120,13 +124,13 @@ namespace Smart_Saver
                     newGoal.name = goalName;
                     newGoal.amount = goalAmount;
                     newGoal.date = goalDate;
-                    
+
                     //Goals.Add(newGoal);
                 }
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Log(message: e.ToString());
             }
             return newGoal;
         }
@@ -152,7 +156,7 @@ namespace Smart_Saver
                     income.Add(newIncome);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.Log(e.ToString());
             }
@@ -192,16 +196,13 @@ namespace Smart_Saver
                 Logger.Log(e.ToString());
             }
 
-            foreach(Expense oneExpense in expenses)
+            foreach (Expense oneExpense in expenses)
             {
                 Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
             }
 
             return expenses;
         }
-
-
-
         public static decimal MonthlyExpenses()
         {
             List<Expense> expenses = DBmanager.ParseExpenses();
@@ -280,7 +281,7 @@ namespace Smart_Saver
             {
                 List<string> items = new List<string>();
                 List<Expense> expenses = new List<Expense>();
-                
+
                 //Gather information from database
                 items = File.ReadAllLines(expenseDBFilePath).ToList();
                 foreach (string item in items)
@@ -335,7 +336,7 @@ namespace Smart_Saver
             }
             return totalAmount;
         }
-        
+
         public static void AddExpense(Expense expenseToAdd)
         {
             try
@@ -421,11 +422,13 @@ namespace Smart_Saver
             }
         }
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
-        private static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
-        private static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
+        public static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
+        public static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
         private static readonly string GoalFilePath = "..\\..\\..\\GoalDB.csv";
+        public static readonly string Index = "..\\..\\..\\index.html";
+        public static readonly string OUTPUT = "..\\..\\..\\output.html";
         public static List<string> ExpenseCategories = new List<string>
-        { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health" };
+        { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health", "Entertainment" };
     }
 
 }
