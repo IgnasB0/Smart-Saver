@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-
+using MonthCheckExtensions;
 
 
 //static class DBmanager - DataBase manager
@@ -211,7 +211,11 @@ namespace Smart_Saver
 
             foreach (DBmanager.Expense oneExpense in expenses)
             {
-                expenseTotal = CheckMonth(oneExpense.expenseDate, oneExpense.amount, expenseTotal);
+                if (oneExpense.expenseDate.CheckIfCurrentMonth())
+                {
+                    expenseTotal += oneExpense.amount;
+                }
+
             }
 
             return expenseTotal;
@@ -225,27 +229,13 @@ namespace Smart_Saver
 
             foreach (DBmanager.Income oneIncome in income)
             {
-                incomeTotal = CheckMonth(oneIncome.date, oneIncome.amount, incomeTotal);
+                if(oneIncome.date.CheckIfCurrentMonth())
+                {
+                    incomeTotal += oneIncome.amount;
+                }
             }
 
             return incomeTotal;
-        }
-
-
-        private static decimal CheckMonth(DateTime date, decimal amount, decimal Total)
-        {
-
-            DateTime thisDay = Convert.ToDateTime(DateTime.Now);
-            int monthdt = date.Month;
-            int monththis = thisDay.Month;
-            if (monthdt == monththis)
-            {
-                return Total += amount;
-            }
-            else
-            {
-                return Total;
-            }
         }
 
         public static void DisplayExpenseDB()
