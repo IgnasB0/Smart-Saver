@@ -5,9 +5,9 @@ namespace Smart_Saver
 {
     static class Logger
     {
-        public static void Log(string message)
+        public static void Log(string message = "No message")
         {
-            logFileWriter.WriteLine(DateTime.Now.ToString() +"|:   " + message);
+            logFileWriter.WriteLine(DateTime.Now.ToString() + "|:   " + message);
             logFileWriter.Flush();
         }
 
