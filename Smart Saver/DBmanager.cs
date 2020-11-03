@@ -33,12 +33,6 @@ namespace Smart_Saver
             public DateTime expenseDate;
             public String category;
         }
-
-        public struct Income
-        {
-            public decimal amount;
-            public DateTime date;
-        }
         public struct Goal
         {
             public string name;
@@ -149,12 +143,14 @@ namespace Smart_Saver
                     decimal incomeAmount = decimal.Parse(elements[0]);
                     DateTime incomeDate = DateTime.Parse(elements[1]);
 
-                    Income newIncome = new Income();
-                    newIncome.amount = incomeAmount;
-                    newIncome.date = incomeDate;
-
-                    income.Add(newIncome);
+                    income.Add(new Income()           //usage IComparable interface
+                    {
+                        Amount = incomeAmount,
+                        Date = incomeDate
+                    });
                 }
+                income.Sort();
+                
             }
             catch (Exception e)
             {
@@ -162,10 +158,12 @@ namespace Smart_Saver
             }
             return income;
         }
+
+        
+
         public static List<Expense> ParseExpenses()
         {
             List<Expense> expenses = new List<Expense>();
-
             try
             {
 
@@ -186,9 +184,7 @@ namespace Smart_Saver
                     newExpense.amount = expenseAmount;
                     newExpense.expenseDate = expenseDate;
                     newExpense.category = category;
-
                     expenses.Add(newExpense);
-                    //Console.WriteLine(item);
                 }
             }
             catch (Exception e)
@@ -198,11 +194,12 @@ namespace Smart_Saver
 
             foreach (Expense oneExpense in expenses)
             {
-                Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
+               Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
             }
 
             return expenses;
         }
+
         public static decimal MonthlyExpenses()
         {
             List<Expense> expenses = DBmanager.ParseExpenses();
@@ -214,8 +211,8 @@ namespace Smart_Saver
                 if (oneExpense.expenseDate.CheckIfCurrentMonth())
                 {
                     expenseTotal += oneExpense.amount;
+                    
                 }
-
             }
 
             return expenseTotal;
@@ -223,19 +220,54 @@ namespace Smart_Saver
 
         public static decimal MonthlyIncome()
         {
+            Writeincome();
             List<Income> income = DBmanager.ParseIncomes();
 
             decimal incomeTotal = 0;
 
-            foreach (DBmanager.Income oneIncome in income)
+            foreach (Income oneIncome in income)
             {
-                if(oneIncome.date.CheckIfCurrentMonth())
+                if (oneIncome.Date.CheckIfCurrentMonth())
                 {
-                    incomeTotal += oneIncome.amount;
+                    incomeTotal += oneIncome.Amount;
+                }
+                else                                    
+                {
+                    break;
                 }
             }
 
             return incomeTotal;
+        }
+
+        private static void Writeincome()
+        {
+            List<Income> income = DBmanager.ParseIncomes();
+            try
+            {
+                List<string> lines = new List<string>();
+                foreach (Income oneIncome in income)
+                {
+                    lines.Add(Convert.ToString(oneIncome.Amount));
+                    lines.Add(",");
+                    DateTime date = DateTime.Parse(Convert.ToString(oneIncome.Date));
+                    lines.Add(date.ToString("yyyy-MM-dd"));
+                    lines.Add(Environment.NewLine);
+                }
+
+                using (StreamWriter outputFile = new StreamWriter(DBmanager.incomeFilePath))
+                {
+                    foreach (string line in lines)
+                    {
+                        outputFile.Write(line);
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
         }
 
         public static void DisplayExpenseDB()
