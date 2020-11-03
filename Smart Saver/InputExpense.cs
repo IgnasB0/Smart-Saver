@@ -69,19 +69,19 @@ namespace Smart_Saver
             
             try
             {
-                List<string> lines = new List<string>();
-                lines.Add(text1);
-                lines.Add(",");
-                lines.Add(Convert.ToString(value1));
-                lines.Add(",");
+                MyArrayList myList = new MyArrayList();                     // usage interaface IEnumerable
+                myList.Add(text1);
+                myList.Add(",");
+                myList.Add(value1);
+                myList.Add(",");
                 DateTime date = DateTime.Parse(Convert.ToString(value2));
-                lines.Add(date.ToString("yyyy-MM-dd"));
-                lines.Add(",");
-                lines.Add(text2);
-                lines.Add(Environment.NewLine);
+                myList.Add(date.ToString("yyyy-MM-dd"));
+                myList.Add(",");
+                myList.Add(text2);
+                myList.Add(Environment.NewLine);
                 using (StreamWriter outputFile = new StreamWriter(DBmanager.expenseDBFilePath, true))
                 {
-                    foreach (string line in lines)
+                    foreach (object line in myList)
                     {
                         outputFile.Write(line);
                     }

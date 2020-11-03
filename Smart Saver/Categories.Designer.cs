@@ -105,6 +105,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Categories";
             this.Text = "Categories";
+            this.Load += new System.EventHandler(this.Categories_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
