@@ -34,29 +34,29 @@ namespace Smart_Saver
         {
             using (var reader = new StreamReader("..\\..\\..\\UserDB.csv"))
             {
-                List<string> listA = new List<string>();
+                Result indexed = new Result();
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
 
-                    listA.Add(values[0]);
-                    listA.Add(values[1]);
-                    listA.Add(values[2]);
+                    indexed[0] = values[0];
+                    indexed[1] = values[1];
+                    indexed[2] = values[2];
 
                 }
-                try //Exception is thrown
+                try
                 {
-                    Usertextarea.AppendText(listA[1] + " " + listA[2]);
+                    Usertextarea.AppendText(indexed[0] + " " + indexed[1]);
                 }
                 catch (Exception e)
                 {
                     Logger.Log(e.ToString());
                 }
             }
+
+
         }
-
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             Load_MenuToolStripMenuItem();
