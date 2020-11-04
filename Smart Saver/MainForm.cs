@@ -17,45 +17,12 @@ namespace Smart_Saver
         public MainForm()
         {
             InitializeComponent();
-            userinfo();
+            FrontendController.userInfo(Usertextarea);
 
-            decimal monthlyExpenses = DBmanager.MonthlyExpenses();
-
-            expensesLabel.Text = string.Format("{0}", monthlyExpenses);
-
-            decimal monthlyIncome = DBmanager.MonthlyIncome();
-
-            incomeLabel.Text = string.Format("{0}", monthlyIncome);
-
-            balanceLabel.Text = string.Format("{0}", monthlyIncome - monthlyExpenses);
+            expensesLabel.Text = string.Format("{0}", FrontendController.GetMonthlyExpenses());
+            incomeLabel.Text = string.Format("{0}", FrontendController.GetMonthlyIncome());
+            balanceLabel.Text = string.Format("{0}", FrontendController.GetMonthlyBalance());
         }
-
-        private void userinfo()
-        {
-            using (var reader = new StreamReader("..\\..\\..\\UserDB.csv"))
-            {
-                List<string> listA = new List<string>();
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
-
-                    listA.Add(values[0]);
-                    listA.Add(values[1]);
-                    listA.Add(values[2]);
-
-                }
-                try //Exception is thrown
-                {
-                    Usertextarea.AppendText(listA[1] + " " + listA[2]);
-                }
-                catch (Exception e)
-                {
-                    Logger.Log(e.ToString());
-                }
-            }
-        }
-
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -64,19 +31,19 @@ namespace Smart_Saver
 
         private void Load_MenuToolStripMenuItem()
         {
-            foreach(String items in Get_Items_For_Menu())
+            foreach(String items in FrontendController.Get_Items_For_Menu())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton1.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in Get_Items_For_Expense())
+            foreach (String items in FrontendController.Get_Items_For_Expense())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton2.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in Get_Items_For_Settings())
+            foreach (String items in FrontendController.Get_Items_For_Settings())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton3.DropDownItems.Add(item);
@@ -116,30 +83,6 @@ namespace Smart_Saver
                 //go to profile window
             }
 
-        }
-
-        private List<String> Get_Items_For_Menu()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Add Income");
-
-            return menu_item;
-        }
-        private List<String> Get_Items_For_Expense()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Add Expense");
-            menu_item.Add("Add Category");
-
-            return menu_item;
-        }
-        private List<String> Get_Items_For_Settings()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Edit Profile");
-            menu_item.Add("Log out");
-
-            return menu_item;
         }
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -187,81 +130,7 @@ namespace Smart_Saver
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ChartRepresentation();
-        }
-
-        private void ChartRepresentation()
-        {
-            var c = WriteBalance();
-            string fullpath = DBmanager.Index;
-            string fullpath2 = DBmanager.OUTPUT;
-            //Read HTML from file
-            var content = File.ReadAllText(fullpath);
-            string _write = "var data = google.visualization.arrayToDataTable([";
-
-            _write += "['Date', 'Balance'],";
-            int i = 0;
-            foreach (var cat in c)
-            {
-                foreach (var categ in c)
-                {
-                    if (categ.monthAndYear == cat.monthAndYear && categ.Type == "Expense" && cat.Type == "Income")
-                    {
-                        i++;
-                        i++;
-                        if (i - 1 == c.Count() - 1)
-                        {
-                            _write += "['" + categ.monthAndYear + "'," + (cat.amount - categ.amount) + "]]);";
-                        }
-                        else
-                        {
-                            _write += "['" + categ.monthAndYear + "'," + (cat.amount - categ.amount) + "],";
-                        }
-                    }
-                }
-            }
-            content = content.Replace("var data = google.visualization.arrayToDataTable([]);", _write);
-            File.WriteAllText(fullpath2, content);
-            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-            startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/c" + "\"" + fullpath2 + "\"";
-            System.Diagnostics.Process.Start(startInfo);
-        }
-
-        public IEnumerable<Result> WriteBalance()
-        {
-            List<DBmanager.Income> incomes = DBmanager.ParseIncomes();
-            List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
-            var _expenses = from expense in expenses
-                        orderby expense.expenseDate ascending
-                        group expense.amount by new
-                        {
-                            Year = expense.expenseDate.Year,
-                            Month = expense.expenseDate.Month                 // LINQ using
-                        } into g
-                        select new Result
-                        {
-                            monthAndYear = g.Key.Year + "-" + g.Key.Month,
-                            amount = g.Sum(),
-                            Type = "Expense"
-                        };
-
-            var _incomes = from income in incomes
-                         orderby income.date ascending
-                         group income.amount by new
-                         {
-                             Year = income.date.Year,
-                             Month = income.date.Month
-                         } into g
-                         select new Result
-                         {
-                             monthAndYear = g.Key.Year + "-" + g.Key.Month,
-                             amount = g.Sum(),
-                             Type = "Income"
-                         };
-
-            var o = _expenses.Concat(_incomes).ToList();
-            return o;
+            FrontendController.ChartRepresentation();
         }
     }
 }

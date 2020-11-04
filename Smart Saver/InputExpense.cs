@@ -59,40 +59,9 @@ namespace Smart_Saver
             richTextBox1.AppendText(string.Format("{0}", expenseAmount.Value) + '\n');
             richTextBox1.AppendText(expenseName.Text + '\n');
             richTextBox1.AppendText(string.Format("{0}", date.Value) + '\n');
-            WriteToFile(category.Text,expenseAmount.Value,expenseName.Text, date.Value);
+            DBmanager.AddExpense(expenseName.Text, expenseAmount.Value, date.Value, category.Text);
             MessageBox.Show("Expense was added successfully");
 
-        }
-
-        private void WriteToFile(string text1, decimal value1, string text2, DateTime value2)
-        {
-            
-            try
-            {
-                List<string> lines = new List<string>();
-                lines.Add(text1);
-                lines.Add(",");
-                lines.Add(Convert.ToString(value1));
-                lines.Add(",");
-                DateTime date = DateTime.Parse(Convert.ToString(value2));
-                lines.Add(date.ToString("yyyy-MM-dd"));
-                lines.Add(",");
-                lines.Add(text2);
-                lines.Add(Environment.NewLine);
-                using (StreamWriter outputFile = new StreamWriter(DBmanager.expenseDBFilePath, true))
-                {
-                    foreach (string line in lines)
-                    {
-                        outputFile.Write(line);
-                    }
-
-                }
-            }
-            catch(Exception e)
-            {
-                Logger.Log(e.ToString());
-            }
-            
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)

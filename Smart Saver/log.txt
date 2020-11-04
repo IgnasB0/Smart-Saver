@@ -1,9 +1,17 @@
-28/10/2020 17:38:02|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+11/4/2020 1:06:19 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
    at System.Collections.Generic.List`1.get_Item(Int32 index)
-   at Smart_Saver.MainForm.userinfo() in C:\Users\aukse\Source\Repos\Smart_Saver\Smart Saver\MainForm.cs:line 50
-28/10/2020 17:38:53|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at Smart_Saver.FrontendController.userInfo(TextBox Usertextarea) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\FrontendController.cs:line 33
+11/4/2020 1:07:25 PM|:   System.Exception: Specified category was not found in the database.
+   at Smart_Saver.DBmanager.GetCategoryExpenseAmount(String neededCategory) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\DBmanager.cs:line 207
+11/4/2020 1:07:35 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
    at System.Collections.Generic.List`1.get_Item(Int32 index)
-   at Smart_Saver.MainForm.userinfo() in C:\Users\aukse\Source\Repos\Smart_Saver\Smart Saver\MainForm.cs:line 50
-28/10/2020 17:39:10|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at Smart_Saver.FrontendController.userInfo(TextBox Usertextarea) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\FrontendController.cs:line 33
+11/4/2020 1:08:24 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
    at System.Collections.Generic.List`1.get_Item(Int32 index)
-   at Smart_Saver.MainForm.userinfo() in C:\Users\aukse\Source\Repos\Smart_Saver\Smart Saver\MainForm.cs:line 50
+   at Smart_Saver.FrontendController.userInfo(TextBox Usertextarea) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\FrontendController.cs:line 33
+11/4/2020 1:09:02 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Smart_Saver.FrontendController.userInfo(TextBox Usertextarea) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\FrontendController.cs:line 33
+11/4/2020 1:09:18 PM|:   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Smart_Saver.FrontendController.userInfo(TextBox Usertextarea) in D:\Modesto\VU\SoftwareEngineering\Smart-Saver\Smart Saver\FrontendController.cs:line 33

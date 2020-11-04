@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using MonthCheckExtensions;
 
 
@@ -20,31 +14,10 @@ namespace Smart_Saver
 
 
         /*
-         * ---------------------------------------------------------------------------------------------------------------
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          * Functions for User Database
-         * ---------------------------------------------------------------------------------------------------------------
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
-
-
-        public struct Expense
-        {
-            public String name;
-            public Decimal amount;
-            public DateTime expenseDate;
-            public String category;
-        }
-
-        public struct Income
-        {
-            public decimal amount;
-            public DateTime date;
-        }
-        public struct Goal
-        {
-            public string name;
-            public DateTime date;
-            public decimal amount;
-        }
 
         public static void AddUserToDB(User user)
         {
@@ -100,68 +73,11 @@ namespace Smart_Saver
         }
 
         /*
-         * ---------------------------------------------------------------------------------------------------------------
+         * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          * Functions for Expense Database
-         * ---------------------------------------------------------------------------------------------------------------
+         * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
 
-        public static Goal ParseGoal()
-        {
-            //List<Goal> Goals = new Goal();
-            Goal newGoal = new Goal();
-            try
-            {
-                List<string> item = new List<string>();
-                item = File.ReadAllLines(GoalFilePath).ToList();
-
-                foreach (string it in item)
-                {
-                    string[] elements = it.Split(',');
-                    string goalName = elements[0];
-                    decimal goalAmount = decimal.Parse(elements[1]);
-                    DateTime goalDate = DateTime.Parse(elements[2]);
-
-                    newGoal.name = goalName;
-                    newGoal.amount = goalAmount;
-                    newGoal.date = goalDate;
-
-                    //Goals.Add(newGoal);
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Log(message: e.ToString());
-            }
-            return newGoal;
-        }
-
-        public static List<Income> ParseIncomes()
-        {
-            List<Income> income = new List<Income>();
-            try
-            {
-                List<string> item = new List<string>();
-                item = File.ReadAllLines(incomeFilePath).ToList();
-
-                foreach (string it in item)
-                {
-                    string[] elements = it.Split(',');
-                    decimal incomeAmount = decimal.Parse(elements[0]);
-                    DateTime incomeDate = DateTime.Parse(elements[1]);
-
-                    Income newIncome = new Income();
-                    newIncome.amount = incomeAmount;
-                    newIncome.date = incomeDate;
-
-                    income.Add(newIncome);
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Log(e.ToString());
-            }
-            return income;
-        }
         public static List<Expense> ParseExpenses()
         {
             List<Expense> expenses = new List<Expense>();
@@ -219,23 +135,6 @@ namespace Smart_Saver
             }
 
             return expenseTotal;
-        }
-
-        public static decimal MonthlyIncome()
-        {
-            List<Income> income = DBmanager.ParseIncomes();
-
-            decimal incomeTotal = 0;
-
-            foreach (DBmanager.Income oneIncome in income)
-            {
-                if(oneIncome.date.CheckIfCurrentMonth())
-                {
-                    incomeTotal += oneIncome.amount;
-                }
-            }
-
-            return incomeTotal;
         }
 
         public static void DisplayExpenseDB()
@@ -337,7 +236,23 @@ namespace Smart_Saver
                 using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
                 {
                     expenseDBFileWriter.WriteLine(expenseToAddString);
-                    expenseDBFileWriter.Flush();
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+        }
+        public static void AddExpense(string expenseName, decimal expenseAmount, DateTime expenseDate, string expenseCategory)
+        {
+            try
+            {
+                //Generate entry string
+                string expenseToAddString = $"{expenseName},{expenseAmount},{expenseDate},{expenseCategory}";
+                //Add new expense
+                using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
+                {
+                    expenseDBFileWriter.WriteLine(expenseToAddString);
                 }
             }
             catch (Exception e)
@@ -411,10 +326,159 @@ namespace Smart_Saver
                 Logger.Log(e.ToString());
             }
         }
+
+        /*
+         * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Functions for Income Database
+         * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+
+        public static void AddIncome(Income incomeToAdd)
+        {
+            try
+            {
+                //Generate entry string
+                string incomeToAddString = $"{incomeToAdd.amount},{incomeToAdd.date}";
+                //Add new expense
+                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                {
+                    incomeDBFileWriter.WriteLine(incomeToAddString);
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+        }
+        public static void AddIncome(decimal amount, DateTime date)
+        {
+            try
+            {
+                //Generate entry string
+                string incomeToAddString = $"{amount},{date}";
+                //Add new expense
+                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                {
+                    incomeDBFileWriter.WriteLine(incomeToAddString);
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+        }
+
+        public static decimal MonthlyIncome()
+        {
+            List<Income> income = DBmanager.ParseIncomes();
+
+            decimal incomeTotal = 0;
+
+            foreach (DBmanager.Income oneIncome in income)
+            {
+                if (oneIncome.date.CheckIfCurrentMonth())
+                {
+                    incomeTotal += oneIncome.amount;
+                }
+            }
+
+            return incomeTotal;
+        }
+
+        public static List<Income> ParseIncomes()
+        {
+            List<Income> income = new List<Income>();
+            try
+            {
+                List<string> item = new List<string>();
+                item = File.ReadAllLines(incomeDBFilePath).ToList();
+
+                foreach (string it in item)
+                {
+                    string[] elements = it.Split(',');
+                    decimal incomeAmount = decimal.Parse(elements[0]);
+                    DateTime incomeDate = DateTime.Parse(elements[1]);
+
+                    Income newIncome = new Income();
+                    newIncome.amount = incomeAmount;
+                    newIncome.date = incomeDate;
+
+                    income.Add(newIncome);
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.ToString());
+            }
+            return income;
+        }
+
+        /*
+         * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Functions for Goal Database
+         * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+
+        public static Goal ParseGoal()
+        {
+            //List<Goal> Goals = new Goal();
+            Goal newGoal = new Goal();
+            try
+            {
+                List<string> item = new List<string>();
+                item = File.ReadAllLines(goalDBFilePath).ToList();
+
+                foreach (string it in item)
+                {
+                    string[] elements = it.Split(',');
+                    string goalName = elements[0];
+                    decimal goalAmount = decimal.Parse(elements[1]);
+                    DateTime goalDate = DateTime.Parse(elements[2]);
+
+                    newGoal.name = goalName;
+                    newGoal.amount = goalAmount;
+                    newGoal.date = goalDate;
+
+                    //Goals.Add(newGoal);
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(message: e.ToString());
+            }
+            return newGoal;
+        }
+
+
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * DBmanager class variables
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        public struct Expense
+        {
+            public String name;
+            public Decimal amount;
+            public DateTime expenseDate;
+            public String category;
+        }
+
+        public struct Income
+        {
+            public decimal amount;
+            public DateTime date;
+        }
+        public struct Goal
+        {
+            public string name;
+            public DateTime date;
+            public decimal amount;
+        }
+
         private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
         public static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
-        public static readonly string incomeFilePath = "..\\..\\..\\IncomeDB.csv";
-        private static readonly string GoalFilePath = "..\\..\\..\\GoalDB.csv";
+        public static readonly string incomeDBFilePath = "..\\..\\..\\IncomeDB.csv";
+        private static readonly string goalDBFilePath = "..\\..\\..\\GoalDB.csv";
         public static readonly string Index = "..\\..\\..\\index.html";
         public static readonly string OUTPUT = "..\\..\\..\\output.html";
         public static List<string> ExpenseCategories = new List<string>
