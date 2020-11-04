@@ -132,5 +132,9 @@ namespace Smart_Saver
         {
             Chart _chart = new Chart();
         }
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace Smart_Saver
         }
         public IEnumerable<Result> WriteBalance()
         {
-            List<Income> incomes = DBmanager.ParseIncomes();
+            List<DBmanager.Income> incomes = DBmanager.ParseIncomes();
             List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
             var _expenses = from expense in expenses
                             orderby expense.expenseDate ascending
@@ -64,11 +64,11 @@ namespace Smart_Saver
                             };
 
             var _incomes = from income in incomes
-                           orderby income.Date ascending
-                           group income.Amount by new
+                           orderby income.date ascending
+                           group income.amount by new
                            {
-                               Year = income.Date.Year,
-                               Month = income.Date.Month
+                               Year = income.date.Year,
+                               Month = income.date.Month
                            } into g
                            select new Result
                            {
