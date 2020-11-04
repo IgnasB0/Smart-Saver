@@ -131,7 +131,6 @@ namespace Smart_Saver
         private void button1_Click(object sender, EventArgs e)
         {
             Chart _chart = new Chart();
-            FrontendController.ChartRepresentation();
         }
     }
 }

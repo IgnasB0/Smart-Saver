@@ -62,6 +62,7 @@ namespace Smart_Saver
             return menu_item;
         }
 
+        /*
         //----------Chart---------------------------------------------------
         public static void ChartRepresentation()
         {
@@ -135,7 +136,7 @@ namespace Smart_Saver
 
             var o = _expenses.Concat(_incomes).ToList();
             return o;
-        }
+        }*/
 
         /*-----------------------------------------------------------------------------------------
          * Savings Deposit Representation
