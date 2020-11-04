@@ -17,45 +17,12 @@ namespace Smart_Saver
         public MainForm()
         {
             InitializeComponent();
-            userinfo();
+            FrontendController.userInfo(Usertextarea);
 
-            decimal monthlyExpenses = DBmanager.MonthlyExpenses();
-
-            expensesLabel.Text = string.Format("{0}", monthlyExpenses);
-
-            decimal monthlyIncome = DBmanager.MonthlyIncome();
-
-            incomeLabel.Text = string.Format("{0}", monthlyIncome);
-
-            balanceLabel.Text = string.Format("{0}", monthlyIncome - monthlyExpenses);
+            expensesLabel.Text = string.Format("{0}", FrontendController.GetMonthlyExpenses());
+            incomeLabel.Text = string.Format("{0}", FrontendController.GetMonthlyIncome());
+            balanceLabel.Text = string.Format("{0}", FrontendController.GetMonthlyBalance());
         }
-
-        private void userinfo()
-        {
-            using (var reader = new StreamReader("..\\..\\..\\UserDB.csv"))
-            {
-                List<string> listA = new List<string>();
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
-
-                    listA.Add(values[0]);
-                    listA.Add(values[1]);
-                    listA.Add(values[2]);
-
-                }
-                try //Exception is thrown
-                {
-                    Usertextarea.AppendText(listA[1] + " " + listA[2]);
-                }
-                catch (Exception e)
-                {
-                    Logger.Log(e.ToString());
-                }
-            }
-        }
-
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -64,19 +31,19 @@ namespace Smart_Saver
 
         private void Load_MenuToolStripMenuItem()
         {
-            foreach(String items in Get_Items_For_Menu())
+            foreach(String items in FrontendController.Get_Items_For_Menu())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton1.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in Get_Items_For_Expense())
+            foreach (String items in FrontendController.Get_Items_For_Expense())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton2.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in Get_Items_For_Settings())
+            foreach (String items in FrontendController.Get_Items_For_Settings())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton3.DropDownItems.Add(item);
@@ -116,30 +83,6 @@ namespace Smart_Saver
                 //go to profile window
             }
 
-        }
-
-        private List<String> Get_Items_For_Menu()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Add Income");
-
-            return menu_item;
-        }
-        private List<String> Get_Items_For_Expense()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Add Expense");
-            menu_item.Add("Add Category");
-
-            return menu_item;
-        }
-        private List<String> Get_Items_For_Settings()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Edit Profile");
-            menu_item.Add("Log out");
-
-            return menu_item;
         }
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -188,12 +131,7 @@ namespace Smart_Saver
         private void button1_Click(object sender, EventArgs e)
         {
             Chart _chart = new Chart();
-        }
-
-        
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            FrontendController.ChartRepresentation();
         }
     }
 }
