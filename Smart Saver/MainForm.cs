@@ -23,7 +23,6 @@ namespace Smart_Saver
             incomeLabel.Text = string.Format("{0}", FrontendController.GetMonthlyIncome());
             balanceLabel.Text = string.Format("{0}", FrontendController.GetMonthlyBalance());
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             Load_MenuToolStripMenuItem();
