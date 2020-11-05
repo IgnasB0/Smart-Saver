@@ -45,7 +45,6 @@ namespace Smart_Saver
             foreach (String items in FrontendController.Get_Items_For_Settings())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
-                toolStripDropDownButton3.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
 
