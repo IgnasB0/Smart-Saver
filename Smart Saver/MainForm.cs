@@ -17,45 +17,11 @@ namespace Smart_Saver
         public MainForm()
         {
             InitializeComponent();
-            userinfo();
+            FrontendController.userInfo(Usertextarea);
 
-            decimal monthlyExpenses = DBmanager.MonthlyExpenses();
-
-            expensesLabel.Text = string.Format("{0}", monthlyExpenses);
-
-            decimal monthlyIncome = DBmanager.MonthlyIncome();
-
-            incomeLabel.Text = string.Format("{0}", monthlyIncome);
-
-            balanceLabel.Text = string.Format("{0}", monthlyIncome - monthlyExpenses);
-        }
-
-        private void userinfo()
-        {
-            using (var reader = new StreamReader("..\\..\\..\\UserDB.csv"))
-            {
-                Result indexed = new Result();
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
-
-                    indexed[0] = values[0];
-                    indexed[1] = values[1];
-                    indexed[2] = values[2];
-
-                }
-                try
-                {
-                    Usertextarea.AppendText(indexed[0] + " " + indexed[1]);
-                }
-                catch (Exception e)
-                {
-                    Logger.Log(e.ToString());
-                }
-            }
-
-
+            expensesLabel.Text = string.Format("{0}", FrontendController.GetMonthlyExpenses());
+            incomeLabel.Text = string.Format("{0}", FrontendController.GetMonthlyIncome());
+            balanceLabel.Text = string.Format("{0}", FrontendController.GetMonthlyBalance());
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -64,19 +30,19 @@ namespace Smart_Saver
 
         private void Load_MenuToolStripMenuItem()
         {
-            foreach(String items in Get_Items_For_Menu())
+            foreach(String items in FrontendController.Get_Items_For_Menu())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton1.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in Get_Items_For_Expense())
+            foreach (String items in FrontendController.Get_Items_For_Expense())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton2.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in Get_Items_For_Settings())
+            foreach (String items in FrontendController.Get_Items_For_Settings())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton3.DropDownItems.Add(item);
@@ -116,30 +82,6 @@ namespace Smart_Saver
                 //go to profile window
             }
 
-        }
-
-        private List<String> Get_Items_For_Menu()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Add Income");
-
-            return menu_item;
-        }
-        private List<String> Get_Items_For_Expense()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Add Expense");
-            menu_item.Add("Add Category");
-
-            return menu_item;
-        }
-        private List<String> Get_Items_For_Settings()
-        {
-            List<String> menu_item = new List<String>();
-            menu_item.Add("Edit Profile");
-            menu_item.Add("Log out");
-
-            return menu_item;
         }
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -189,8 +131,6 @@ namespace Smart_Saver
         {
             Chart _chart = new Chart();
         }
-
-        
         private void label4_Click(object sender, EventArgs e)
         {
 
