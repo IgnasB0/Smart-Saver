@@ -73,6 +73,11 @@
             131072});
             this.expenseAmount.Location = new System.Drawing.Point(395, 253);
             this.expenseAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.expenseAmount.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.expenseAmount.Name = "expenseAmount";
             this.expenseAmount.Size = new System.Drawing.Size(245, 27);
             this.expenseAmount.TabIndex = 2;

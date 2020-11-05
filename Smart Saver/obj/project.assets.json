@@ -8,19 +8,23 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Ignas\\.nuget\\packages\\": {}
+    "C:\\Users\\aukse\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
+      "projectUniqueName": "C:\\Users\\aukse\\Source\\Repos\\Smart_Saver\\Smart Saver\\Smart Saver.csproj",
       "projectName": "Smart Saver",
-      "projectPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\Smart Saver.csproj",
-      "packagesPath": "C:\\Users\\Ignas\\.nuget\\packages\\",
-      "outputPath": "D:\\Studijos\\Github\\Smart-Saver\\Smart Saver\\obj\\",
+      "projectPath": "C:\\Users\\aukse\\Source\\Repos\\Smart_Saver\\Smart Saver\\Smart Saver.csproj",
+      "packagesPath": "C:\\Users\\aukse\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aukse\\Source\\Repos\\Smart_Saver\\Smart Saver\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Ignas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aukse\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +65,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
