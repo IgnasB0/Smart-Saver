@@ -25,7 +25,7 @@ namespace Smart_Saver
 
         private void AddIncomeBtn_Click(object sender, EventArgs e)
         {
-            DBmanager.AddIncome(Amount_Income.Value, IncomeDate.Value);
+            IncomeClass.AddIncome(Amount_Income.Value, IncomeDate.Value);
             MessageBox.Show("Income was added successfully");
         }
 
