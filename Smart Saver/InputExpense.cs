@@ -18,7 +18,7 @@ namespace Smart_Saver
         public InputExpense()
         {
             InitializeComponent();
-            category.Items.AddRange(DBmanager.ExpenseCategories.ToArray());
+            category.Items.AddRange(ExpenseClass.ExpenseCategories.ToArray());
 
         }
         public InputExpense(string Category)
@@ -60,7 +60,7 @@ namespace Smart_Saver
             richTextBox1.AppendText(expenseName.Text + '\n');
             richTextBox1.AppendText(string.Format("{0}", date.Value) + '\n');
 
-            DBmanager.AddExpense(expenseName: expenseName.Text, expenseCategory: category.Text, expenseDate: date.Value, expenseAmount: expenseAmount.Value);
+            ExpenseClass.AddExpense(expenseName: expenseName.Text, expenseCategory: category.Text, expenseDate: date.Value, expenseAmount: expenseAmount.Value);
             MessageBox.Show("Expense was added successfully");
 
         }

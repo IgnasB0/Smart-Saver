@@ -144,19 +144,19 @@ namespace Smart_Saver
 
         public static decimal GetMonthlyExpenses()
         {
-            return DBmanager.MonthlyExpenses();
+            return ExpenseClass.MonthlyExpenses();
         }
         public static decimal GetMonthlyIncome()
         {
-            return DBmanager.MonthlyIncome();
+            return IncomeClass.MonthlyIncome();
         }
         public static decimal GetMonthlyBalance()
         {
-            return (DBmanager.MonthlyIncome() - DBmanager.MonthlyExpenses());
+            return (IncomeClass.MonthlyIncome() - ExpenseClass.MonthlyExpenses());
         }
         public static decimal GetGoalAmount()
         {
-            return DBmanager.ParseGoal().amount;
+            return GoalClass.ParseGoal().amount;
         }
         public static decimal GetAmountToReachGoal()
         {
@@ -164,7 +164,7 @@ namespace Smart_Saver
         }
         public static TimeSpan TimeLeftUntilGoal()
         {
-            return (DBmanager.ParseGoal().date.Subtract(DateTime.Now)); //Wrong implementation, for now. Fix including calculations over monthly balances.
+            return (GoalClass.ParseGoal().date.Subtract(DateTime.Now)); //Wrong implementation, for now. Fix including calculations over monthly balances.
         }
     }
 }
