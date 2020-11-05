@@ -119,7 +119,7 @@ namespace Smart_Saver
 
         public static decimal MonthlyExpenses()
         {
-            List<Expense> expenses = DBmanager.ParseExpenses();
+            var expenses = DBmanager.ParseExpenses(); // Generics
 
             decimal expenseTotal = 0;
 
