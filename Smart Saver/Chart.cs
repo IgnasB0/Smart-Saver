@@ -47,8 +47,8 @@ namespace Smart_Saver
         }
         public IEnumerable<Result> WriteBalance()
         {
-            List<DBmanager.Income> incomes = DBmanager.ParseIncomes();
-            List<DBmanager.Expense> expenses = DBmanager.ParseExpenses();
+            List<IncomeClass.Income> incomes = IncomeClass.ParseIncomes();
+            List<ExpenseClass.Expense> expenses = ExpenseClass.ParseExpenses();
             var _expenses = from expense in expenses
                             orderby expense.expenseDate ascending
                             group expense.amount by new
