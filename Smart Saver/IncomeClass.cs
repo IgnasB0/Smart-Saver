@@ -35,6 +35,13 @@ namespace Smart_Saver
             public decimal amount;
             public DateTime date;
         }
+        public struct TraceableIncome
+        {
+            public decimal amount;
+            public int year;
+            public int month;
+            public int dateID;
+        }
         public void AddIncome(Income incomeToAdd)
         {
             try
@@ -87,6 +94,29 @@ namespace Smart_Saver
             return incomeTotal;
         }
 
+        public IEnumerable<TraceableIncome> GetMonthlyIncomes()
+        {
+            List<Income> incomes = IncomeClass.Instance().ParseIncomes();
+            List<TraceableIncome> tIncomes = new List<TraceableIncome>();
+            foreach (Income income in incomes)
+            {
+                TraceableIncome tIncome = new TraceableIncome()
+                {
+                    amount = income.amount,
+                    year = income.date.Year,
+                    month = income.date.Month,
+                    dateID = (income.date.Year * 100) + income.date.Month
+                };
+                tIncomes.Add(tIncome);
+            }
+            var traceableIncomes = from income in tIncomes
+                                   group income.amount  by income.dateID into incomeGroup
+                                   select new TraceableIncome { dateID = incomeGroup.Key, 
+                                                                amount = incomeGroup.Sum(), 
+                                                                month = incomeGroup.Key % 100, 
+                                                                year = incomeGroup.Key / 100 };
+            return traceableIncomes.ToList<TraceableIncome>();
+        }
         public List<Income> ParseIncomes()
         {
             List<Income> income = new List<Income>();
@@ -113,6 +143,30 @@ namespace Smart_Saver
                 Logger.Instance().Log(e.ToString());
             }
             return income;
+        }
+        public DateTime GetFirstEntryDate() //Gets earliest entry date
+        {
+            try
+            {
+                List<string> items = new List<string>();
+                items = File.ReadAllLines(incomeDBFilePath).ToList();
+                DateTime earliestDate = new DateTime(9999, 12, 31);
+                foreach (string item in items)
+                {
+                    string[] elements = item.Split(',');
+                    DateTime incomeDate = DateTime.Parse(elements[1]);
+                    if (earliestDate > incomeDate)
+                    {
+                        earliestDate = incomeDate;
+                    }
+                }
+                return earliestDate;
+            }
+            catch (Exception e)
+            {
+                Logger.Instance().Log(e.ToString());
+                return new DateTime(0000, 00, 00);
+            }
         }
 
         public readonly string incomeDBFilePath = "..\\..\\..\\IncomeDB.csv";

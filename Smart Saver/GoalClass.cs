@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MonthCheckExtensions;
+using static Smart_Saver.BalanceClass;
 
 namespace Smart_Saver
 {
@@ -38,7 +39,7 @@ namespace Smart_Saver
             public decimal amount;
         }
 
-        public Goal ParseGoal()
+        public Goal ParseGoal() //Do not use this for several goals
         {
             //List<Goal> Goals = new Goal();
             Goal newGoal = new Goal();
@@ -66,6 +67,30 @@ namespace Smart_Saver
                 Logger.Instance().Log(message: e.ToString());
             }
             return newGoal;
+        }
+
+        public int GetMonthCountUntilGoalIsReached() //Aplicable only for one goal
+        {
+            try
+            {
+                int monthCount;
+                List<TraceableBalance> balances = (List<TraceableBalance>)BalanceClass.Instance().GetMonthlyBalances();
+                decimal averageBalance = 0;
+                decimal currentSum = 0;
+                foreach (var balance in balances)
+                {
+                    currentSum += balance.amount;
+                }
+                averageBalance = currentSum / balances.Count;
+                Goal goal = ParseGoal();
+                monthCount = (int)Math.Round((goal.amount - currentSum) / averageBalance);
+                return monthCount;
+            }
+            catch (Exception e)
+            {
+                Logger.Instance().Log(e.ToString());
+                return -1;
+            }
         }
 
         private readonly string goalDBFilePath = "..\\..\\..\\GoalDB.csv";

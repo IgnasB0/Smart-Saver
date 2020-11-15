@@ -85,9 +85,9 @@ namespace Smart_Saver
         {
             return (GetGoalAmount() - GetMonthlyBalance());
         }
-        public static TimeSpan TimeLeftUntilGoal()
+        public static int TimeLeftUntilGoal()
         {
-            return (GoalClass.Instance().ParseGoal().date.Subtract(DateTime.Now)); //Wrong implementation, for now. Fix including calculations over monthly balances.
+            return (GoalClass.Instance().GetMonthCountUntilGoalIsReached());
         }
     }
 }
