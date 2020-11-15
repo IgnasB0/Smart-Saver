@@ -3,14 +3,36 @@ using System.IO;
 
 namespace Smart_Saver
 {
-    static class Logger
+    class Logger
     {
-        public static void Log(string message = "No message")
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Instance Configuration
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        private Logger() { }
+        private static Logger _instance = null; //Singleton pattern
+
+        public static Logger Instance() //Lazy Load initiation
+        {
+            if (_instance == null)
+            {
+                _instance = new Logger();
+            }
+            return _instance;
+        }
+
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Logger methods and variables
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        public void Log(string message = "No message")
         {
             logFileWriter.WriteLine(DateTime.Now.ToString() + "|:   " + message);
             logFileWriter.Flush();
         }
 
-        private static readonly StreamWriter logFileWriter = new StreamWriter("..\\..\\..\\log.txt");
+        private readonly StreamWriter logFileWriter = new StreamWriter("..\\..\\..\\log.txt");
     }
 }

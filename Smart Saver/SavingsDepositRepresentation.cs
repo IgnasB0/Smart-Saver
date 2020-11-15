@@ -13,7 +13,7 @@ namespace Smart_Saver
 
         public SavingsDepositRepresentation()
         {
-            List<ExpenseClass.Expense> expenses = ExpenseClass.ParseExpenses();
+            List<ExpenseClass.Expense> expenses = ExpenseClass.Instance().ParseExpenses();
 
             InitializeComponent();
 

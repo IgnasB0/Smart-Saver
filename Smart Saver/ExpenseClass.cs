@@ -9,6 +9,27 @@ namespace Smart_Saver
 {
     class ExpenseClass
     {
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Instance Configuration
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        private ExpenseClass() { }
+        private static ExpenseClass _instance = null; //Singleton pattern
+
+        public static ExpenseClass Instance() //Lazy Load initiation
+        {
+            if (_instance == null)
+            {
+                _instance = new ExpenseClass();
+            }
+            return _instance;
+        }
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * ExpenseDB methods and variables
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
         public struct Expense
         {
             public String name;
@@ -17,7 +38,7 @@ namespace Smart_Saver
             public String category;
         }
 
-        public static List<Expense> ParseExpenses()
+        public List<Expense> ParseExpenses()
         {
             List<Expense> expenses = new List<Expense>();
             try
@@ -45,7 +66,7 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
 
             foreach (Expense oneExpense in expenses)
@@ -56,7 +77,7 @@ namespace Smart_Saver
             return expenses;
         }
 
-        public static decimal MonthlyExpenses()
+        public decimal MonthlyExpenses()
         {
             var expenses = ParseExpenses(); // Generics
 
@@ -73,7 +94,7 @@ namespace Smart_Saver
 
             return expenseTotal;
         }
-        public static void DisplayExpenseDB()
+        public void DisplayExpenseDB()
         {
             try
             {
@@ -86,10 +107,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static void AddCategory(string categoryToAdd)
+        public void AddCategory(string categoryToAdd)
         {
             try
             {
@@ -97,10 +118,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static decimal GetCategoryExpenseAmount(string neededCategory)
+        public decimal GetCategoryExpenseAmount(string neededCategory)
         {
             try
             {
@@ -144,11 +165,11 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
                 return -1;
             }
         }
-        public static decimal GetTotalExpenseAmount()
+        public decimal GetTotalExpenseAmount()
         {
             List<string> items = new List<string>();
             items = File.ReadAllLines(expenseDBFilePath).ToList();
@@ -162,7 +183,7 @@ namespace Smart_Saver
             return totalAmount;
         }
 
-        public static void AddExpense(Expense expenseToAdd)
+        public void AddExpense(Expense expenseToAdd)
         {
             try
             {
@@ -176,10 +197,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static void AddExpense(string expenseName, decimal expenseAmount, DateTime expenseDate, string expenseCategory)
+        public void AddExpense(string expenseName, decimal expenseAmount, DateTime expenseDate, string expenseCategory)
         {
             try
             {
@@ -193,10 +214,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static void RemoveExpenseFromCategory(string neededCategory, string neededName)
+        public void RemoveExpenseFromCategory(string neededCategory, string neededName)
         {
             try
             {
@@ -223,10 +244,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static void RemoveExpenseCategory(string neededCategory)
+        public void RemoveExpenseCategory(string neededCategory)
         {
             try
             {
@@ -247,10 +268,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static void ClearExpenseDB()
+        public void ClearExpenseDB()
         {
             try
             {
@@ -259,12 +280,12 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
 
-        public static readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
-        public static List<string> ExpenseCategories = new List<string>
+        public readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
+        public List<string> ExpenseCategories = new List<string>
         { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health", "Entertainment" };
     }
 }

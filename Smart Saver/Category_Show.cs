@@ -13,7 +13,7 @@ namespace Smart_Saver
         public Category_Show()
         {
             InitializeComponent();
-            categories.Items.AddRange(ExpenseClass.ExpenseCategories.ToArray());
+            categories.Items.AddRange(ExpenseClass.Instance().ExpenseCategories.ToArray());
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace Smart_Saver
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ExpenseClass.GetCategoryExpenseAmount(categories.Text).ToString());
+            MessageBox.Show(ExpenseClass.Instance().GetCategoryExpenseAmount(categories.Text).ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)

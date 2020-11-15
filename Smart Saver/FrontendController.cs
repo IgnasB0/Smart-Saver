@@ -35,7 +35,7 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
         public static List<String> Get_Items_For_Menu()
@@ -67,19 +67,19 @@ namespace Smart_Saver
 
         public static decimal GetMonthlyExpenses()
         {
-            return ExpenseClass.MonthlyExpenses();
+            return ExpenseClass.Instance().MonthlyExpenses();
         }
         public static decimal GetMonthlyIncome()
         {
-            return IncomeClass.MonthlyIncome();
+            return IncomeClass.Instance().MonthlyIncome();
         }
         public static decimal GetMonthlyBalance()
         {
-            return (IncomeClass.MonthlyIncome() - ExpenseClass.MonthlyExpenses());
+            return (IncomeClass.Instance().MonthlyIncome() - ExpenseClass.Instance().MonthlyExpenses());
         }
         public static decimal GetGoalAmount()
         {
-            return GoalClass.ParseGoal().amount;
+            return GoalClass.Instance().ParseGoal().amount;
         }
         public static decimal GetAmountToReachGoal()
         {
@@ -87,7 +87,7 @@ namespace Smart_Saver
         }
         public static TimeSpan TimeLeftUntilGoal()
         {
-            return (GoalClass.ParseGoal().date.Subtract(DateTime.Now)); //Wrong implementation, for now. Fix including calculations over monthly balances.
+            return (GoalClass.Instance().ParseGoal().date.Subtract(DateTime.Now)); //Wrong implementation, for now. Fix including calculations over monthly balances.
         }
     }
 }

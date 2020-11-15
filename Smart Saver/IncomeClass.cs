@@ -8,12 +8,34 @@ namespace Smart_Saver
 {
     class IncomeClass
     {
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Instance Configuration
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        private IncomeClass() { }
+        private static IncomeClass _instance = null; //Singleton pattern
+
+        public static IncomeClass Instance() //Lazy Load initiation
+        {
+            if (_instance == null)
+            {
+                _instance = new IncomeClass();
+            }
+            return _instance;
+        }
+
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * IncomeDB methods and variables
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
         public struct Income
         {
             public decimal amount;
             public DateTime date;
         }
-        public static void AddIncome(Income incomeToAdd)
+        public void AddIncome(Income incomeToAdd)
         {
             try
             {
@@ -27,10 +49,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static void AddIncome(decimal amount, DateTime date)
+        public void AddIncome(decimal amount, DateTime date)
         {
             try
             {
@@ -44,13 +66,13 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
 
-        public static decimal MonthlyIncome()
+        public decimal MonthlyIncome()
         {
-            List<Income> income = IncomeClass.ParseIncomes();
+            List<Income> income = IncomeClass.Instance().ParseIncomes();
 
             decimal incomeTotal = 0;
 
@@ -65,7 +87,7 @@ namespace Smart_Saver
             return incomeTotal;
         }
 
-        public static List<Income> ParseIncomes()
+        public List<Income> ParseIncomes()
         {
             List<Income> income = new List<Income>();
             try
@@ -88,11 +110,11 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
             return income;
         }
 
-        public static readonly string incomeDBFilePath = "..\\..\\..\\IncomeDB.csv";
+        public readonly string incomeDBFilePath = "..\\..\\..\\IncomeDB.csv";
     }
 }

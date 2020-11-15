@@ -9,17 +9,31 @@ using MonthCheckExtensions;
 
 namespace Smart_Saver
 {
-    static class DBmanager
+    class DBmanager
     {
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Instance Configuration
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        private DBmanager() { }
+        private static DBmanager _instance = null; //Singleton pattern
 
+        public static DBmanager Instance() //Lazy Load initiation
+        {
+            if (_instance == null)
+            {
+                _instance = new DBmanager();
+            }
+            return _instance;
+        }
 
         /*
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          * Functions for User Database
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
-
-        public static void AddUserToDB(User user)
+        public void AddUserToDB(User user)
         {
             try
             {
@@ -31,10 +45,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static void ClearUserDB()
+        public void ClearUserDB()
         {
             try
             {
@@ -43,10 +57,10 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
         }
-        public static User GetUserById(int id)
+        public User GetUserById(int id)
         {
             try
             {
@@ -66,7 +80,7 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(e.ToString());
+                Logger.Instance().Log(e.ToString());
                 return null;
             }
 
@@ -78,9 +92,9 @@ namespace Smart_Saver
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
 
-        private static readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
-        public static readonly string Index = "..\\..\\..\\index.html";
-        public static readonly string OUTPUT = "..\\..\\..\\output.html";
+        private readonly string userDBFilePath = "..\\..\\..\\UserDB.csv";
+        public readonly string Index = "..\\..\\..\\index.html";
+        public readonly string OUTPUT = "..\\..\\..\\output.html";
     }
 
 }

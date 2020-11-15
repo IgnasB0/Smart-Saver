@@ -8,6 +8,29 @@ namespace Smart_Saver
 {
     class GoalClass
     {
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Instance Configuration
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        private GoalClass() { }
+        private static GoalClass _instance = null; //Singleton pattern
+
+        public static GoalClass Instance() //Lazy Load initiation
+        {
+            if (_instance == null)
+            {
+                _instance = new GoalClass();
+            }
+            return _instance;
+        }
+
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * GoalDB methods and variables
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+
         public struct Goal
         {
             public string name;
@@ -15,7 +38,7 @@ namespace Smart_Saver
             public decimal amount;
         }
 
-        public static Goal ParseGoal()
+        public Goal ParseGoal()
         {
             //List<Goal> Goals = new Goal();
             Goal newGoal = new Goal();
@@ -40,12 +63,12 @@ namespace Smart_Saver
             }
             catch (Exception e)
             {
-                Logger.Log(message: e.ToString());
+                Logger.Instance().Log(message: e.ToString());
             }
             return newGoal;
         }
 
-        private static readonly string goalDBFilePath = "..\\..\\..\\GoalDB.csv";
+        private readonly string goalDBFilePath = "..\\..\\..\\GoalDB.csv";
 
     }
 }

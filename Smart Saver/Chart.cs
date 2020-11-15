@@ -11,8 +11,8 @@ namespace Smart_Saver
         public Chart()
         {
             var c = WriteBalance();
-            string fullpath = DBmanager.Index;
-            string fullpath2 = DBmanager.OUTPUT;
+            string fullpath = DBmanager.Instance().Index;
+            string fullpath2 = DBmanager.Instance().OUTPUT;
             //Read HTML from file
             var content = File.ReadAllText(fullpath);
             string _write = "var data = google.visualization.arrayToDataTable([";
@@ -47,8 +47,8 @@ namespace Smart_Saver
         }
         public IEnumerable<Result> WriteBalance()
         {
-            List<IncomeClass.Income> incomes = IncomeClass.ParseIncomes();
-            List<ExpenseClass.Expense> expenses = ExpenseClass.ParseExpenses();
+            List<IncomeClass.Income> incomes = IncomeClass.Instance().ParseIncomes();
+            List<ExpenseClass.Expense> expenses = ExpenseClass.Instance().ParseExpenses();
             var _expenses = from expense in expenses
                             orderby expense.expenseDate ascending
                             group expense.amount by new
