@@ -62,15 +62,9 @@ namespace Smart_Saver
             else if (item.Text == "Add Expense")
             {
                 this.Hide();
-                var m = new InputExpense();
+                var m = new CategoriesLoad();
                 m.Show();
 
-            }
-            else if (item.Text == "Add Category")
-            {
-                this.Hide();
-                var m = new Categories();
-                m.Show();
             }
             else if (item.Text == "Log out")
             {

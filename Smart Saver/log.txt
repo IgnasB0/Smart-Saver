@@ -1,0 +1,2 @@
+11/16/2020 12:15:19 PM|:   System.Exception: Specified category was not found in the database.
+   at Smart_Saver.ExpenseClass.GetCategoryExpenseAmount(String neededCategory) in C:\Users\aukse\Source\Repos\Smart Saver\Smart Saver\ExpenseClass.cs:line 153

@@ -49,8 +49,6 @@ namespace Smart_Saver
         {
             List<String> menu_item = new List<String>();
             menu_item.Add("Add Expense");
-            menu_item.Add("Add Category");
-
             return menu_item;
         }
         public static List<String> Get_Items_For_Settings()

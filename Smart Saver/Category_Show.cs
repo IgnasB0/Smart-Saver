@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -13,7 +14,11 @@ namespace Smart_Saver
         public Category_Show()
         {
             InitializeComponent();
-            categories.Items.AddRange(ExpenseClass.Instance().ExpenseCategories.ToArray());
+            List<CategoriesClass.Category> ExpenseCategories = CategoriesClass.Instance().parseCategories();
+            foreach (var _category in ExpenseCategories)
+            {
+                categories.Items.Add(_category.category);
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

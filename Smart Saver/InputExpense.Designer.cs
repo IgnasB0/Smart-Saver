@@ -35,8 +35,6 @@
             this.category = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.date = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.Add = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -117,32 +115,15 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(395, 36);
+            this.label4.Location = new System.Drawing.Point(412, 69);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(216, 32);
+            this.label4.Size = new System.Drawing.Size(164, 32);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Input new expense";
-            // 
-            // date
-            // 
-            this.date.Location = new System.Drawing.Point(395, 316);
-            this.date.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.date.Name = "date";
-            this.date.Size = new System.Drawing.Size(244, 27);
-            this.date.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(280, 321);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Date";
+            this.label4.Text = "Input Expense";
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(540, 386);
+            this.Add.Location = new System.Drawing.Point(539, 321);
             this.Add.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(100, 31);
@@ -153,7 +134,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(395, 461);
+            this.richTextBox1.Location = new System.Drawing.Point(396, 392);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(244, 108);
@@ -163,7 +144,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(291, 465);
+            this.label6.Location = new System.Drawing.Point(291, 434);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(96, 20);
             this.label6.TabIndex = 11;
@@ -171,9 +152,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(372, 386);
+            this.button1.Location = new System.Drawing.Point(384, 321);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 27);
+            this.button1.Size = new System.Drawing.Size(115, 31);
             this.button1.TabIndex = 12;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = true;
@@ -190,8 +171,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.Add);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.date);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.category);
@@ -219,8 +198,6 @@
         private System.Windows.Forms.ComboBox category;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker date;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label6;

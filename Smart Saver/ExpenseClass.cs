@@ -110,17 +110,6 @@ namespace Smart_Saver
                 Logger.Instance().Log(e.ToString());
             }
         }
-        public void AddCategory(string categoryToAdd)
-        {
-            try
-            {
-                ExpenseCategories.Add(categoryToAdd);
-            }
-            catch (Exception e)
-            {
-                Logger.Instance().Log(e.ToString());
-            }
-        }
         public decimal GetCategoryExpenseAmount(string neededCategory)
         {
             try
@@ -285,7 +274,8 @@ namespace Smart_Saver
         }
 
         public readonly string expenseDBFilePath = "..\\..\\..\\ExpenseDB.csv";
-        public List<string> ExpenseCategories = new List<string>
-        { "Food", "Transport", "Clothing", "Leisure Activities", "Taxes", "Work", "Investments", "Savings", "HouseholdItems", "RealEstate", "Health", "Entertainment" };
+        //public List<string> ExpenseCategories = new List<string>
+        //{ "Food", "Transport", "Clothing", "Leisure Activities","Taxes", "Work", "Investments", "Savings","HouseholdItems", "RealEstate", "Health", "Entertainment" };
+
     }
 }

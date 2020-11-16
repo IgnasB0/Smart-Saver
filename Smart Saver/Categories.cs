@@ -19,30 +19,26 @@ namespace Smart_Saver
         {
            
             string category = CategoryName.Text;
-            var m = new InputExpense(category);
-            m.Show();
-            this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            var m = new MainForm();
-            m.Show();
-            
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string category = CategoryName.Text;
-            if (string.IsNullOrEmpty(category)){
+            if (string.IsNullOrEmpty(category))
+            {
                 MessageBox.Show("Please enter the category");
             }
             else
             {
                 MessageBox.Show("Category was added successfully");
+                CategoriesClass.Instance().AddCategory(category);
+                var m = new InputExpense(category);
+                m.Show();
+                this.Close();
             }
-           
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var m = new CategoriesLoad();
+            m.Show();
             
         }
 
