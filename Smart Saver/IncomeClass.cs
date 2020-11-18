@@ -91,7 +91,7 @@ namespace Smart_Saver
                 }
             }
 
-            return incomeTotal;
+            return incomeTotal + RecurringIncome.Instance().MonthlyIncome();
         }
 
         public IEnumerable<TraceableIncome> GetMonthlyIncomes()
