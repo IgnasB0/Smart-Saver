@@ -37,6 +37,13 @@ namespace Smart_Saver
             public DateTime expenseDate;
             public String category;
         }
+        public struct TraceableExpense
+        {
+            public decimal amount;
+            public int year;
+            public int month;
+            public int dateID;
+        }
 
         public List<Expense> ParseExpenses()
         {
@@ -93,6 +100,32 @@ namespace Smart_Saver
             }
 
             return expenseTotal;
+        }
+        public IEnumerable<TraceableExpense> GetMonthlyExpenses()
+        {
+            List<Expense> expenses = ExpenseClass.Instance().ParseExpenses();
+            List<TraceableExpense> tExpenses = new List<TraceableExpense>();
+            foreach (Expense expense in expenses)
+            {
+                TraceableExpense tExpense = new TraceableExpense()
+                {
+                    amount = expense.amount,
+                    year = expense.expenseDate.Year,
+                    month = expense.expenseDate.Month,
+                    dateID = (expense.expenseDate.Year * 100) + expense.expenseDate.Month
+                };
+                tExpenses.Add(tExpense);
+            }
+            var traceableExpenses = from expense in tExpenses
+                                   group expense.amount by expense.dateID into expenseGroup
+                                   select new TraceableExpense
+                                   {
+                                       dateID = expenseGroup.Key,
+                                       amount = expenseGroup.Sum(),
+                                       month = expenseGroup.Key % 100,
+                                       year = expenseGroup.Key / 100
+                                   };
+            return traceableExpenses.ToList<TraceableExpense>();
         }
         public void DisplayExpenseDB()
         {

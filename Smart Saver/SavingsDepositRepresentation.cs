@@ -28,7 +28,7 @@ namespace Smart_Saver
             else
                 amountNeeded.AppendText(string.Format("{0}", 0));
 
-            TimeToDestination_richTextBox.AppendText(string.Format("{0}", FrontendController.TimeLeftUntilGoal().Days));
+            TimeToDestination_richTextBox.AppendText(string.Format("{0}", FrontendController.TimeLeftUntilGoal()));
 
             if (FrontendController.GetMonthlyBalance() >= FrontendController.GetGoalAmount())
                 System.Windows.Forms.MessageBox.Show("Goal Reached");
@@ -60,6 +60,11 @@ namespace Smart_Saver
             this.Close();
             var m = new MainForm();
             m.Show();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
