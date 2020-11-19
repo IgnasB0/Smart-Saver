@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Categories.cs">
+    <Compile Update="Frontend\Categories.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CategoriesLoad.cs">
+    <Compile Update="Frontend\CategoriesLoad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Category_Show.cs">
+    <Compile Update="Frontend\Category_Show.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="IncomeInput.cs">
+    <Compile Update="Frontend\IncomeInput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="InputExpense.cs">
+    <Compile Update="Frontend\InputExpense.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MainForm.cs">
+    <Compile Update="Frontend\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SavingsDepositRepresentation.cs">
+    <Compile Update="Frontend\SavingsDepositRepresentation.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Update="Categories.csv">
+    <None Update="Databases\Categories.csv">
       <SubType>Form</SubType>
     </None>
   </ItemGroup>
