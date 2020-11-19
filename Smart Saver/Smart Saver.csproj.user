@@ -28,9 +28,4 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Update="Databases\Categories.csv">
-      <SubType>Form</SubType>
-    </None>
-  </ItemGroup>
 </Project>
