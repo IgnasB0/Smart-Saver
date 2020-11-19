@@ -4,6 +4,8 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Linq;
+using System.Drawing;
+using Smart_Saver.Frontend;
 
 namespace Smart_Saver.Backend
 {
@@ -107,6 +109,14 @@ namespace Smart_Saver.Backend
         public int TimeLeftUntilGoal()
         {
             return (GoalClass.Instance().GetMonthCountUntilGoalIsReached());
+        }
+
+        /*-----------------------------------------------------------------------------------------
+         * CategoriesLoad
+         ------------------------------------------------------------------------------------------*/
+        public void LoadCategories(Form form, EventHandler btn_msg, EventHandler btn_msg_Back, EventHandler btn_AddCategory)
+        {
+            CategoriesClass.Instance().load(form, btn_msg, btn_msg_Back, btn_AddCategory);
         }
 
         private readonly string userDBFilePath = DBPathConfig.Instance().UserDBPath;
