@@ -77,7 +77,7 @@ namespace Smart_Saver.Backend
                 List<TraceableBalance> balances = (List<TraceableBalance>) BalanceClass.Instance().GetMonthlyBalances();
                 decimal averageBalance = 0;
                 decimal currentSum = 0;
-                foreach (var balance in balances)
+                foreach (var balance in balances) //LINQ greiciau
                 {
                     currentSum += balance.amount;
                 }
@@ -93,7 +93,7 @@ namespace Smart_Saver.Backend
             }
         }
 
-        private readonly string goalDBFilePath = "..\\..\\..\\GoalDB.csv";
+        private readonly string goalDBFilePath = DBPathConfig.Instance().GoalDBPath;
 
     }
 }
