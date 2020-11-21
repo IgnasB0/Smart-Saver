@@ -127,7 +127,7 @@ namespace Smart_Saver.Backend
                                    };
             return traceableExpenses.ToList<TraceableExpense>();
         }
-        public void DisplayExpenseDB()
+        public void DisplayExpenseDB() //Not present in WebApi
         {
             try
             {

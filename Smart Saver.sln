@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smart Saver", "Smart Saver\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19180C5D-801B-4015-9764-F936BDEF4B37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart-Saver-API", "Smart-Saver-API\Smart-Saver-API.csproj", "{160DAF49-92ED-4C1B-8FBD-943D9266E67E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{3839ACBB-A490-4298-98C4-7AEC3905550D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3839ACBB-A490-4298-98C4-7AEC3905550D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3839ACBB-A490-4298-98C4-7AEC3905550D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160DAF49-92ED-4C1B-8FBD-943D9266E67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160DAF49-92ED-4C1B-8FBD-943D9266E67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160DAF49-92ED-4C1B-8FBD-943D9266E67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160DAF49-92ED-4C1B-8FBD-943D9266E67E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
