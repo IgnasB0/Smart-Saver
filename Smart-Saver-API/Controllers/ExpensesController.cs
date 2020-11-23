@@ -14,6 +14,23 @@ namespace Smart_Saver_API.Controllers
     [Route("[controller]")]
     public class ExpensesController : ControllerBase
     {
+        /*
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Instance Configuration
+         * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
+        private ExpensesController() { }
+        private static ExpensesController _instance = null; //Singleton pattern
+
+        public static ExpensesController Instance() //Lazy Load initiation
+        {
+            if (_instance == null)
+            {
+                _instance = new ExpensesController();
+            }
+            return _instance;
+        }
+
         /*--------------------------------------------------------------------------------------------------
          * Initialisation
          * -----------------------------------------------------------------------------------------------*/
