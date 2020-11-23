@@ -19,7 +19,8 @@ namespace Smart_Saver.Frontend
   
         private void CategoriesLoad_Load(object sender, EventArgs e)
         {
-            FrontendController.Instance().LoadCategories(this, btn_msg, button1_Click, button2_Click);
+            //Async api request
+            CategoriesClass.Instance().load(this, btn_msg, button1_Click, button2_Click);
         }
         public void btn_msg(object sender, EventArgs e)
         {

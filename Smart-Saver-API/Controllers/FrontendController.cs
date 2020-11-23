@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Windows.Forms;
 using System.Linq;
-using System.Drawing;
-using Smart_Saver.Frontend;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-namespace Smart_Saver.Backend
+namespace Smart_Saver_API.Controllers
 {
-    class FrontendController
+    [ApiController]
+    [Route("[controller]")]
+    public class FrontendController : ControllerBase
     {
         /*
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -28,10 +29,18 @@ namespace Smart_Saver.Backend
             return _instance;
         }
 
+        private readonly ILogger<WeatherForecastController> _logger; //Needs to be fixed. Public constructor.
+
+        public FrontendController(ILogger<WeatherForecastController> logger) //Add logger
+        {
+            _logger = logger;
+        }
+
         /*-----------------------------------------------------------------------------------------
          * Main Form
          ------------------------------------------------------------------------------------------*/
-
+        [HttpGet]
+        [Route("user-info")]
         public string userInfo()
         {
             using (var reader = new StreamReader(userDBFilePath))
@@ -49,33 +58,47 @@ namespace Smart_Saver.Backend
                 return (listA[1] + " " + listA[2]);
             }
         }
+
         /*-----------------------------------------------------------------------------------------
          * Savings Deposit Representation
          ------------------------------------------------------------------------------------------*/
 
+        [HttpGet]
+        [Route("get-monthly-expenses")]
         public decimal GetMonthlyExpenses()
         {
-            return ExpenseClass.Instance().MonthlyExpenses();
+            return ExpenseController.Instance().MonthlyExpenses();
         }
+        [HttpGet]
+        [Route("get-monthly-income")]
         public decimal GetMonthlyIncome()
         {
-            return IncomeClass.Instance().MonthlyIncome();
+            return IncomeController.Instance().MonthlyIncome();
         }
+        [HttpGet]
+        [Route("get-monthly-balance")]
         public decimal GetMonthlyBalance()
         {
-            return (IncomeClass.Instance().MonthlyIncome() - ExpenseClass.Instance().MonthlyExpenses());
+            return (IncomeController.Instance().MonthlyIncome() - ExpenseController.Instance().MonthlyExpenses());
         }
+        [HttpGet]
+        [Route("get-goal-amount")]
         public decimal GetGoalAmount()
         {
-            return GoalClass.Instance().ParseGoal().amount;
+            List<Data_Structures.Goal> returningValue = (List<Data_Structures.Goal>)GoalController.Instance().ParseGoal();
+            return returningValue[0].Amount;
         }
+        [HttpGet]
+        [Route("get-amount-to-reach-goal")]
         public decimal GetAmountToReachGoal()
         {
             return (GetGoalAmount() - GetMonthlyBalance());
         }
+        [HttpGet]
+        [Route("time-left-until-goal")]
         public int TimeLeftUntilGoal()
         {
-            return (GoalClass.Instance().GetMonthCountUntilGoalIsReached());
+            return (GoalController.Instance().GetMonthCountUntilGoalIsReached());
         }
 
         /*-----------------------------------------------------------------------------------------

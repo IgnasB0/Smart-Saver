@@ -51,7 +51,7 @@ namespace Smart_Saver_API.Controllers
         public IEnumerable<TraceableBalance> GetMonthlyBalances() //Gets list of every year-month balances
         {
             List<TraceableIncome> tIncomes = (List<TraceableIncome>)IncomeController.Instance().GetMonthlyIncomes();
-            List<TraceableExpense> tExpenses = (List<TraceableExpense>)ExpensesController.Instance().GetMonthlyExpenses();
+            List<TraceableExpense> tExpenses = (List<TraceableExpense>)ExpenseController.Instance().GetMonthlyExpenses();
             List<TraceableBalance> tBalances = new List<TraceableBalance>();
             for (int i = 0; i < tIncomes.Count; i++)
             {

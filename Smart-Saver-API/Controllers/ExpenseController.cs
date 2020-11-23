@@ -12,21 +12,21 @@ namespace Smart_Saver_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ExpensesController : ControllerBase
+    public class ExpenseController : ControllerBase
     {
         /*
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          * Instance Configuration
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
-        private ExpensesController() { }
-        private static ExpensesController _instance = null; //Singleton pattern
+        private ExpenseController() { }
+        private static ExpenseController _instance = null; //Singleton pattern
 
-        public static ExpensesController Instance() //Lazy Load initiation
+        public static ExpenseController Instance() //Lazy Load initiation
         {
             if (_instance == null)
             {
-                _instance = new ExpensesController();
+                _instance = new ExpenseController();
             }
             return _instance;
         }
@@ -37,7 +37,7 @@ namespace Smart_Saver_API.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public ExpensesController(ILogger<WeatherForecastController> logger)
+        public ExpenseController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }

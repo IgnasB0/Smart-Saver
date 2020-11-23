@@ -51,7 +51,7 @@ namespace Smart_Saver_API.Controllers
             try
             {
                 List<string> item = new List<string>();
-                item = System.IO.File.ReadAllLines(incomeDBFilePath).ToList();
+                item = System.IO.File.ReadAllLines(incomeDBFilePath).ToList(); //Kodel cia reik listo, jei recurring income tik vienas??
 
                 foreach (string it in item)
                 {

@@ -1,28 +1,73 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Smart_Saver.Backend;
-
 
 namespace Smart_Saver.Frontend
 {
     public partial class MainForm : Form
     {
+        private IHttpClientFactory _clientFactory;
+        private async Task<decimal> GetSingleDecimalValueAsync(string requestUrl)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
+            var client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("456\n654\n456\n654\n456");
+                return Decimal.Parse((await response.Content.ReadAsStringAsync()));
+            }
+            else
+            {
+                Console.WriteLine("123\n321\n123\n321\n123");
+                throw new AggregateException("Unable to parse value");
+            }
+        }
         public MainForm()
         {
             InitializeComponent();
-            FrontendController.Instance().userInfo(Usertextarea);
+            userInfo(Usertextarea);
 
             expensesLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyExpenses());
             incomeLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyIncome());
             balanceLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyBalance());
+
+            //WebApi needs to be running if requests are performed
+
+            /*expensesLabel.Text = string.Format("Loading...");
+            incomeLabel.Text = string.Format("Loading...");
+            balanceLabel.Text = string.Format("Loading...");
+
+            try
+            {
+                expensesLabel.Text = string.Format("{0}", GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-expenses")); //usage of localhost :/
+            } 
+            catch (AggregateException e)
+            {
+                expensesLabel.Text = string.Format("Unable to fetch expenses data");
+                Logger.Instance().Log(e.ToString());
+            }
+            try
+            {
+                incomeLabel.Text = string.Format("{0}", GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-income"));
+            }
+            catch (AggregateException e)
+            {
+                incomeLabel.Text = string.Format("Unable to fetch income data");
+                Logger.Instance().Log(e.ToString());
+            }
+            try
+            {
+                balanceLabel.Text = string.Format("{0}", GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-balance"));
+            }
+            catch (AggregateException e)
+            {
+                balanceLabel.Text = string.Format("Unable to fetch balance data");
+                Logger.Instance().Log(e.ToString());
+            }*/
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -31,24 +76,57 @@ namespace Smart_Saver.Frontend
 
         private void Load_MenuToolStripMenuItem()
         {
-            foreach(String items in FrontendController.Instance().Get_Items_For_Menu())
+            foreach(String items in Get_Items_For_Menu())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton1.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in FrontendController.Instance().Get_Items_For_Expense())
+            foreach (String items in Get_Items_For_Expense())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 toolStripDropDownButton2.DropDownItems.Add(item);
                 item.Click += new EventHandler(Item_Click);
             }
-            foreach (String items in FrontendController.Instance().Get_Items_For_Settings())
+            foreach (String items in Get_Items_For_Settings())
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(items);
                 item.Click += new EventHandler(Item_Click);
             }
 
+        }
+        public void userInfo(TextBox Usertextarea)
+        {
+            try
+            {
+                Usertextarea.AppendText(FrontendController.Instance().userInfo());
+            }
+            catch (Exception e)
+            {
+                Logger.Instance().Log(e.ToString());
+            }
+        }
+
+        public List<String> Get_Items_For_Menu()
+        {
+            List<String> menu_item = new List<String>();
+            menu_item.Add("Add Income");
+
+            return menu_item;
+        }
+        public List<String> Get_Items_For_Expense()
+        {
+            List<String> menu_item = new List<String>();
+            menu_item.Add("Add Expense");
+            return menu_item;
+        }
+        public List<String> Get_Items_For_Settings()
+        {
+            List<String> menu_item = new List<String>();
+            menu_item.Add("Edit Profile");
+            menu_item.Add("Log out");
+
+            return menu_item;
         }
 
         private void Item_Click(object sender, EventArgs e)
