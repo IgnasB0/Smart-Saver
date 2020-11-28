@@ -15,18 +15,22 @@ namespace Smart_Saver_API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
-            Configuration = configuration;
+            var configBuilder = new ConfigurationBuilder().SetBasePath(environment.ContentRootPath).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            Configuration = configBuilder.Build();
+            ConfigHelper.Instance().Configuration = Configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddHttpClient();
+            services.AddOptions();
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

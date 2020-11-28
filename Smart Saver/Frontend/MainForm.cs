@@ -9,16 +9,18 @@ namespace Smart_Saver.Frontend
 {
     public partial class MainForm : Form
     {
-        private IHttpClientFactory _clientFactory;
-        private async Task<decimal> GetSingleDecimalValueAsync(string requestUrl)
+        private readonly IHttpClientFactory _clientFactory;
+        private async Task<string> GetSingleDecimalValueAsync(string requestUrl)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
-            var client = _clientFactory.CreateClient();
+            var client = new HttpClient();
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("456\n654\n456\n654\n456");
-                return Decimal.Parse((await response.Content.ReadAsStringAsync()));
+                //Console.WriteLine((await response.Content.ReadAsStringAsync()));
+                string result = await response.Content.ReadAsStringAsync();
+                return result;
             }
             else
             {
@@ -26,48 +28,64 @@ namespace Smart_Saver.Frontend
                 throw new AggregateException("Unable to parse value");
             }
         }
-        public MainForm()
+        private async Task DisplayExpenseValueAsync()
         {
-            InitializeComponent();
-            userInfo(Usertextarea);
-
-            expensesLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyExpenses());
-            incomeLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyIncome());
-            balanceLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyBalance());
-
-            //WebApi needs to be running if requests are performed
-
-            /*expensesLabel.Text = string.Format("Loading...");
-            incomeLabel.Text = string.Format("Loading...");
-            balanceLabel.Text = string.Format("Loading...");
-
             try
             {
-                expensesLabel.Text = string.Format("{0}", GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-expenses")); //usage of localhost :/
-            } 
+                Console.WriteLine(await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-expenses"));
+                expensesLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-expenses")); //usage of localhost :/
+            }
             catch (AggregateException e)
             {
                 expensesLabel.Text = string.Format("Unable to fetch expenses data");
                 Logger.Instance().Log(e.ToString());
             }
+        }
+        private async Task DisplayIncomeValueAsync()
+        {
             try
             {
-                incomeLabel.Text = string.Format("{0}", GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-income"));
-            }
+                incomeLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-income")); //Use appsettings file, app config
+            }                                                                                                                               //Use configuration manager
             catch (AggregateException e)
             {
                 incomeLabel.Text = string.Format("Unable to fetch income data");
                 Logger.Instance().Log(e.ToString());
             }
+        }
+        private async Task DisplayBalanceValueAsync()
+        {
             try
             {
-                balanceLabel.Text = string.Format("{0}", GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-balance"));
+                balanceLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-balance"));
             }
             catch (AggregateException e)
             {
                 balanceLabel.Text = string.Format("Unable to fetch balance data");
                 Logger.Instance().Log(e.ToString());
-            }*/
+            }
+        }
+        public MainForm()
+        {
+            InitializeComponent();
+            userInfo(Usertextarea);
+
+            /*
+            expensesLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyExpenses());
+            incomeLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyIncome());
+            balanceLabel.Text = string.Format("{0}", FrontendController.Instance().GetMonthlyBalance());
+            */
+
+            //WebApi needs to be running if requests are performed
+
+            expensesLabel.Text = string.Format("Loading...");
+            incomeLabel.Text = string.Format("Loading...");
+            balanceLabel.Text = string.Format("Loading...");
+
+            DisplayIncomeValueAsync();
+            DisplayExpenseValueAsync();
+            DisplayBalanceValueAsync();
+           
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

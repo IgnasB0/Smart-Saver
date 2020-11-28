@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Smart_Saver_API.Controllers
 {
@@ -17,7 +19,7 @@ namespace Smart_Saver_API.Controllers
          * Instance Configuration
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
-        private FrontendController() { }
+        public FrontendController() { }
         private static FrontendController _instance = null; //Singleton pattern
 
         public static FrontendController Instance() //Lazy Load initiation
@@ -29,11 +31,17 @@ namespace Smart_Saver_API.Controllers
             return _instance;
         }
 
-        private readonly ILogger<WeatherForecastController> _logger; //Needs to be fixed. Public constructor.
+        /*private readonly ILogger<WeatherForecastController> _logger; //Needs to be fixed. Public constructor.
 
         public FrontendController(ILogger<WeatherForecastController> logger) //Add logger
         {
             _logger = logger;
+        }*/
+        [HttpGet]
+        [Route("test")]
+        public string Index()
+        {
+            return ConfigHelper.Instance().Configuration["AppSettings:ServerAddress"];
         }
 
         /*-----------------------------------------------------------------------------------------
