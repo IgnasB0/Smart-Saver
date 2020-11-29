@@ -35,9 +35,9 @@ namespace Smart_Saver_API.Controllers
          * Initialisation
          * -----------------------------------------------------------------------------------------------*/
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ExpenseController> _logger;
 
-        public ExpenseController(ILogger<WeatherForecastController> logger)
+        public ExpenseController(ILogger<ExpenseController> logger)
         {
             _logger = logger;
         }

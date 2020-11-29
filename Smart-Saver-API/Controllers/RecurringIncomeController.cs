@@ -32,9 +32,9 @@ namespace Smart_Saver_API.Controllers
          * Initialisation
          * -----------------------------------------------------------------------------------------------*/
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<RecurringIncomeController> _logger;
 
-        public RecurringIncomeController(ILogger<WeatherForecastController> logger)
+        public RecurringIncomeController(ILogger<RecurringIncomeController> logger)
         {
             _logger = logger;
         }
@@ -66,7 +66,7 @@ namespace Smart_Saver_API.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.ToString());
+                 _logger.LogError(e.ToString());
             }
             return income;
         }
