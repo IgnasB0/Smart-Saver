@@ -9,7 +9,6 @@ namespace Smart_Saver.Frontend
 {
     public partial class MainForm : Form
     {
-        private readonly IHttpClientFactory _clientFactory;
         private async Task<string> GetSingleDecimalValueAsync(string requestUrl)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
@@ -17,14 +16,11 @@ namespace Smart_Saver.Frontend
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("456\n654\n456\n654\n456");
-                //Console.WriteLine((await response.Content.ReadAsStringAsync()));
                 string result = await response.Content.ReadAsStringAsync();
                 return result;
             }
             else
             {
-                Console.WriteLine("123\n321\n123\n321\n123");
                 throw new AggregateException("Unable to parse value");
             }
         }
