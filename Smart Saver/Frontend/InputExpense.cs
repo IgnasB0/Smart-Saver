@@ -15,7 +15,8 @@ namespace Smart_Saver.Frontend
 
     public partial class InputExpense : Form
     {
-
+        public delegate void AddExpenseParametirezed(string expenseName, decimal expenseAmount, DateTime expenseDate, string expenseCategory);        //delegate, anonymous method initiation
+        
         public InputExpense()
         {
             InitializeComponent();
@@ -58,11 +59,26 @@ namespace Smart_Saver.Frontend
             richTextBox1.AppendText(string.Format("{0}", expenseAmount.Value) + '\n');
             richTextBox1.AppendText(expenseName.Text + '\n');
             richTextBox1.AppendText(string.Format("{0}", DateTime.Now));
+            try
+            {
+                AddExpenseParametirezed addexpense = delegate (string _name, decimal _amount, DateTime date, string _category)
+                {
+                    MessageBox.Show(_name + " income was added successfully to " +  _category + " category");           //Anonymous method
+                };                                                                                                  
+                addexpense(expenseName.Text, expenseAmount.Value, DateTime.Now, category.Text);
+                addexpense = new AddExpenseParametirezed(ExpenseClass.Instance().AddExpense);
+                addexpense(expenseName.Text, expenseAmount.Value, DateTime.Now, category.Text);
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance().Log(ex.ToString());
+            }
 
-            ExpenseClass.Instance().AddExpense(expenseName: expenseName.Text, expenseCategory: category.Text, expenseDate: DateTime.Now, expenseAmount: expenseAmount.Value);
-            MessageBox.Show("Expense was added successfully");
+            //ExpenseClass.Instance().AddExpense(expenseName: expenseName.Text, expenseCategory: category.Text, expenseDate: DateTime.Now, expenseAmount: expenseAmount.Value);
+            //MessageBox.Show("Expense was added successfully");
 
         }
+        
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
         }

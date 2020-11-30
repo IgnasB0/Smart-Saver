@@ -76,9 +76,12 @@ namespace Smart_Saver.Backend
                 Logger.Instance().Log(e.ToString());
             }
 
+            Action<string, decimal, string, string> concatenate;
             foreach (Expense oneExpense in expenses)
             {
-                Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
+                concatenate = (string1, string2, string3, string4) => Console.WriteLine($"{string1},{string2},{string3}, {string4}");
+                concatenate(oneExpense.name, oneExpense.amount, oneExpense.expenseDate.ToShortDateString(), oneExpense.category);               //lambda expression
+                //Console.WriteLine(oneExpense.name + ' ' + oneExpense.amount + ' ' + oneExpense.expenseDate.ToShortDateString() + ' ' + oneExpense.category);
             }
 
             return expenses;
@@ -238,7 +241,7 @@ namespace Smart_Saver.Backend
             {
                 Logger.Instance().Log(e.ToString());
             }
-        }
+        } 
         public void RemoveExpenseFromCategory(string neededCategory, string neededName)
         {
             try

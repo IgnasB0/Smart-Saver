@@ -11,7 +11,7 @@ using System.IO;
 namespace Smart_Saver_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("expenses")]
     public class ExpenseController : ControllerBase
     {
         /*
@@ -132,7 +132,7 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
-        [Route("get-cathegory-expense-amount")]
+        [Route("get-category-expense-amount")]
         public decimal GetCategoryExpenseAmount(string neededCategory)
         {
             try
