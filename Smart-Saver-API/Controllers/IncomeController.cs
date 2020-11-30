@@ -7,13 +7,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Net.Http;
 
 namespace Smart_Saver_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("incomes")]
     public class IncomeController : ControllerBase
     {
+
         /*
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          * Instance Configuration
@@ -39,7 +41,7 @@ namespace Smart_Saver_API.Controllers
 
         public IncomeController(ILogger<IncomeController> logger)
         {
-            _logger = logger;
+            _logger = logger;  
         }
 
         /*--------------------------------------------------------------------------------------------------
@@ -123,14 +125,15 @@ namespace Smart_Saver_API.Controllers
 
             return incomeTotal + RecurringIncomeController.Instance().MonthlyIncome();
         }
-        [HttpGet]
-        [Route("add-income-with-parameter-object")]
-        public void AddIncome(Income incomeToAdd)
+
+        [HttpPost]
+        [Route("add-income")]
+        public void PostNewIncome(Income income)
         {
             try
             {
                 //Generate entry string
-                string incomeToAddString = $"{incomeToAdd.Amount},{incomeToAdd.Date}";
+                string incomeToAddString = $"{income.Amount},{income.Date}";
                 //Add new expense
                 using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
                 {
@@ -143,7 +146,7 @@ namespace Smart_Saver_API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("add-income-with-2-parameter")]
         public void AddIncome(decimal amount, DateTime date)
         {
@@ -162,6 +165,7 @@ namespace Smart_Saver_API.Controllers
                 _logger.LogError(e.ToString());
             }
         }
+
         [HttpGet]
         [Route("get-first-entry-date")]
         public DateTime GetFirstEntryDate() //Gets earliest entry date

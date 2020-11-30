@@ -12,9 +12,10 @@ namespace Smart_Saver.Frontend
 {
     public partial class IncomeInput : Form
     {
+        private EventAddClass eventAddClass;
         public IncomeInput()
         {
-            InitializeComponent();
+            InitializeComponent();  
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,10 +27,16 @@ namespace Smart_Saver.Frontend
 
         private void AddIncomeBtn_Click(object sender, EventArgs e)
         {
-            IncomeClass.Instance().AddIncome(Amount_Income.Value, IncomeDate.Value);
-            MessageBox.Show("Income was added successfully");
+            eventAddClass = new EventAddClass();                    
+            eventAddClass.incomeReached += IncomeAdded;                          //Custom event 
+            eventAddClass.Add(Amount_Income.Value, IncomeDate.Value);
         }
 
+        public void IncomeAdded(object sender, IncomeAddEventArgs e)
+        {
+            IncomeClass.Instance().AddIncome(e.Amount, e.Date);
+            MessageBox.Show("Income was added successfully");
+        }
         private void IncomeInput_Load(object sender, EventArgs e)
         {
 
