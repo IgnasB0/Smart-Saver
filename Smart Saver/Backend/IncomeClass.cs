@@ -91,7 +91,7 @@ namespace Smart_Saver.Backend
                 }
             }
 
-            return incomeTotal + RecurringIncome.Instance().MonthlyIncome();
+            return incomeTotal;
         }
 
         public IEnumerable<TraceableIncome> GetMonthlyIncomes()
@@ -136,6 +136,24 @@ namespace Smart_Saver.Backend
                     newIncome.date = incomeDate;
 
                     income.Add(newIncome);
+                }
+
+                RecurringIncome recuringIncomeObj = new RecurringIncome();
+
+                List<RecurringIncome.Income> recuringIncome = recuringIncomeObj.ParseIncomes();
+
+                foreach (RecurringIncome.Income rIncome in recuringIncome)
+                {
+                    DateTime dateForLoop = rIncome.dateFrom;
+                    while (dateForLoop < rIncome.dateUntil)
+                    {
+                        Income newrIncome = new Income();
+                        newrIncome.amount = rIncome.amount;
+                        newrIncome.date = dateForLoop;
+                        income.Add(newrIncome);
+
+                        dateForLoop = dateForLoop.AddMonths(1);
+                    }
                 }
             }
             catch (Exception e)

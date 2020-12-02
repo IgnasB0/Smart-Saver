@@ -13,7 +13,7 @@ namespace Smart_Saver.Backend
          * Instance Configuration
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
-        private RecurringIncome() { }
+        public RecurringIncome() { }
         private static RecurringIncome _instance = null; //Singleton pattern
 
         public static RecurringIncome Instance() //Lazy Load initiation
@@ -33,6 +33,8 @@ namespace Smart_Saver.Backend
         public struct Income
         {
             public decimal amount;
+            public DateTime dateFrom;
+            public DateTime dateUntil;
         }
  
         public void AddIncome(decimal amount)
@@ -67,6 +69,7 @@ namespace Smart_Saver.Backend
             return incomeTotal;
         }
 
+
         public List<Income> ParseIncomes()
         {
             List<Income> income = new List<Income>();
@@ -79,9 +82,13 @@ namespace Smart_Saver.Backend
                 {
                     string[] elements = it.Split(',');
                     decimal incomeAmount = decimal.Parse(elements[0]);
+                    DateTime from = DateTime.Parse(elements[1]);
+                    DateTime until = DateTime.Parse(elements[2]);
 
                     Income newIncome = new Income();
                     newIncome.amount = incomeAmount;
+                    newIncome.dateFrom = from;
+                    newIncome.dateUntil = until;
 
                     income.Add(newIncome);
                 }
