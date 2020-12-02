@@ -27,9 +27,9 @@ namespace Smart_Saver.Backend
          * Logger methods and variables
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
-        public void Log(string message = "No message")
+        public void Log<T>(T errorMessageOrCode) //Generic method
         {
-            logFileWriter.WriteLine(DateTime.Now.ToString() + "|:   " + message);
+            logFileWriter.WriteLine(DateTime.Now.ToString() + "|:   " + errorMessageOrCode);
             logFileWriter.Flush();
         }
 
