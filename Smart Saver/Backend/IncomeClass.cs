@@ -64,11 +64,15 @@ namespace Smart_Saver.Backend
             try
             {
                 //Generate entry string
-                string incomeToAddString = $"{amount},{date}";
-                //Add new expense
-                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                Lazy<string> incomeToAddString = new Lazy<string>($"{amount},{date}"); // Lazy type
+
+                if (amount != 0)
                 {
-                    incomeDBFileWriter.WriteLine(incomeToAddString);
+                    //Add new income
+                    using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                    {
+                        incomeDBFileWriter.WriteLine(incomeToAddString.Value);
+                    }
                 }
             }
             catch (Exception e)
@@ -124,7 +128,7 @@ namespace Smart_Saver.Backend
             {
                 List<string> item = new List<string>();
                 item = File.ReadAllLines(incomeDBFilePath).ToList();
-
+                
                 foreach (string it in item)
                 {
                     string[] elements = it.Split(',');
