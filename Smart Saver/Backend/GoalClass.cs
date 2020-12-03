@@ -64,7 +64,7 @@ namespace Smart_Saver.Backend
             }
             catch (Exception e)
             {
-                Logger.Instance().Log(message: e.ToString());
+                Logger.Instance().Log(e.ToString());
             }
             return newGoal;
         }
