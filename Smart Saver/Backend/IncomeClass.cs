@@ -13,14 +13,19 @@ namespace Smart_Saver.Backend
          * Instance Configuration
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          */
-        private IncomeClass() { }
+        private IncomeClass(iIncome recuringIncome) 
+        {
+            _recuringIncome = recuringIncome;
+        }
         private static IncomeClass _instance = null; //Singleton pattern
+        private iIncome _recuringIncome;
 
         public static IncomeClass Instance() //Lazy Load initiation
         {
             if (_instance == null)
             {
-                _instance = new IncomeClass();
+                RecurringIncome newRecurringIncome = new RecurringIncome();
+                _instance = new IncomeClass(newRecurringIncome) ;
             }
             return _instance;
         }
@@ -137,10 +142,8 @@ namespace Smart_Saver.Backend
 
                     income.Add(newIncome);
                 }
-
-                RecurringIncome recuringIncomeObj = new RecurringIncome();
-
-                List<RecurringIncome.Income> recuringIncome = recuringIncomeObj.ParseIncomes();
+                
+                List<RecurringIncome.Income> recuringIncome = _recuringIncome.ParseIncomes();
 
                 foreach (RecurringIncome.Income rIncome in recuringIncome)
                 {

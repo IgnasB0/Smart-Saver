@@ -6,7 +6,7 @@ using MonthCheckExtensions;
 
 namespace Smart_Saver.Backend
 {
-    class RecurringIncome
+    class RecurringIncome : iIncome
     {
         /*
          * --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
