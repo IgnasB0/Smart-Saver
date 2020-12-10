@@ -4,6 +4,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Smart_Saver.Backend;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace Smart_Saver.Frontend
 {
@@ -28,8 +30,9 @@ namespace Smart_Saver.Frontend
         {
             try
             {
-                Console.WriteLine(await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-expenses"));
-                expensesLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-expenses")); //usage of localhost :/
+                String expensesUrl = ConfigurationManager.AppSettings.Get("expenses");
+                Console.WriteLine(await GetSingleDecimalValueAsync(expensesUrl));
+                expensesLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync(expensesUrl)); //usage of localhost :/
             }
             catch (AggregateException e)
             {
@@ -41,7 +44,9 @@ namespace Smart_Saver.Frontend
         {
             try
             {
-                incomeLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-income")); //Use appsettings file, app config
+                String incomeUrl = ConfigurationManager.AppSettings.Get("income");
+                Console.WriteLine("income url: " + incomeUrl);
+                incomeLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync(incomeUrl)); //Use appsettings file, app config
             }                                                                                                                               //Use configuration manager
             catch (AggregateException e)
             {
@@ -53,7 +58,8 @@ namespace Smart_Saver.Frontend
         {
             try
             {
-                balanceLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync("https://localhost:44317/frontend/get-monthly-balance"));
+                String balanceUrl = ConfigurationManager.AppSettings.Get("balance"); 
+                balanceLabel.Text = string.Format("{0}", await GetSingleDecimalValueAsync(balanceUrl));
             }
             catch (AggregateException e)
             {
