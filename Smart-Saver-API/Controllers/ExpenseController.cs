@@ -198,7 +198,6 @@ namespace Smart_Saver_API.Controllers
             return totalAmount;
         }
 
-        [Route("add-expense")]
         [HttpPost]
         public void AddExpense(Expense expenseToAdd)
         {
@@ -218,7 +217,7 @@ namespace Smart_Saver_API.Controllers
             }
         }
 
-        [HttpPost]
+        /*[HttpPost("add-expense-parameters")] //Cannot have a post method with multiple arguments
         public void AddExpense(string expenseName, decimal expenseAmount, DateTime expenseDate, string expenseCategory)
         {
             try
@@ -235,7 +234,7 @@ namespace Smart_Saver_API.Controllers
             {
                 _logger.LogError(e.ToString());
             }
-        }
+        }*/
 
         [HttpDelete]
         [Route("remove-expense-category")]
