@@ -198,7 +198,7 @@ namespace Smart_Saver_API.Controllers
             return totalAmount;
         }
 
-        [HttpPost]
+        [HttpPost("add-expense-object")]
         public void AddExpense(Expense expenseToAdd)
         {
             try
@@ -217,13 +217,13 @@ namespace Smart_Saver_API.Controllers
             }
         }
 
-        /*[HttpPost("add-expense-parameters")] //Cannot have a post method with multiple arguments
-        public void AddExpense(string expenseName, decimal expenseAmount, DateTime expenseDate, string expenseCategory)
+        [HttpPost]
+        public void AddExpenseWeb([FromBody]string expenseToAdd)
         {
             try
             {
                 //Generate entry string
-                string expenseToAddString = $"{expenseName},{expenseAmount},{expenseDate},{expenseCategory}";
+                string expenseToAddString = expenseToAdd;
                 //Add new expense
                 using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
                 {
@@ -234,7 +234,7 @@ namespace Smart_Saver_API.Controllers
             {
                 _logger.LogError(e.ToString());
             }
-        }*/
+        }
 
         [HttpDelete]
         [Route("remove-expense-category")]

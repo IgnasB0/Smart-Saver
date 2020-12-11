@@ -55,14 +55,20 @@ namespace Smart_Saver_API.Controllers
             }
             return ExpenseCategories;
         }
+        [HttpGet]
+        [Route("categories-count")]
+        public int getCategoriesCount()
+        {
+            return parseCategories().Count;
+        }
         [HttpPost]
-        public void AddCategory(Category category)
+        public void AddCategory([FromBody] string category)
         {
             try
             {
                 using (StreamWriter CategoriesDBFileWriter = new StreamWriter(CategoriesDBFilePath, true))
                 {
-                    CategoriesDBFileWriter.WriteLine(category.Name);
+                    CategoriesDBFileWriter.WriteLine(category);
                 }
             }
             catch (Exception e)

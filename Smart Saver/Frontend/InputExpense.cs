@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
+using System.Configuration;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Smart_Saver.Backend;
@@ -15,6 +12,19 @@ namespace Smart_Saver.Frontend
 
     public partial class InputExpense : Form
     {
+        private async Task AddExpenseAsync(string name, decimal amount, DateTime date, string category)
+        {
+            string expenseToAdd = $"{name},{amount},{date},{category}";
+            HttpContent content = new StringContent(JsonSerializer.Serialize(expenseToAdd), UTF8Encoding.UTF8, "application/json");
+            String requestUrl = $"{ConfigurationManager.AppSettings.Get("localhost")}/expenses";
+            using (HttpClient client = new HttpClient())
+            {
+                HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+                message.Content = content;
+                var response = await client.SendAsync(message);
+            }
+        }
+
         public delegate void AddExpenseParametirezed(string expenseName, decimal expenseAmount, DateTime expenseDate, string expenseCategory);        //delegate, anonymous method initiation
         
         public InputExpense()
@@ -66,8 +76,9 @@ namespace Smart_Saver.Frontend
                     MessageBox.Show(_name + " income was added successfully to " +  _category + " category");           //Anonymous method
                 };                                                                                                  
                 addexpense(expenseName.Text, expenseAmount.Value, DateTime.Now, category.Text);
-                addexpense = new AddExpenseParametirezed(ExpenseClass.Instance().AddExpense);
-                addexpense(expenseName.Text, expenseAmount.Value, DateTime.Now, category.Text);
+                /*addexpense = new AddExpenseParametirezed(ExpenseClass.Instance().AddExpense); // <-- POST
+                addexpense(expenseName.Text, expenseAmount.Value, DateTime.Now, category.Text);*/
+                AddExpenseAsync(expenseName.Text, expenseAmount.Value, DateTime.Now, category.Text);
             }
             catch (Exception ex)
             {

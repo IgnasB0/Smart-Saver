@@ -73,7 +73,7 @@ namespace Smart_Saver_API.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.ToString());
+                _logger?.LogError(e.ToString());
             }
             return income;
         }
@@ -127,7 +127,7 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpPost]
-        [Route("add-income")]
+        [Route("add-income-object")] //Unusable
         public void PostNewIncome(Income income)
         {
             try
@@ -147,13 +147,33 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpPost]
-        [Route("add-income-with-2-parameter")]
+        [Route("add-income")] //Unusable
         public void AddIncome(decimal amount, DateTime date)
         {
             try
             {
                 //Generate entry string
                 string incomeToAddString = $"{amount},{date}";
+                //Add new expense
+                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                {
+                    incomeDBFileWriter.WriteLine(incomeToAddString);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+            }
+        }
+
+        [HttpPost]
+        public void AddIncomeWeb([FromBody] string income)
+        {
+            try
+            {
+                //Generate entry string
+                string incomeToAddString = income;
+                Console.WriteLine(income);
                 //Add new expense
                 using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
                 {
