@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+//using JavaScriptEngineSwitcher.V8;
+//sing React.AspNet;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +34,8 @@ namespace Smart_Saver_API
             services.AddHttpClient();
             services.AddOptions();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddReact();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +56,11 @@ namespace Smart_Saver_API
             {
                 endpoints.MapControllers();
             });
+
+            /*app.UseReact(configure => {
+                
+
+            });*/
         }
     }
 }

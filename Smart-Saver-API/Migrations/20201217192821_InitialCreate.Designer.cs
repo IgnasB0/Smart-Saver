@@ -10,7 +10,7 @@ using Smart_Saver_API.Data;
 namespace Smart_Saver_API.Migrations
 {
     [DbContext(typeof(Smart_Saver_APIContext))]
-    [Migration("20201217121212_InitialCreate")]
+    [Migration("20201217192821_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -23,7 +23,7 @@ namespace Smart_Saver_API.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string pirmas = @"Data Source=LAPTOP-GDGGLB6I\AUKSESQL;";
+            string pirmas = @"Data Source=MSI;";
             optionsBuilder.UseSqlServer(pirmas + "Initial Catalog=SmartSaver;Integrated Security=True;");
         }
     }
