@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Smart_Saver_API.Data_Structures;
+using Smart_Saver_API.Models;
 
 namespace Smart_Saver_API.Controllers
 {
@@ -31,6 +33,10 @@ namespace Smart_Saver_API.Controllers
             return _instance;
         }
 
+        /*--------------------------------------------------------------------------------------------------
+         * Initialisation
+         * -----------------------------------------------------------------------------------------------*/
+
         /*private readonly ILogger<WeatherForecastController> _logger; //Needs to be fixed. Public constructor.
 
         public FrontendController(ILogger<WeatherForecastController> logger) //Add logger
@@ -51,20 +57,46 @@ namespace Smart_Saver_API.Controllers
         [Route("user-info")]
         public string userInfo()
         {
-            using (var reader = new StreamReader(userDBFilePath))
-            {
-                List<string> listA = new List<string>();
-                while (!reader.EndOfStream)
+            List<UserDB> user = new List<UserDB>();
+            List<string> listA = new List<string>();
+            using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    user = context.UserDB.ToList();
 
-                    listA.Add(values[0]);
-                    listA.Add(values[1]);
-                    listA.Add(values[2]);
+                    foreach(var _user in user)
+                    {
+                    listA.Add(_user.userName);
+                    listA.Add(_user.userSurname);
+                    listA.Add(_user.userAge.ToString());
+
+                    }
+
                 }
-                return (listA[1] + " " + listA[2]);
+            return (listA[1] + " " + listA[2]);
+
+        }
+        [HttpGet]
+        [Route("user-id")]
+        public string userId()
+        {
+
+            List<UserDB> user = new List<UserDB>();
+            List<string> listA = new List<string>();
+            using (var context = new Data.Smart_Saver_APIContext())
+            {
+                user = context.UserDB.ToList();
+
+                foreach (var _user in user)
+                {
+                    listA.Add(_user.userId.ToString());
+                    listA.Add(_user.userName);
+                    listA.Add(_user.userSurname);
+                    listA.Add(_user.userAge.ToString());
+
+                }
             }
+            return listA[0];
+
         }
 
         /*-----------------------------------------------------------------------------------------
@@ -89,12 +121,13 @@ namespace Smart_Saver_API.Controllers
         {
             return (IncomeController.Instance().MonthlyIncome() - ExpenseController.Instance().MonthlyExpenses());
         }
+
         [HttpGet]
         [Route("get-goal-amount")]
         public decimal GetGoalAmount()
         {
-            List<Data_Structures.Goal> returningValue = (List<Data_Structures.Goal>)GoalController.Instance().ParseGoal();
-            return returningValue[0].Amount;
+            List<GoalDB> returningValue = (List<GoalDB>)GoalController.Instance().ParseGoal();
+            return returningValue[0].goalAmount;
         }
         [HttpGet]
         [Route("get-amount-to-reach-goal")]
@@ -113,6 +146,6 @@ namespace Smart_Saver_API.Controllers
          * CategoriesLoad
          ------------------------------------------------------------------------------------------*/
 
-        private readonly string userDBFilePath = DBPathConfig.Instance().UserDBPath;
+        //private readonly string userDBFilePath = DBPathConfig.Instance().UserDBPath;
     }
 }

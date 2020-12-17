@@ -102,22 +102,24 @@ namespace Smart_Saver.Frontend
             else
                 amountNeeded.AppendText(string.Format("{0}", 0));
 
-            TimeToDestination_richTextBox.AppendText(string.Format("{0}", timeLeftUntilGoal));
-
-            if (monthlyBalance >= goalAmount)
-                System.Windows.Forms.MessageBox.Show("Goal Reached"); TotalExpense_TextBox.AppendText(string.Format("{0}", monthlyExpenses));
-            TotalIncome_TextBox.AppendText(string.Format("{0}", monthlyIncome));
-            balanceField.AppendText(string.Format("{0}", monthlyBalance) + '\n');
-
-            if (amountToReachGoal >= 0)
-                amountNeeded.AppendText(string.Format("{0}", amountToReachGoal));
-            else
-                amountNeeded.AppendText(string.Format("{0}", 0));
+            //TimeToDestination_richTextBox.AppendText(string.Format("{0}", timeLeftUntilGoal));
 
             TimeToDestination_richTextBox.AppendText(string.Format("{0}", timeLeftUntilGoal));
 
             if (monthlyBalance >= goalAmount)
-                System.Windows.Forms.MessageBox.Show("Goal Reached");
+                  System.Windows.Forms.MessageBox.Show("Goal Reached");
+
+            //TotalExpense_TextBox.AppendText(string.Format("{0}", monthlyExpenses));
+            //TotalIncome_TextBox.AppendText(string.Format("{0}", monthlyIncome));
+            // balanceField.AppendText(string.Format("{0}", monthlyBalance) + '\n');
+
+            //if (amountToReachGoal >= 0)
+            //    amountNeeded.AppendText(string.Format("{0}", amountToReachGoal));
+            //else
+            //    amountNeeded.AppendText(string.Format("{0}", 0));
+
+            //if (monthlyBalance >= goalAmount)
+            //    System.Windows.Forms.MessageBox.Show("Goal Reached");
         }
 
         public SavingsDepositRepresentation()

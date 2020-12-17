@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Smart_Saver_API.Data_Structures;
 using MonthCheckExtensions;
 using System.IO;
+using Smart_Saver_API.Models;
 
 namespace Smart_Saver_API.Controllers
 {
@@ -48,37 +49,20 @@ namespace Smart_Saver_API.Controllers
 
         [HttpGet]
         [Route("parse-expenses")]
-        public IEnumerable<Expense> ParseExpenses()
+        public IEnumerable<ExpenseDB> ParseExpenses()
         {
-            List<Expense> expenses = new List<Expense>();
+            List<ExpenseDB> expenses = new List<ExpenseDB>();
             try
             {
-
-                List<string> items = new List<string>();
-                items = System.IO.File.ReadAllLines(expenseDBFilePath).ToList();
-
-                foreach (string item in items)
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    String[] elements = item.Split(',');
-
-                    String expenseName = elements[0];
-                    Decimal expenseAmount = Decimal.Parse(elements[1]);
-                    DateTime expenseDate = DateTime.Parse(elements[2]);
-                    String category = elements[3];
-
-                    Expense newExpense = new Expense();
-                    newExpense.Name = expenseName;
-                    newExpense.Amount = expenseAmount;
-                    newExpense.Date = expenseDate;
-                    newExpense.Category = category;
-                    expenses.Add(newExpense);
+                    expenses = context.ExpenseDB.ToList();
                 }
             }
             catch (Exception e)
             {
-                _logger.LogError(e.ToString()); //Where?
+                _logger?.LogError(e.ToString());
             }
-
             return expenses;
         }
 
@@ -90,12 +74,11 @@ namespace Smart_Saver_API.Controllers
 
             decimal expenseTotal = 0;
 
-            foreach (Expense oneExpense in expenses)
+            foreach (ExpenseDB oneExpense in expenses)
             {
-                if (oneExpense.Date.CheckIfCurrentMonth())
+                if (oneExpense.expenseDate.CheckIfCurrentMonth())
                 {
-                    expenseTotal += oneExpense.Amount;
-
+                    expenseTotal += oneExpense.expenseAmount;
                 }
             }
 
@@ -106,16 +89,16 @@ namespace Smart_Saver_API.Controllers
         [Route("get-monthly-expenses")]
         public IEnumerable<TraceableExpense> GetMonthlyExpenses()
         {
-            List<Expense> expenses = (List<Expense>)ParseExpenses();
+            List<ExpenseDB> expenses = (List<ExpenseDB>)ParseExpenses();
             List<TraceableExpense> tExpenses = new List<TraceableExpense>();
-            foreach (Expense expense in expenses)
+            foreach (ExpenseDB expense in expenses)
             {
                 TraceableExpense tExpense = new TraceableExpense()
                 {
-                    Amount = expense.Amount,
-                    Year = expense.Date.Year,
-                    Month = expense.Date.Month,
-                    DateID = (expense.Date.Year * 100) + expense.Date.Month
+                    Amount = expense.expenseAmount,
+                    Year = expense.expenseDate.Year,
+                    Month = expense.expenseDate.Month,
+                    DateID = (expense.expenseDate.Year * 100) + expense.expenseDate.Month
                 };
                 tExpenses.Add(tExpense);
             }
@@ -135,45 +118,26 @@ namespace Smart_Saver_API.Controllers
         [Route("get-category-expense-amount")]
         public decimal GetCategoryExpenseAmount(string neededCategory)
         {
+            List<ExpenseDB> expenses = new List<ExpenseDB>();
             try
             {
-                List<string> items = new List<string>();
-                List<Expense> expenses = new List<Expense>();
-
-                //Gather information from database
-                items = System.IO.File.ReadAllLines(expenseDBFilePath).ToList();
-                foreach (string item in items)
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    String[] elements = item.Split(',');
-
-                    String expenseName = elements[0];
-                    Decimal expenseAmount = Decimal.Parse(elements[1]);
-                    DateTime expenseDate = DateTime.Parse(elements[2]);
-                    String expenseCategory = elements[3];
-
-                    Expense newExpense = new Expense();
-                    newExpense.Name = expenseName;
-                    newExpense.Amount = expenseAmount;
-                    newExpense.Date = expenseDate;
-                    newExpense.Category = expenseCategory;
-                    expenses.Add(newExpense);
-                }
-
-                //Group expenses by categories
-                var categories = from expense in expenses
-                                 group expense.Amount by expense.Category into categoryGroup //<-----------------------------------LINQ
-                                 select new { Name = categoryGroup.Key, Amount = categoryGroup.Sum() };
-
-                //Check if category exists in the DB, then parse the amount of expense
-                foreach (var category in categories)
-                {
-                    if (category.Name == neededCategory)
+                    expenses = context.ExpenseDB.ToList();
+                    var categories = from expense in expenses
+                                group expense.expenseAmount by expense.expenseCategory into categoryGroup //<-----------------------------------LINQ
+                                select new { Name = categoryGroup.Key, Amount = categoryGroup.Sum() };
+                    foreach (var category in categories)
                     {
-                        return category.Amount;
+                        if (category.Name == neededCategory)
+                        {
+                            return category.Amount;
+                        }
                     }
+                    //If category wasn;t found throw exception
+                    throw new Exception("Specified category was not found in the database.");
+
                 }
-                //If category wasn;t found throw exception
-                throw new Exception("Specified category was not found in the database.");
             }
             catch (Exception e)
             {
@@ -186,48 +150,80 @@ namespace Smart_Saver_API.Controllers
         [Route("get-total-expense-amount")]
         public decimal GetTotalExpenseAmount()
         {
-            List<string> items = new List<string>();
-            items = System.IO.File.ReadAllLines(expenseDBFilePath).ToList();
+
+            List<ExpenseDB> expenses = new List<ExpenseDB>();            
             Decimal totalAmount = 0;
-            foreach (string item in items)
-            {
-                String[] elements = item.Split(',');
-                Decimal expenseAmount = Decimal.Parse(elements[1]);
-                totalAmount += expenseAmount;
-            }
+            using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    expenses = context.ExpenseDB.ToList();
+                    
+                    foreach (var _expenses in expenses)
+                    {
+                        totalAmount += _expenses.expenseAmount;
+                    }
+
+                }
+
             return totalAmount;
+
         }
 
         [HttpPost("add-expense-object")]
-        public void AddExpense(Expense expenseToAdd)
+        public void AddExpense(ExpenseDB expenseToAdd)
         {
             try
             {
-                //Generate entry string
-                string expenseToAddString = $"{expenseToAdd.Name},{expenseToAdd.Amount},{expenseToAdd.Date},{expenseToAdd.Category}";
-                //Add new expense
-                using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
+                ExpenseDB _expense = new ExpenseDB()
                 {
-                    expenseDBFileWriter.WriteLine(expenseToAddString);
+                    expenseName = expenseToAdd.expenseName,
+                    expenseAmount = expenseToAdd.expenseAmount,
+                    expenseDate = expenseToAdd.expenseDate,
+                    categoryId = CategoriesController.Instance().getId(expenseToAdd.expenseCategory),
+                    expenseCategory = CategoriesController.Instance().getCategory(CategoriesController.Instance().getId(expenseToAdd.expenseCategory)),
+                    UserId = Int32.Parse(FrontendController.Instance().userId())
+                };
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+
+                    context.ExpenseDB.Add(_expense);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
             {
-                _logger.LogError(e.ToString());
+               _logger.LogError(e.ToString());
             }
         }
 
-        [HttpPost]
+         [HttpPost]
         public void AddExpenseWeb([FromBody]string expenseToAdd)
         {
             try
             {
-                //Generate entry string
+
+                ExpenseDB _expense = new ExpenseDB();
                 string expenseToAddString = expenseToAdd;
-                //Add new expense
-                using (StreamWriter expenseDBFileWriter = new StreamWriter(expenseDBFilePath, true))
+                string[] elements = expenseToAddString.Split(',');
+                foreach (string it in elements)
                 {
-                    expenseDBFileWriter.WriteLine(expenseToAddString);
+                    string _expenseName = elements[0];
+                    decimal _expenseAmount = decimal.Parse(elements[1]);
+                    DateTime _expenseDate = DateTime.Parse(elements[2]);
+                    String _category = elements[3];
+                    int _userid = Int32.Parse(FrontendController.Instance().userId());
+
+                    _expense.expenseName = _expenseName;
+                    _expense.expenseAmount = _expenseAmount;
+                    _expense.expenseDate = _expenseDate;
+                    _expense.categoryId = CategoriesController.Instance().getId(_category);
+                    _expense.expenseCategory = CategoriesController.Instance().getCategory(_expense.categoryId); 
+                    _expense.UserId = _userid;
+                }
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+
+                    context.ExpenseDB.Add(_expense);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
@@ -238,44 +234,50 @@ namespace Smart_Saver_API.Controllers
 
         [HttpDelete]
         [Route("remove-expense-category")]
-        public void RemoveExpenseCategory(string neededCategory)
+        public void RemoveExpenseCategory(string neededCategory)     //unusable because it can be more categories with the same name
         {
+
             try
             {
-                //Find all items of specified category in DB adn clear them
-                List<string> items = new List<string>();
-                items = System.IO.File.ReadAllLines(expenseDBFilePath).ToList();
-                for (int i = 0; i < items.Count; i++)
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    string[] elements = items[i].Split(',');
-                    if (elements[3] == neededCategory)
+                    var expenses = context.ExpenseDB.Where(p => p.expenseCategory == neededCategory) 
+                            .FirstOrDefault();
+
+                    if (expenses is ExpenseDB)
                     {
-                        items.RemoveAt(i);
-                        i--;
+                        context.Remove(expenses);
                     }
+                    context.SaveChanges();
+
                 }
-                //Else proceed with adding the data
-                System.IO.File.WriteAllLines(expenseDBFilePath, items);
             }
             catch (Exception e)
             {
                 _logger.LogError(e.ToString());
             }
+
         }
 
         [HttpDelete]
         [Route("clear-expense-db")]
         public void ClearExpenseDB()
         {
+            var expenses = ParseExpenses();
             try
             {
-                System.IO.File.Delete(expenseDBFilePath);
-                System.IO.File.Create(expenseDBFilePath);
+                using (var context = new Data.Smart_Saver_APIContext())         
+                {
+                    context.ExpenseDB.RemoveRange(expenses);
+                    context.SaveChanges();
+
+                }
             }
             catch (Exception e)
             {
                 _logger.LogError(e.ToString());
             }
+
         }
 
 
@@ -283,6 +285,6 @@ namespace Smart_Saver_API.Controllers
          * Variables
          * -----------------------------------------------------------------------------------------------*/
 
-        private string expenseDBFilePath = DBPathConfig.Instance().ExpenseDBPath;
+        //private string expenseDBFilePath = DBPathConfig.Instance().ExpenseDBPath;
     }
 }
