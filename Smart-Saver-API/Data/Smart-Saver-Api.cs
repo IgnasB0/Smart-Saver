@@ -23,8 +23,18 @@ namespace Smart_Saver_API.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string pirmas = @"Data Source=MSI;";
-            optionsBuilder.UseSqlServer(pirmas + "Initial Catalog=SmartSaver;Integrated Security=True;");
+            string server = "Server=tcp:smart-saver.database.windows.net,1433;";
+            string initialCatalog = "Initial Catalog=SmartSaver;";
+            string persistSecurityInfo = "Persist Security Info=False;";
+            string userID = "User ID=smartsaver;";
+            string password = $"Password={Password.Pass()};";
+            string multipleActiveResultSets = "MultipleActiveResultSets=False;";
+            string encrypt = "Encrypt=True;";
+            string trustServerCertificate = "TrustServerCertificate=False;";
+            string connectionTimeout = "Connection Timeout=30;";
+            optionsBuilder.UseSqlServer(server + initialCatalog + persistSecurityInfo + userID + password + multipleActiveResultSets + encrypt + trustServerCertificate + connectionTimeout);
+            //string pirmas = @"Data Source=MSI;";
+            //optionsBuilder.UseSqlServer(pirmas + "Initial Catalog=SmartSaver;Integrated Security=True;");
         }
     }
 }
