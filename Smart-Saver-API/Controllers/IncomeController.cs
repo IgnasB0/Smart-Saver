@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Net.Http;
+using Smart_Saver_API.Models;
 
 namespace Smart_Saver_API.Controllers
 {
@@ -50,28 +51,17 @@ namespace Smart_Saver_API.Controllers
 
         [HttpGet]
         [Route("parse-incomes")]
-        public IEnumerable<Income> ParseIncomes()
+        public IEnumerable<Smart_Saver_API.Models.IncomeDB> ParseIncomes()
         {
-            List<Income> income = new List<Income>();
+            List<IncomeDB> income = new List<IncomeDB>();
             try
             {
-                List<string> item = new List<string>();
-                item = System.IO.File.ReadAllLines(incomeDBFilePath).ToList();
-
-                foreach (string it in item)
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    string[] elements = it.Split(',');
-                    decimal incomeAmount = decimal.Parse(elements[0]);
-                    DateTime incomeDate = DateTime.Parse(elements[1]);
-
-                    Income newIncome = new Income();
-                    newIncome.Amount = incomeAmount;
-                    newIncome.Date = incomeDate;
-
-                    income.Add(newIncome);
+                    income = context.IncomeDB.ToList();
+                    
                 }
-            }
-            catch (Exception e)
+            }catch (Exception e)
             {
                 _logger?.LogError(e.ToString());
             }
@@ -82,16 +72,16 @@ namespace Smart_Saver_API.Controllers
         [Route("get-monthly-incomes")]
         public IEnumerable<TraceableIncome> GetMonthlyIncomes()
         {
-            List<Income> incomes = (List<Income>) ParseIncomes();       //IncomeClass.Instance().ParseIncomes();
+            List<IncomeDB> incomes = (List<IncomeDB>) ParseIncomes();       //IncomeClass.Instance().ParseIncomes();
             List<TraceableIncome> tIncomes = new List<TraceableIncome>();
-            foreach (Income income in incomes)
+            foreach (IncomeDB income in incomes)
             {
                 TraceableIncome tIncome = new TraceableIncome()
                 {
-                    Amount = income.Amount,
-                    Year = income.Date.Year,
-                    Month = income.Date.Month,
-                    DateID = (income.Date.Year * 100) + income.Date.Month
+                    Amount = income.incomeAmount,
+                    Year = income.incomeDate.Year,
+                    Month = income.incomeDate.Month,
+                    DateID = (income.incomeDate.Year * 100) + income.incomeDate.Month
                 };
                 tIncomes.Add(tIncome);
             }
@@ -115,11 +105,11 @@ namespace Smart_Saver_API.Controllers
 
             decimal incomeTotal = 0;
 
-            foreach (Income oneIncome in income)
+            foreach (Smart_Saver_API.Models.IncomeDB oneIncome in income)
             {
-                if (oneIncome.Date.CheckIfCurrentMonth())
+                if (oneIncome.incomeDate.CheckIfCurrentMonth())
                 {
-                    incomeTotal += oneIncome.Amount;
+                    incomeTotal += oneIncome.incomeAmount;
                 }
             }
 
@@ -128,16 +118,20 @@ namespace Smart_Saver_API.Controllers
 
         [HttpPost]
         [Route("add-income-object")] //Unusable
-        public void PostNewIncome(Income income)
+        public void PostNewIncome(IncomeDB income)
         {
             try
             {
-                //Generate entry string
-                string incomeToAddString = $"{income.Amount},{income.Date}";
-                //Add new expense
-                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                IncomeDB _income = new IncomeDB()
                 {
-                    incomeDBFileWriter.WriteLine(incomeToAddString);
+                    incomeAmount = income.incomeAmount,
+                    incomeDate = income.incomeDate,
+                    userId = Int32.Parse(FrontendController.Instance().userId())
+                };
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    context.IncomeDB.Add(_income);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
@@ -152,18 +146,24 @@ namespace Smart_Saver_API.Controllers
         {
             try
             {
-                //Generate entry string
-                string incomeToAddString = $"{amount},{date}";
-                //Add new expense
-                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                IncomeDB _income = new IncomeDB()
+                { 
+                    incomeAmount = amount,
+                    incomeDate = date,
+                    userId = Int32.Parse(FrontendController.Instance().userId())
+            };
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    incomeDBFileWriter.WriteLine(incomeToAddString);
+
+                    context.IncomeDB.Add(_income);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
             {
                 _logger.LogError(e.ToString());
             }
+
         }
 
         [HttpPost]
@@ -171,19 +171,30 @@ namespace Smart_Saver_API.Controllers
         {
             try
             {
-                //Generate entry string
+                IncomeDB _income = new IncomeDB();
                 string incomeToAddString = income;
-                Console.WriteLine(income);
-                //Add new expense
-                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                string[] elements = incomeToAddString.Split(',');
+                foreach (string it in elements)
                 {
-                    incomeDBFileWriter.WriteLine(incomeToAddString);
+                    decimal _incomeAmount = decimal.Parse(elements[0]);
+                    DateTime _incomeDate = DateTime.Parse(elements[1]);
+                    int _userid = Int32.Parse(FrontendController.Instance().userId());
+                    _income.incomeAmount = _incomeAmount;
+                    _income.incomeDate = _incomeDate;
+                    _income.userId = _userid;
+                }
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+
+                    context.IncomeDB.Add(_income);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
             {
                 _logger.LogError(e.ToString());
             }
+
         }
 
         [HttpGet]
@@ -192,16 +203,13 @@ namespace Smart_Saver_API.Controllers
         {
             try
             {
-                List<string> items = new List<string>();
-                items = System.IO.File.ReadAllLines(incomeDBFilePath).ToList();
                 DateTime earliestDate = new DateTime(9999, 12, 31);
-                foreach (string item in items)
+                List<IncomeDB> income = (List<IncomeDB>)ParseIncomes();
+                foreach (var _income in income)
                 {
-                    string[] elements = item.Split(',');
-                    DateTime incomeDate = DateTime.Parse(elements[1]);
-                    if (earliestDate > incomeDate)
+                    if (earliestDate > _income.incomeDate)
                     {
-                        earliestDate = incomeDate;
+                        earliestDate = _income.incomeDate;
                     }
                 }
                 return earliestDate;
@@ -218,6 +226,6 @@ namespace Smart_Saver_API.Controllers
          * -----------------------------------------------------------------------------------------------*/
 
 
-        public readonly string incomeDBFilePath = DBPathConfig.Instance().IncomeDBPath;
+      //  public readonly string incomeDBFilePath = DBPathConfig.Instance().IncomeDBPath;
     }
 }

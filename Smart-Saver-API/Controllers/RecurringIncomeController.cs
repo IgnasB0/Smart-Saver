@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Smart_Saver_API.Data_Structures;
+using Smart_Saver_API.Models;
 
 namespace Smart_Saver_API.Controllers
 {
@@ -45,28 +46,21 @@ namespace Smart_Saver_API.Controllers
 
         [HttpGet]
         [Route("parse-recurring-incomes")]
-        public IEnumerable<Income> ParseIncomes()
+        public IEnumerable<ReccuringIncomeDB> ParseIncomes()
         {
-            List<Income> income = new List<Income>();
+
+            List<ReccuringIncomeDB> income = new List<ReccuringIncomeDB>();
             try
             {
-                List<string> item = new List<string>();
-                item = System.IO.File.ReadAllLines(incomeDBFilePath).ToList(); //Kodel cia reik listo, jei recurring income tik vienas??
-
-                foreach (string it in item)
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    string[] elements = it.Split(',');
-                    decimal incomeAmount = decimal.Parse(elements[0]);
+                    income = context.ReccuringIncomeDB.ToList();
 
-                    Income newIncome = new Income();
-                    newIncome.Amount = incomeAmount;
-
-                    income.Add(newIncome);
                 }
             }
             catch (Exception e)
             {
-                 _logger.LogError(e.ToString());
+                _logger?.LogError(e.ToString());
             }
             return income;
         }
@@ -79,9 +73,9 @@ namespace Smart_Saver_API.Controllers
 
             decimal incomeTotal = 0;
 
-            foreach (Income i in income)
+            foreach (ReccuringIncomeDB i in income)
             {
-                incomeTotal += i.Amount;
+                incomeTotal += i.reccuringincomeAmount;
             }
 
             return incomeTotal;
@@ -89,16 +83,22 @@ namespace Smart_Saver_API.Controllers
 
         [HttpGet]
         [Route("add-recurring-income")]
-        public void AddIncome(decimal amount)
+        public void AddIncome(decimal amount, DateTime dateFrom, DateTime dateUntil)
         {
             try
             {
-                //Generate entry string
-                string incomeToAddString = $"{amount}";
-                //Add new expense
-                using (StreamWriter incomeDBFileWriter = new StreamWriter(incomeDBFilePath, true))
+                ReccuringIncomeDB _income = new ReccuringIncomeDB()
                 {
-                    incomeDBFileWriter.WriteLine(incomeToAddString);
+                    reccuringincomeAmount = amount,
+                    reccuringincomeDateFrom = dateFrom,
+                    reccuringincomeDateUntil = dateUntil,
+                    userId = Int32.Parse(FrontendController.Instance().userInfo())
+                };
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+
+                    context.ReccuringIncomeDB.Add(_income);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
@@ -112,6 +112,6 @@ namespace Smart_Saver_API.Controllers
         * Variables
         * -----------------------------------------------------------------------------------------------*/
 
-        public readonly string incomeDBFilePath = DBPathConfig.Instance().RecuringIncomeDBPath;
+      //  public readonly string incomeDBFilePath = DBPathConfig.Instance().RecuringIncomeDBPath;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Smart_Saver_API.Data_Structures;
+using Smart_Saver_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,28 +46,14 @@ namespace Smart_Saver_API.Controllers
          * -----------------------------------------------------------------------------------------------*/
         [HttpGet]
         [Route("parse-goal")]
-        public IEnumerable<Goal> ParseGoal() //Do not use this for several goals
+        public IEnumerable<GoalDB> ParseGoal() //Do not use this for several goals
         {
-            //List<Goal> Goals = new Goal();
-            List<Goal> newGoal = new List<Goal>();
+            List<GoalDB> newGoal = new List<GoalDB>();
             try
             {
-                List<string> item = new List<string>();
-                item = System.IO.File.ReadAllLines(goalDBFilePath).ToList();
-
-                foreach (string it in item)
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    string[] elements = it.Split(',');
-                    string goalName = elements[0];
-                    decimal goalAmount = decimal.Parse(elements[1]);
-                    DateTime goalDate = DateTime.Parse(elements[2]);
-
-                    Goal newgoal = new Goal();
-                    newgoal.Name = goalName;
-                    newgoal.Amount = goalAmount;
-                    newgoal.Date = goalDate;
-
-                    newGoal.Add(newgoal);
+                    newGoal = context.GoalDB.ToList();
                 }
             }
             catch (Exception e)
@@ -84,7 +71,7 @@ namespace Smart_Saver_API.Controllers
             try
             {
                 int monthCount;
-                List<TraceableBalance> balances = (List< TraceableBalance>) BalanceController.Instance().GetMonthlyBalances();  
+                List<TraceableBalance> balances = (List< TraceableBalance>) BalanceController.Instance().GetMonthlyBalances(); 
                 decimal averageBalance = 0;
                 decimal currentSum = 0;
 
@@ -94,7 +81,7 @@ namespace Smart_Saver_API.Controllers
                 //Goal goal = (Goal)ParseGoal();
                 var goal = ParseGoal();
                 var goals = from _goal in goal
-                            select (int)Math.Round((_goal.Amount - currentSum) / averageBalance);
+                            select (int)Math.Round((_goal.goalAmount - currentSum) / averageBalance);
 
                 monthCount = goals.Single();
                 return monthCount;
@@ -102,7 +89,7 @@ namespace Smart_Saver_API.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(message: e.ToString());
+                _logger.LogError(message: e.ToString());        
                 return -1;
             }
         }
@@ -110,6 +97,6 @@ namespace Smart_Saver_API.Controllers
          * Variables
          * -----------------------------------------------------------------------------------------------*/
 
-        private string goalDBFilePath = DBPathConfig.Instance().GoalDBPath;
+       // private string goalDBFilePath = DBPathConfig.Instance().GoalDBPath;
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Smart_Saver_API.Data_Structures;
+using Smart_Saver_API.Models;
 
 namespace Smart_Saver_API.Controllers
 {
@@ -36,25 +37,29 @@ namespace Smart_Saver_API.Controllers
         [Route("parse-categories")]
         public List<string> parseCategories()
         {
-            List<string> ExpenseCategories = new List<string>();
+            List<CategoriesDB> ExpenseCategories = new List<CategoriesDB>();
+            List<string> expenses = new List<string>();
             try
             {
-                List<string> item = new List<string>();
-                item = System.IO.File.ReadAllLines(CategoriesDBFilePath).ToList();
-
-                foreach (string it in item)
+                using (var context = new Data.Smart_Saver_APIContext())
                 {
-                    string[] elements = it.Split('\n');
-                    string category = Convert.ToString(elements[0]);
-                    ExpenseCategories.Add(category);
+                    ExpenseCategories = context.CategoriesDB.ToList();
+                }
+
+                foreach (var _expense in ExpenseCategories)
+                {
+                    expenses.Add(_expense.categoryName);
                 }
             }
             catch (Exception e)
             {
-                _logger.LogError(e.ToString());
+                _logger?.LogError(e.ToString());
             }
-            return ExpenseCategories;
+
+            return expenses;
         }
+
+     
         [HttpGet]
         [Route("categories-count")]
         public int getCategoriesCount()
@@ -66,9 +71,20 @@ namespace Smart_Saver_API.Controllers
         {
             try
             {
-                using (StreamWriter CategoriesDBFileWriter = new StreamWriter(CategoriesDBFilePath, true))
+                CategoriesDB _category = new CategoriesDB();
+                string categoryToAddString = category;
+                string[] elements = categoryToAddString.Split(',');
+                foreach (string it in elements)
                 {
-                    CategoriesDBFileWriter.WriteLine(category);
+                    string _categoryName = elements[0];
+                    _category.categoryName = _categoryName;
+
+                }
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+
+                    context.CategoriesDB.Add(_category);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
@@ -83,7 +99,7 @@ namespace Smart_Saver_API.Controllers
         {
             List<string> category = CategoriesController.Instance().parseCategories();
             int z = 0;
-            foreach (string category1 in category)
+            foreach (var category1 in category)
             {
                 if (z == index)
                 {
@@ -94,8 +110,49 @@ namespace Smart_Saver_API.Controllers
             }
             return null;
         }
+        [HttpGet]
+        [Route("get-categoryDB")]
+        public string getCategory(int index)
+        {
 
+            List<CategoriesDB> ExpenseCategories = new List<CategoriesDB>();
+            using (var context = new Data.Smart_Saver_APIContext())
+            {
+                ExpenseCategories = context.CategoriesDB.ToList();
+            }
+            foreach (var category1 in ExpenseCategories)
+            {
+                if (category1.categoryId == index)
+                {
+                    return category1.categoryName;
+                }
 
-        public readonly string CategoriesDBFilePath = DBPathConfig.Instance().CategoriesDBPath;
+            }
+            return null;
+        }
+
+        [HttpGet]
+        [Route("get-id")]
+        public int getId (string categoryname)
+        {
+            List<CategoriesDB> ExpenseCategories = new List<CategoriesDB>();
+            int z = 1;
+            using (var context = new Data.Smart_Saver_APIContext())
+            {
+                ExpenseCategories = context.CategoriesDB.ToList();
+            }
+            foreach (var category1 in ExpenseCategories)
+            {
+                if (category1.categoryName == categoryname)
+                {
+                    return category1.categoryId;
+                }
+                z++;
+  
+            }
+            return -1;
+        }
+
+        // public readonly string CategoriesDBFilePath = DBPathConfig.Instance().CategoriesDBPath;
     }
 }
