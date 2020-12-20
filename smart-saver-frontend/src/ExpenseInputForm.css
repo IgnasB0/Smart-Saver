@@ -1,0 +1,19 @@
+.input-row:after {
+    display: table;
+    clear:both;
+    content: "";
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.input-row > p {
+    display: inline-block;
+    width: 20%;
+}
+.input-row > input {
+    display: inline-block;
+    width: 20%;
+}
+.input-row > select {
+    display: inline-block;
+    width: 20%;
+}
