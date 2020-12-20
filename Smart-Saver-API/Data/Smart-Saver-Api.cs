@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Smart_Saver_API.Data
 {
-    public class Smart_Saver_APIContext : DbContext
+    public class Smart_Saver_APIContext : DbContext //Not an api context
     {
         public DbSet<CategoriesDB> CategoriesDB { get; set; }
 
@@ -21,9 +21,9 @@ namespace Smart_Saver_API.Data
         public DbSet<UserDB> UserDB { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) //I configa connection string'us
         {
-            string server = "Server=tcp:smart-saver.database.windows.net,1433;";
+            string server = "Server=tcp:smart-saver.database.windows.net,1433;"; //Konfidenciali info keliauja i configa ir net nekeliama i githuba (cyber security)
             string initialCatalog = "Initial Catalog=SmartSaver;";
             string persistSecurityInfo = "Persist Security Info=False;";
             string userID = "User ID=smartsaver;";
