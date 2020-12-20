@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Smart_Saver_API.Models
 {
-    public class UserDB
+    public class UserDB //Be db
     {
         [Key]
         public int userId { get; set; }

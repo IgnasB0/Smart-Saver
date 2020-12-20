@@ -118,7 +118,7 @@ namespace Smart_Saver_API.Controllers
 
         [HttpPost]
         [Route("add-income-object")] //Unusable
-        public void PostNewIncome(IncomeDB income)
+        public void PostNewIncome(IncomeDB income) //Models (general classes) in seperate project - lib
         {
             try
             {
