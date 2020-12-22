@@ -30,7 +30,25 @@ namespace Smart_Saver_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(c =>
+                {
+                    c.AddPolicy("AllowOrigin",
+                         options => options.WithOrigins("http://localhost:3000"));
+                }
+
+                );
+
+
+
+
+            services.AddMvc();  //?
             services.AddControllers();
+
+
+
+
+
             services.AddHttpClient();
             services.AddOptions();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
@@ -50,6 +68,11 @@ namespace Smart_Saver_API
 
             app.UseRouting();
 
+            app.UseCors(
+                options => options.WithOrigins("http://localhost:3000"));
+
+
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -57,10 +80,13 @@ namespace Smart_Saver_API
                 endpoints.MapControllers();
             });
 
+            //  ConfigHelper.Instance().
+
             /*app.UseReact(configure => {
                 
 
             });*/
+           
         }
     }
 }
