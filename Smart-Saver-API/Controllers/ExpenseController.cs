@@ -8,11 +8,13 @@ using Smart_Saver_API.Data_Structures;
 using MonthCheckExtensions;
 using System.IO;
 using Smart_Saver_API.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Smart_Saver_API.Controllers
 {
     [ApiController]
     [Route("expenses")]
+    [EnableCors("AllowOrigin")]
     public class ExpenseController : ControllerBase
     {
         /*
@@ -68,6 +70,7 @@ namespace Smart_Saver_API.Controllers
 
         [HttpGet]
         [Route("monthly-expenses")]
+       [EnableCors("AllowOrigin")]
         public decimal MonthlyExpenses()
         {
             var expenses = ParseExpenses(); // Generics

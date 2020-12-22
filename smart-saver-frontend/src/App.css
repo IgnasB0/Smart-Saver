@@ -1,19 +1,106 @@
-.App {
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li{
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  min-height: 10vh;
+  align-items: center;
+  font-family: inter;
+  background-color: lightgrey;
+  color: #282c34;
+}
+
+nav .logo{
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase ;
+
+}
+
+nav .nav-links{
+  display: flex;
+  justify-content: space-around;
+  width: 32%;
+
+}
+
+nav .nav-links a{
+  font-size: 18px;
+  font-weight: normal;
+  cursor: pointer;
+}
+nav .nav-links a:hover{
+  border-bottom: 1px solid #282c34;
+}
+
+nav .burger{
+  font-size: 28px;
+  display: none;
+  cursor: pointer;
+
+}
+
+
+
+/* .App {
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
+} */
 
-@media (prefers-reduced-motion: no-preference) {
+@media all and (max-width: 768px){
+    nav .burger{
+      display: block;
+    }
+    nav .nav-links{
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #ff5f6d;
+      padding: 40px;
+      width: 50%;
+      transform: translateX(-500px);
+      transition: 0.5s ease-in-out;
+    }
+    nav .nav-links li{
+      padding: 25px;
+      border-bottom: 1px solid #ccc
+    }
+
+    nav .nav-links li:last-of-type{
+      border-bottom: 0px solid #ccc
+    }
+    
+    nav .nav-links a:hover{
+      border-bottom: 0px solid #282c34;
+    }
+} 
+
+
+/*  @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -36,3 +123,4 @@
     transform: rotate(360deg);
   }
 }
+ */

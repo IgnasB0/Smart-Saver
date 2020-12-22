@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Net.Http;
 using Smart_Saver_API.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Smart_Saver_API.Controllers
 {
@@ -48,9 +49,10 @@ namespace Smart_Saver_API.Controllers
         /*--------------------------------------------------------------------------------------------------
          * Methods
          * -----------------------------------------------------------------------------------------------*/
-
         [HttpGet]
         [Route("parse-incomes")]
+        
+
         public IEnumerable<Smart_Saver_API.Models.IncomeDB> ParseIncomes()
         {
             List<IncomeDB> income = new List<IncomeDB>();
@@ -96,9 +98,10 @@ namespace Smart_Saver_API.Controllers
                                    };
             return traceableIncomes.ToList<TraceableIncome>();
         }
-
+       
         [HttpGet]
         [Route("monthly-incomes")]
+        [EnableCors("AllowOrigin")]
         public decimal MonthlyIncome()
         {
             var income =  ParseIncomes();    
@@ -118,6 +121,7 @@ namespace Smart_Saver_API.Controllers
 
         [HttpPost]
         [Route("add-income-object")] //Unusable
+      //  [EnableCors("AllowOrigin")]
         public void PostNewIncome(IncomeDB income) //Models (general classes) in seperate project - lib
         {
             try
@@ -142,6 +146,7 @@ namespace Smart_Saver_API.Controllers
 
         [HttpPost]
         [Route("add-income")] //Unusable
+      //  [EnableCors("AllowOrigin")]
         public void AddIncome(decimal amount, DateTime date)
         {
             try
@@ -167,6 +172,7 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpPost]
+        [EnableCors("AllowOrigin")]
         public void AddIncomeWeb([FromBody] string income)
         {
             try

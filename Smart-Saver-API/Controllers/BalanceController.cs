@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ namespace Smart_Saver_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("AllowOrigin")]
 
     public class BalanceController : ControllerBase
     {
@@ -48,6 +50,7 @@ namespace Smart_Saver_API.Controllers
 
         [HttpGet]
         [Route("get-monthly-balances")]
+        [EnableCors("AllowOrigin")]
         public IEnumerable<TraceableBalance> GetMonthlyBalances() //Gets list of every year-month balances
         {
             List<TraceableIncome> tIncomes = (List<TraceableIncome>)IncomeController.Instance().GetMonthlyIncomes();
