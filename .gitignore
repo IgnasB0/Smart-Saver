@@ -372,3 +372,5 @@ healthchecksdb
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+smart-saver-frontend/.eslintcache
