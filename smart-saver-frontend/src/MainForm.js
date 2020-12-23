@@ -2,7 +2,6 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import './MainForm.css';
 import ReactDOM from 'react-dom';
-import {Table} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 import {Income} from './components/Income';
@@ -53,14 +52,13 @@ class MainForm extends React.Component{
     return (
 <div>
 
-<div class="row">
-    <div class="user-column">
-        <p class="user-label">User: {'user'}</p>
+    <div class="row">
+        <div class="user-column">
+            <p class="user-label">User: {'user'}</p>
+        </div>
+        <div class="user-column">
+        </div>
     </div>
-    <div class="user-column">
-
-    </div>
-</div>
 <div class="row">
     <div class="status-column">
         <p class="status-label">Monthly Income: {this.state.incomes}</p>
@@ -76,7 +74,7 @@ class MainForm extends React.Component{
     <div class="option-column">
         {/* <button>Add Income</button> */}
 
-        <Button variant="primary">Add Income Button</Button>
+        {/* <Button variant="primary">Add Income Button</Button> */}
 
     </div>
     <div class="option-column">
