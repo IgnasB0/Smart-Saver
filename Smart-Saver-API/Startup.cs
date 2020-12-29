@@ -32,28 +32,22 @@ namespace Smart_Saver_API
         {
 
             services.AddCors(c =>
-                {
-                    c.AddPolicy("AllowOrigin",
-                         options => options.WithOrigins("http://localhost:3000"));
-                }
+            {
+                c.AddPolicy("AllowOrigin",
+                     options => options.WithOrigins("http://localhost:3000").AllowAnyHeader()
+                     .AllowAnyMethod()
+                     );
+            }
 
                 );
 
-
-
-
             services.AddMvc();  //?
             services.AddControllers();
-
-
-
-
 
             services.AddHttpClient();
             services.AddOptions();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddReact();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +63,7 @@ namespace Smart_Saver_API
             app.UseRouting();
 
             app.UseCors(
-                options => options.WithOrigins("http://localhost:3000"));
+                options => options.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod());
 
 
 
@@ -86,7 +80,7 @@ namespace Smart_Saver_API
                 
 
             });*/
-           
+
         }
     }
 }

@@ -18,9 +18,23 @@ function NavBar(){
                     </NavLink>
 
                     <NavLink className="d-inline p-2 bg-dark text-white"
-                to="/income">
+                        to="/income">
                  <li><a>Income</a></li>
                     </NavLink>
+                
+                    <NavLink className="d-inline p-2 bg-dark text-white"
+                        to="/expense">
+                 <li><a>Expense</a></li>
+                    </NavLink>
+
+                    <NavLink className="d-inline p-2 bg-dark text-white"
+                        to="/addexpense">
+                 <li><a>AddExpense</a></li>
+                    </NavLink>
+                     <NavLink className="d-inline p-2 bg-dark text-white"
+                        to="/addcategory">
+                 <li><a>AddCategory</a></li>
+                    </NavLink> 
             </Nav>
             </ul>
             <i onClick={() => setOpen(!open)} className="fas fa-bars burger"></i>

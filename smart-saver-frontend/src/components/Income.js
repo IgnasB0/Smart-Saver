@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 
 export class Income extends React.Component{
 
@@ -10,51 +9,44 @@ export class Income extends React.Component{
             incomeAmount: '',
             incomeDate: ''
         }
-        
+        this.InsertedIncome = this.InsertedIncome.bind(this);
       }
 
-     
+      InsertedIncome() {
+        alert('Income was added successfully!');
+      }
 
-        changeHandler = e =>{
+
+         changeHandler = e =>{
             this.setState({[e.target.name]: e.target.value})
         }
-
-        /* submitHandler = e =>{
+        submitHandler = e =>{
             e.preventDefault()
-            console.log(this.state)
-            axios.post('https://localhost:44317/incomes',this.state)
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        } */
+            const url="https://localhost:44317/incomes"
+            const data ={
+                incomeAmount:this.state.incomeAmount,
+                incomeDate:this.state.incomeDate
+            }
+            const incomespost = "\"" + this.state.incomeAmount + "," + this.state.incomeDate + "\"" ;
 
-        componentDidMount() {            //kazkas blogai su portais
-
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: 'React POST Request Example' })
-            };
-            fetch('https://localhost:44317/incomes', requestOptions)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            fetch(url,
+                {
+                    method:'POST',
+                    body: incomespost,
+                    headers:{'Content-Type':'application/json'}
+                })
+                .then(res => res)
+                .catch(error => console.error('Error:',error))
+                .then(response => this.InsertedIncome());
+                
         }
 
-
-       
     render(){
         const {incomeAmount, incomeDate} = this.state;
         return (
             
         <div>
-            <form onSubmit={this.componentDidMount}>
+            <form onSubmit={this.submitHandler}>
                 <div>
                 <input type="number" name="incomeAmount" value={incomeAmount} onChange={this.changeHandler} step="any"/>
                 </div>
@@ -66,4 +58,6 @@ export class Income extends React.Component{
         </div>
         )
     }
+
+    
 }

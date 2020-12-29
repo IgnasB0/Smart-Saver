@@ -8,7 +8,9 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import {Income} from './components/Income';
 
 import NavBar from './NavBar';
-
+import Expense from './components/Expense';
+import { AddExpense } from './components/AddExpense';
+import { AddCategory } from './components/AddCategory';
 
 
 
@@ -17,14 +19,14 @@ function App() {
   <BrowserRouter>
   <div className="container">
 
-    <h3 className="m-3 d-flex justify-content-center">
-      Mainform yra cia
-    </h3>
 
     <NavBar/>
       <Switch>
-          <Route path='/' component={MainForm} exact />
+        <Route path='/' component={MainForm} exact />
          <Route path='/income' component={Income} exact />
+         <Route path='/expense' component={Expense} exact />
+         <Route path="/addexpense" component={AddExpense} />
+          <Route path="/addcategory" component={AddCategory} /> 
       </Switch>
   </div>
 </BrowserRouter> 
@@ -33,33 +35,6 @@ function App() {
   );
 
 
-
-
 }
- // return (
-  //  <div className="App">
-   //   <MainForm/>
-   //   <ExpenseForm/> (/*Temporary location. Component spawn should be automized and in different window. This is just for representation.*/)
-  //    <ExpenseInputForm/>
-  //  </div>
- // );
-
-
-/*  return (
-   <BrowserRouter>
-      <div className="container">
-
-        <h3 className="m-3 d-flex justify-content-center">
-          Mainform yra cia
-        </h3>
-
-        <Navigation/>
-          <Switch>
-              <Route path='/' component={MainForm} exact />
-              <Route path='/income' component={Income} exact />
-          </Switch>
-      </div>
-  </BrowserRouter> 
-); */
 
 export default App;
