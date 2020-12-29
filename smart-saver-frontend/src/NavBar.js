@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import IncomeModal from './components/IncomeModal';
 
 function NavBar(){
     const [open, setOpen] = useState(false);
@@ -15,12 +17,7 @@ function NavBar(){
                 <NavLink className="d-inline p-2 bg-dark text-white"
                 to="/">
                     <li><a>Mainform</a></li>
-                    </NavLink>
-
-                    <NavLink className="d-inline p-2 bg-dark text-white"
-                to="/income">
-                 <li><a>Income</a></li>
-                    </NavLink>
+                </NavLink>
             </Nav>
             </ul>
             <i onClick={() => setOpen(!open)} className="fas fa-bars burger"></i>

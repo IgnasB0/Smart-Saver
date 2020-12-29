@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import {Income} from './components/Income';
+import IncomeModal from './components/IncomeModal'
 
 import NavBar from './NavBar';
 
@@ -15,16 +16,9 @@ import NavBar from './NavBar';
 function App() {
   return (
   <BrowserRouter>
-  <div className="container">
-
-    <h3 className="m-3 d-flex justify-content-center">
-      Mainform yra cia
-    </h3>
-
-    <NavBar/>
+  <div class="mainDiv">
       <Switch>
           <Route path='/' component={MainForm} exact />
-         <Route path='/income' component={Income} exact />
       </Switch>
   </div>
 </BrowserRouter> 

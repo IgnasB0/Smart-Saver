@@ -4,8 +4,9 @@ import './MainForm.css';
 import ReactDOM from 'react-dom';
 import {Table} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-
-import {Income} from './components/Income';
+import IncomeModal from './components/IncomeModal';
+import GoalModal from './components/GoalModal';
+import RecurringIncomeModal from './components/RecurringIncomeModal'
 
 class MainForm extends React.Component{
    
@@ -51,45 +52,49 @@ class MainForm extends React.Component{
       //  const {incomes} = this.state;
        // const {expenses} = this.state;
     return (
-<div>
-
-<div class="row">
-    <div class="user-column">
-        <p class="user-label">User: {'user'}</p>
+<div class="main-form-container">
+    
+    <div class="row">   
+        <div class="user-container">
+            <div class="user-label">
+                <p class="user-label">User: {'user'}</p>
+            </div>
+        </div>
     </div>
-    <div class="user-column">
-
-    </div>
-</div>
+<div class="spacer"/>
 <div class="row">
     <div class="status-column">
         <p class="status-label">Monthly Income: {this.state.incomes}</p>
     </div>
+</div>
+<div class="spacer"/>
+<div class="row">
     <div class="status-column">
         <p class="status-label">Monthly Expenses Amount: {this.state.expenses}</p>
     </div>
+</div>
+<div class="spacer"/>
+<div class="row">
     <div class="status-column">
         <p class="status-label">Monthly Balance: {this.state.balance}</p>
     </div>
 </div>
+<div class="spacer"/>
 <div class="row">
     <div class="option-column">
-        {/* <button>Add Income</button> */}
-
-        <Button variant="primary">Add Income Button</Button>
-
+        <IncomeModal/>
     </div>
     <div class="option-column">
-        {/* <button>Manage Recurring Income</button> */}
-        <Button variant="primary">Manage Recurring Income Button</Button>
+        <RecurringIncomeModal/>
+    </div>
+</div>
+<div class="spacer"/>
+<div class="row">
+    <div class="option-column">
+        <button class="main-form-button-left">Add Expense</button>
     </div>
     <div class="option-column">
-        {/* <button>Add Expense</button> */}
-        <Button variant="primary">Add Expense Button</Button>
-    </div>
-    <div class="option-column">
-        {/* <button>Set Goal</button> */}
-        <Button variant="primary">Set Goal Button</Button>
+        <GoalModal/>
     </div>
 </div>
 <div class="row">

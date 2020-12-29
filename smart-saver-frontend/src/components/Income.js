@@ -51,19 +51,19 @@ export class Income extends React.Component{
        
     render(){
         const {incomeAmount, incomeDate} = this.state;
-        return (
+        return  (
             
-        <div>
+        <div class="income-component">
             <form onSubmit={this.componentDidMount}>
-                <div>
+                <p>Amount:</p>
                 <input type="number" name="incomeAmount" value={incomeAmount} onChange={this.changeHandler} step="any"/>
-                </div>
-                <div>
+                <p>Date:</p>
                 <input type="date" name="incomeDate"value={incomeDate} onChange={this.changeHandler}/>
+                <div class="modal-buton-container">
+                    <button class="modal-button" type="submit">Submit</button>
                 </div>
-                <Button type="submit">Submit</Button>
             </form>
         </div>
-        )
+        );
     }
 }
