@@ -1,10 +1,8 @@
-.status-column {
-    width: 33.3%;
-    float: left;
-}
-.user-column {
-    width: 50%;
-    float: left;
+.main-form-container {
+    text-align: center;
+    /*background-color: rgb(36, 36, 36);*/
+    border-radius: 20px;
+    align-content: center;
 }
 .row:after {
     display: table;
@@ -18,7 +16,107 @@
     font-size: 16px;
     color: black;
 }
+
+/*2020-12-28*/
+
+.user-container {
+    width: 75%;
+    float: left;
+    align-self:center;
+    background-color: rgb(95, 95, 95);
+    border-radius: 20px;
+    text-align: left;
+    vertical-align:middle;
+    padding: 5px 35px 5px 35px;
+    margin: auto;
+}
+.user-label {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size:14pt;
+}
+
+.status-column {
+    width: 75%;
+    float: left;
+    align-self: center;
+    background-color: rgb(95, 95, 95);
+    border-radius: 20px;
+    text-align: left;
+    vertical-align:middle;
+    padding: 5px 35px 5px 35px;
+    margin: auto;
+}
+.status-column > p{
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+.spacer {
+    margin:25px;
+}
+
+
+/*Options, modals etc.*/
 .option-column {
     width: 50%;
     float: left;
+}
+.main-form-button-left {
+    background-color:rgb(226, 102, 0);
+    border-radius:50px;
+    width:200pt;
+    height: 35pt;
+    font-size: 14pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color:rgb(242, 228, 255);
+    float: right;
+    margin:10px;
+    border-width:0px;
+}
+.main-form-button-right {
+    background-color:rgb(26, 26, 26);
+    border-radius:50px;
+    width:200pt;
+    height: 35pt;
+    font-size: 14pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color:rgb(242, 228, 255);
+    float: left;
+    margin: 10px;
+    border-width:5px;
+    border-color: rgb(226, 102, 0);
+}
+.modal-button {
+    background-color:rgb(226, 102, 0);
+    border-radius:50px;
+    width:200pt;
+    height: 35pt;
+    font-size: 14pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color:rgb(242, 228, 255);
+    align-self: center;
+    border-width:0px;
+    margin: 5px;
+}
+
+.modal-buton-container {
+    text-align: center;
+}
+.income-component > form > input {
+    background-color: rgb(26, 26, 26);
+    border-radius:10px;
+    color: rgb(242, 228, 255);
+    width: 40%;
+}
+.income-component > form > p {
+    font-size: 14pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color:rgb(242, 228, 255);
+    width: 50%;
+    display:inline-block;
 }

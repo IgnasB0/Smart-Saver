@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import IncomeModal from './components/IncomeModal';
 
 function NavBar(){
     const [open, setOpen] = useState(false);

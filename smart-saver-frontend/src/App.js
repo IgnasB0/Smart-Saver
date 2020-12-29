@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import {Income} from './components/Income';
+import IncomeModal from './components/IncomeModal'
 
 import NavBar from './NavBar';
 import Expense from './components/Expense';
@@ -17,16 +18,10 @@ import { AddCategory } from './components/AddCategory';
 function App() {
   return (
   <BrowserRouter>
-  <div className="container">
 
-
-    <NavBar/>
+  <div class="mainDiv">
       <Switch>
-        <Route path='/' component={MainForm} exact />
-         <Route path='/income' component={Income} exact />
-         <Route path='/expense' component={Expense} exact />
-         <Route path="/addexpense" component={AddExpense} />
-          <Route path="/addcategory" component={AddCategory} /> 
+          <Route path='/' component={MainForm} exact />
       </Switch>
   </div>
 </BrowserRouter> 
@@ -38,3 +33,5 @@ function App() {
 }
 
 export default App;
+
+/* /income, /expense, /addexpense, /addcategory */
