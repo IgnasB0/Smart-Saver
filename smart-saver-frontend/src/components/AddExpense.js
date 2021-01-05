@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import moment from 'moment'; 
 import Expense from './Expense';
+import MainForm from '../MainForm';
+import {Link,useHistory} from 'react-router-dom';
+import { browserHistory, Router, Route,Switch } from 'react-router';
+
 export class AddExpense extends React.Component{
 
     constructor(props) {
@@ -9,10 +13,10 @@ export class AddExpense extends React.Component{
             expenseCategory: '',
             expenseName: '',
             expenseAmount: '',
-            expenseDate: ''
+            expenseDate: '',
         }
         this.InsertedExpense = this.InsertedExpense.bind(this);
-      }
+    }
 
       changeHandler = e =>{
         this.setState({[e.target.name]: e.target.value})
@@ -26,15 +30,8 @@ export class AddExpense extends React.Component{
     submitHandler = e =>{
         e.preventDefault()
         const url="https://localhost:44317/expenses"
-        const {data} = this.props.location;
-        const data1 ={
-            expenseName:this.state.expenseName,
-            expenseAmount:this.state.expenseAmount,
-            expenseDate:this.state.expenseDate,
-            expenseCategory: data
-            
-            
-        };
+          const {data} = this.props.location;
+
         var now = moment().format();
         const expensespost = "\"" + this.state.expenseName + "," + this.state.expenseAmount + "," + now +"," + data +   "\"" ;
 
@@ -52,7 +49,7 @@ export class AddExpense extends React.Component{
 
       render(){
         const {expenseCategory, expenseName,expenseAmount} = this.state;
-        const {data} = this.props.location;
+         const {data} = this.props.location;
         return (
             
         <div>
@@ -70,11 +67,18 @@ export class AddExpense extends React.Component{
                 <input type="text" name="expenseCategory" value={data} onChange={this.changeHandler} step="any"/>
                 </div>
 
-                <button type="submit">Submit</button>
+                <div class="modal2-buton-container">
+                    <button class="modal2-button" type="submit">Submit</button>
+                </div>
                 </label>
+                <div>
+                <Link to={{pathname: "/"}} >Back</Link>  
+                </div>
+               
 
                 
             </form>
+            
         </div>
         )
     }

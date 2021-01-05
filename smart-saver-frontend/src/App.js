@@ -12,6 +12,9 @@ import NavBar from './NavBar';
 import Expense from './components/Expense';
 import { AddExpense } from './components/AddExpense';
 import { AddCategory } from './components/AddCategory';
+import { Chart } from './components/Chart';
+
+
 
 
 
@@ -22,6 +25,9 @@ function App() {
   <div class="mainDiv">
       <Switch>
           <Route path='/' component={MainForm} exact />
+          <Route path='/addexpense' component={AddExpense} exact />
+          <Route path='/category' component={AddCategory} exact />
+          <Route path='/chart' component={Chart} exact />
       </Switch>
   </div>
 </BrowserRouter> 

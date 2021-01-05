@@ -5,11 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MonthCheckExtensions;
 using Smart_Saver_API.Data_Structures;
 using Smart_Saver_API.Models;
 
 namespace Smart_Saver_API.Controllers
 {
+    [ApiController]
+    [Route("recurringincomes")]
+    //https://localhost:44317/recurringincomes
     public class RecurringIncomeController : ControllerBase
     {
         /*
@@ -75,11 +79,17 @@ namespace Smart_Saver_API.Controllers
 
             foreach (ReccuringIncomeDB i in income)
             {
-                incomeTotal += i.reccuringincomeAmount;
+                if (i.reccuringincomeDateUntil >= DateTime.Now && i.reccuringincomeDateFrom <= DateTime.Now )
+                {
+                    incomeTotal += i.reccuringincomeAmount;
+                }
+                
             }
 
             return incomeTotal;
         }
+      
+
 
         [HttpGet]
         [Route("add-recurring-income")]
@@ -106,12 +116,45 @@ namespace Smart_Saver_API.Controllers
                 _logger.LogError(e.ToString());
             }
         }
+        [HttpPost]
+        public void AddExpenseWeb([FromBody] string recurringincomeadd)
+        {
+            try
+            {
+
+                ReccuringIncomeDB _recurringincome = new ReccuringIncomeDB();
+                string reccuringIncomeToAddString = recurringincomeadd;
+                string[] elements = reccuringIncomeToAddString.Split(',');
+                foreach (string it in elements)
+                {
+                    decimal _reccuringIncomeAmount = decimal.Parse(elements[0]);
+                    DateTime _reccuringDateFrom = DateTime.Parse(elements[1]);
+                    DateTime _reccuringDateUntil = DateTime.Parse(elements[2]);
+                    int _userid = Int32.Parse(FrontendController.Instance().userId());
+
+                    _recurringincome.reccuringincomeAmount = _reccuringIncomeAmount;
+                    _recurringincome.reccuringincomeDateFrom = _reccuringDateFrom;
+                    _recurringincome.reccuringincomeDateUntil = _reccuringDateUntil;
+                    _recurringincome.userId = _userid;
+                }
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+
+                    context.ReccuringIncomeDB.Add(_recurringincome);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+            }
+        }
 
 
         /*--------------------------------------------------------------------------------------------------
         * Variables
         * -----------------------------------------------------------------------------------------------*/
 
-      //  public readonly string incomeDBFilePath = DBPathConfig.Instance().RecuringIncomeDBPath;
+        //  public readonly string incomeDBFilePath = DBPathConfig.Instance().RecuringIncomeDBPath;
     }
 }

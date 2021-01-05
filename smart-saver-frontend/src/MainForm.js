@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 import IncomeModal from './components/IncomeModal';
 import GoalModal from './components/GoalModal';
 import RecurringIncomeModal from './components/RecurringIncomeModal'
-
+import ExpenseModal from './components/ExpenseModal';
+import AddExpenseModal from './components/AddExpenseModal';
 class MainForm extends React.Component{
    
 
@@ -90,7 +91,7 @@ class MainForm extends React.Component{
 <div class="spacer"/>
 <div class="row">
     <div class="option-column">
-        <button class="main-form-button-left">Add Expense</button>
+        <ExpenseModal/>
     </div>
     <div class="option-column">
         <GoalModal/>

@@ -6,7 +6,6 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import { AddCategory } from './AddCategory';
 import { Income } from './Income';
 import MainForm from '../MainForm';
-import NavBar from '../NavBar';
 
 
 
@@ -15,42 +14,57 @@ export class Expense extends React.Component{
     constructor(props) {
         super(props);
           this.state = {
-            expensecategories: []
+            expensecategories: [],
+            expensecategoryName: [],
           }; 
-          this.handleCategory = this.handleCategory.bind(this);
+
+          
           this.handleBack = this.handleBack.bind(this);
       }
-
-
+      
+    
+      
 
 handleBack() {
   alert(this);
 }
 
-handleCategory() {
-alert(this);
-}
 
 
+
+componentDidMount(){
+  fetch("https://localhost:44317/expenses/get-category-expense-amount?neededCategory=Food" )
+        .then(res => res.json()).then(
+            result => {
+                this.setState({expensecategoryName:result});
+            }
+        ) }
+
+
+     
 
 createUI(){
   
   return this.state.expensecategories.map((el, i) => 
-  <div key={i}>
+  <div key={i} >
 
-    <label> {el||''}:  
-        <Link to={{pathname: "/addexpense", data: el||''}} >Add</Link>  
-    </label>
+    <label> {el||''} :  
+         <div>
+          {/*  <label> Expense by category:  {this.state.expensecategoryName}</label> kazkaip reiktu paduoti category  */}
 
-     {/* <input type="text" value={el||''} /> */}
-     {/* <button onClick={() => this.handleSubmit(el||'')}> Add</button>    */}
-   
-     
+          <Link to={{pathname: "/addexpense", data: el||''}} >Add</Link>  
+         </div>
 
+         
+    </label> 
+    
+  
   </div>
         
 )
 }
+
+
 
 
     render(){
@@ -60,18 +74,23 @@ createUI(){
             result => {
                 this.setState({expensecategories:result});
             }
-        )
+        );
+        
 
             return(
-              <form>
+              
+              <form >
+ 
                 {this.createUI()}
-            
-                 <button onClick={this.handleCategory}> Add Category</button>    
-
-                  <button onClick={this.handleBack}> Back</button>  
+              
+                 <button onClick={this.handleCategory}> Add Category</button>   
+                 
                 
-                  
+                 <button onClick={this.handleBack}> Back</button>  
+
               </form>
+             
+            
             );
         
      }
