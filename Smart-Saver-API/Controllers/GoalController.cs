@@ -71,7 +71,7 @@ namespace Smart_Saver_API.Controllers
             try
             {
                 int monthCount;
-                List<TraceableBalance> balances = (List< TraceableBalance>) BalanceController.Instance().GetMonthlyBalances(); 
+                List<Balance> balances = (List<Balance>)ChartController.Instance().ChartRepresenation();
                 decimal averageBalance = 0;
                 decimal currentSum = 0;
 

@@ -9,6 +9,8 @@ namespace Smart_Saver_API.Data_Structures
     {
             public decimal Amount { get; set; }
             public string monthAndYear { get; set; }
-        }
+        public int Year { get; set; }
+        public int Month { get; set; }
+    }
    }
 

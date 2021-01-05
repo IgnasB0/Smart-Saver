@@ -1,7 +1,5 @@
 import './App.css';
 import MainForm from './MainForm';
-import ExpenseForm from './ExpenseForm';
-import ExpenseInputForm from './ExpenseInputForm';
 import React, {Component} from 'react';
 
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
@@ -12,7 +10,9 @@ import NavBar from './NavBar';
 import Expense from './components/Expense';
 import { AddExpense } from './components/AddExpense';
 import { AddCategory } from './components/AddCategory';
-import { Chart } from './components/Chart';
+import  Chart  from './components/Chart';
+
+
 
 
 

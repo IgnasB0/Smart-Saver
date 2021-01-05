@@ -8,6 +8,8 @@ namespace Smart_Saver_API.Controllers
     public class Result
     {
         public string monthAndYear { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
         public string Type { get; set; }
         public decimal amount { get; set; }
 

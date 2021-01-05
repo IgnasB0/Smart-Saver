@@ -8,6 +8,7 @@ import GoalModal from './components/GoalModal';
 import RecurringIncomeModal from './components/RecurringIncomeModal'
 import ExpenseModal from './components/ExpenseModal';
 import AddExpenseModal from './components/AddExpenseModal';
+import SeeGoalModal from './components/SeeGoalModal';
 class MainForm extends React.Component{
    
 
@@ -22,6 +23,7 @@ class MainForm extends React.Component{
           this.state = {
             balance: []
           };
+          this.handleBack = this.handleBack.bind(this);
       }
 
       componentDidMount(){
@@ -45,6 +47,9 @@ class MainForm extends React.Component{
         )
         
     }
+    handleBack() {
+        window.open("/chart");
+      }
 
 
 
@@ -95,6 +100,16 @@ class MainForm extends React.Component{
     </div>
     <div class="option-column">
         <GoalModal/>
+    </div>
+    <div class="option-column">
+        <SeeGoalModal/>
+    </div>
+</div>
+
+<div class="spacer"/>
+<div class="row">
+    <div class="status-column">
+    <button onClick={this.handleBack}> Show Chart</button> 
     </div>
 </div>
 <div class="row">

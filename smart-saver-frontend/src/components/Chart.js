@@ -1,62 +1,79 @@
-import { timers } from 'jquery';
-import React, {Component} from 'react';
-import CanvasJSReact from './canvasjs.react';
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
+import axios from "axios";
 
+const Chart = () => {
+  const [chartData, setChartData] = useState({});
+  const [employeeSalary, setEmployeeSalary] = useState([]);
+  const [employeeAge, setEmployeeAge] = useState([]);
 
-var dataPoints =[];
-export class Chart extends React.Component {
-
-  constructor(props) {
-    super(props);
-      this.state = {
-        expensecategories1: [],
-        label: "APPLE",
-        y: 100
-      }; 
-
-    
-  }
-
-    componentDidMount() {
-      
-        
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            title:{
-              text: "Basic Column Chart"
-            },
-            
-            data: [
-              {
-                type: "column",
-                dataPoints: [
-                  { label: this.state.label,  y: this.state.y  }
-                ]
-              }
-            ]
-        });
-    chart.render();
-    console.log(this.state.label);
-  }
-  
-  render() {
-    fetch("https://localhost:44317/chart/kazkas" )
-        .then(res => res.json()).then(
-            result => {
-                this.setState({expensecategories1:result}
-                  );
+  const chart = () => {
+    let empSal = [];
+    let empAge = [];
+    axios
+      .get("https://localhost:44317/chart/show-chart")
+      .then(res => {
+        console.log(res);
+        for (const dataObj of res.data) {
+          empSal.push(parseFloat(dataObj.amount).toFixed(2));
+          empAge.push(dataObj.monthAndYear);
+        }
+        setChartData({
+          labels: empAge,
+          datasets: [
+            {
+              label: "Balance of every month",
+              data: empSal,
+              backgroundColor: ["rgba(75, 192, 192, 0.6)"],
+              borderWidth: 4
             }
-        );
-    return (
-      <div id="chartContainer" style={{height: 360 + "px", width: 100 + "%"}}>
+          ]
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    console.log(empSal, empAge);
+  };
+
+  useEffect(() => {
+    chart();
+  }, []);
+  return (
+    <div className="App">
+      <h1>Chart</h1>
+      <div>
+        <Line
+          data={chartData}
+          options={{
+            responsive: true,
+            title: { text: "BALANCE EVERY MONTH", display: true },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 10,
+                    beginAtZero: true
+                  },
+                  gridLines: {
+                    display: false
+                  }
+                }
+              ],
+              xAxes: [
+                {
+                  gridLines: {
+                    display: false
+                  }
+                }
+              ]
+            }
+          }}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-// ========================================
-
-
- 
+export default Chart;

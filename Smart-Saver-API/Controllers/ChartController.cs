@@ -39,8 +39,7 @@ namespace Smart_Saver_API.Controllers
         //methods
         
         [HttpGet]
-        [Route("kazkas")]
-        // https://localhost:44317/chart/kazkas
+        [Route("show-chart")]
         public IEnumerable<Balance> ChartRepresenation()
         {
             IEnumerable <ExpenseDB> _expenses = ExpenseController.Instance().ParseExpenses();
@@ -55,6 +54,8 @@ namespace Smart_Saver_API.Controllers
                             select new Result
                             {
                                 monthAndYear = g.Key.Year + "-" + g.Key.Month,
+                                Year = g.Key.Year,
+                                Month = g.Key.Month,
                                 amount = g.Sum(),
                                 Type = "Expense"
 
@@ -70,6 +71,8 @@ namespace Smart_Saver_API.Controllers
                            select new Result
                            {
                                monthAndYear = g.Key.Year + "-" + g.Key.Month,
+                               Year = g.Key.Year,
+                               Month = g.Key.Month,
                                amount = g.Sum(),
                                Type = "Income"
                            };
@@ -80,35 +83,21 @@ namespace Smart_Saver_API.Controllers
                           select new Result
                           {
                               monthAndYear = p.monthAndYear,
+                              Year = p.Year,
+                              Month = p.Month,
                               amount = p.amount,
                               Type = p.Type
                           };
-            if (expenses.Count() == incomes.Count())
-            {
 
-                return CalculateEqual(results).ToList();
-                //foreach (var c in m)
-                //{
-                //    Debug.WriteLine("asdsad" + c.Amount + " sdas" + c.monthAndYear);
-                //}
+            var gautas = from h in CalculateEqual(results).ToList()
+                         orderby h.Year, h.Month ascending
+                         select h;
 
-            }
-            //else if (incomes.Count() > expenses.Count())
-            //{
-            //   // return (CalculateIncomeMore(expenses, incomes));
-            //}
-            //else
-            //{
-            //    //return ( CalculateExpenseMore(expenses, incomes));
-            //}
-            else
-            {
-                return CalculateEqual(results).ToList();
-            }
+            return gautas.ToList();
+
         }
         private IEnumerable<Balance> CalculateEqual(IEnumerable<Result> both)
         {
-            string _write = "";
             bool sign = false;
             var array = both.ToArray();
             List<Balance> tBalances = new List<Balance>();
@@ -119,35 +108,84 @@ namespace Smart_Saver_API.Controllers
                 {
                     if(array[i].monthAndYear == array[i + 1].monthAndYear)
                     {
-                        _write += "['" + array[i].monthAndYear + "'," + (array[i].amount - array[i + 1].amount) + "s1]]);";
                         sign = true;
-                        Balance tBalance = new Balance()
+                        if(array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
                         {
-                            Amount = (array[i].amount - array[i + 1].amount),
-                            monthAndYear = array[i].monthAndYear
-                        };
-                        tBalances.Add(tBalance);
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount - array[i + 1].amount) + RecurringIncomeController.Instance().MonthlyIncome(),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount - array[i + 1].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        
+                        
 
                     }
                     else if (array[i].Type == "Expense" && sign == false)
                     {
-                        _write += "['" + array[i].monthAndYear + "'," + (-array[i].amount) + "s2]]);";
-                        Balance tBalance = new Balance()
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
                         {
-                            Amount = (-array[i].amount),
-                            monthAndYear = array[i].monthAndYear
-                        };
-                        tBalances.Add(tBalance);
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount) + RecurringIncomeController.Instance().MonthlyIncome(),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                           
                     }
-                    else if (array[i].Type == "Income")
+                    else if (array[i].Type == "Income" && sign == false)
                     {
-                        _write += "['" + array[i].monthAndYear + "'," + array[i].amount + "s3]]);";
-                        Balance tBalance = new Balance()
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
                         {
-                            Amount = (array[i].amount),
-                            monthAndYear = array[i].monthAndYear
-                        };
-                        tBalances.Add(tBalance);
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount) + RecurringIncomeController.Instance().MonthlyIncome(),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                           
                     }
                     else
                     {
@@ -158,23 +196,55 @@ namespace Smart_Saver_API.Controllers
                 {
                     if (array[i].Type == "Expense" && sign == false)
                     {
-                        _write += "['" + array[i].monthAndYear + "'," + (-array[i].amount) + "s2]]);";
-                        Balance tBalance = new Balance()
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
                         {
-                            Amount = (-array[i].amount),
-                            monthAndYear = array[i].monthAndYear
-                        };
-                        tBalances.Add(tBalance);
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount) + RecurringIncomeController.Instance().MonthlyIncome(),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                            
                     }
-                    else if (array[i].Type == "Income")
+                    else if (array[i].Type == "Income" && sign == false)
                     {
-                        _write += "['" + array[i].monthAndYear + "'," + array[i].amount + "s3]]);";
-                        Balance tBalance = new Balance()
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
                         {
-                            Amount = (array[i].amount),
-                            monthAndYear = array[i].monthAndYear
-                        };
-                        tBalances.Add(tBalance);
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount) + RecurringIncomeController.Instance().MonthlyIncome(),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                           
                     }
                     else
                     {
@@ -186,181 +256,7 @@ namespace Smart_Saver_API.Controllers
             }
             return tBalances;
         }
-        //private string CalculateEqual(IEnumerable<Result> expenses, IEnumerable<Result> incomes)
-        //{
-        //    int i = 1;
-        //    string _write = "";
-        //    bool sign = false;
-        //    string monthandy = "";
-        //    foreach (var _incomes in incomes)
-        //    {
-        //        foreach (var _expenses in expenses)
-        //        {
-        //                if(_expenses.monthAndYear == _incomes.monthAndYear)
-        //                     {
-        //                _write += "['" + _expenses.monthAndYear + "'," + (_incomes.amount - _expenses.amount) + "ss]]);";
-        //                monthandy = _incomes.monthAndYear;
-        //                     }
-        //            else if(_expenses.monthAndYear != monthandy)
-        //            {
-        //                _write += "['" + _expenses.monthAndYear + "'," + _expenses.amount + "s2]]);";
-        //            }
-
-
-        //        }
-        //        if (_incomes.monthAndYear != monthandy)
-        //        {
-        //            _write += "['" + _incomes.monthAndYear + "'," + _incomes.amount + "s3]]);";
-        //        }
-
-        //    }
-        //    return _write;
-        //}
-
-        private string CalculateExpenseMore(IEnumerable<Result> expenses, IEnumerable<Result> incomes)
-        {
-            int i = 1;
-            bool sign = true;
-            string _write = "";
-            foreach (var _expense in expenses)
-            {
-                foreach (var _incomes in incomes)
-                {
-                    if (_incomes.monthAndYear == _expense.monthAndYear && _expense.Type == "Expense" && _incomes.Type == "Income")
-                    {
-                       _write += "['" + _incomes.monthAndYear + "'," + (_incomes.amount - _expense.amount) + "],";
-                        break;
-                    }
-                    else
-                    {
-                        sign = false;
-                    }
-                }
-
-            }
-            return _write;
-        }
-
-        private string CalculateIncomeMore(IEnumerable<Result> expenses, IEnumerable<Result> incomes)
-        {
-            int i = 1;
-            bool sign = true;
-            string _write = "";
-            foreach (var _incomes in incomes)
-            {
-                foreach (var _expenses in expenses)
-                {
-                    if (_expenses.monthAndYear == _incomes.monthAndYear && _expenses.Type == "Expense" && _incomes.Type == "Income")
-                    {
-
-                            _write += "['" + _expenses.monthAndYear + "'," + (_incomes.amount - _expenses.amount) + "]";
-                        i++;
-                        sign = true;
-                        break;
-                    }
-                    else
-                    {
-                        sign = false;
-                    }
-                }
-                if (sign == false && i != incomes.Count())
-                {
-                    sign = true;
-                    i++;
-                }
-
-            }
-            return _write;
-        }
-
-        private string CalculateExpenseMore(IEnumerable<Result> expenses, IEnumerable<Result> incomes, string _write)
-        {
-            int i = 1;
-            bool sign = true;
-            foreach (var _expense in expenses)
-            {
-                foreach (var _incomes in incomes)
-                {
-                    if (_incomes.monthAndYear == _expense.monthAndYear && _expense.Type == "Expense" && _incomes.Type == "Income")
-                    {
-                        if (i == expenses.Count())
-                        {
-                            _write += "['" + _incomes.monthAndYear + "'," + (_incomes.amount - _expense.amount) + "]]);";
-                        }
-                        else
-                        {
-                            _write += "['" + _incomes.monthAndYear + "'," + (_incomes.amount - _expense.amount) + "],";
-                        }
-                        i++;
-                        sign = true;
-                        break;
-                    }
-                    else
-                    {
-                        sign = false;
-                    }
-                }
-                if (sign == false && i != expenses.Count())
-                {
-                    _write += "['" + _expense.monthAndYear + "'," + (-_expense.amount) + "],";
-                    sign = true;
-                    i++;
-                }
-                else if (i == expenses.Count() && sign == false)
-                {
-                    _write += "['" + _expense.monthAndYear + "'," + (-_expense.amount) + "]]);";
-                }
-            }
-            return _write;
-        }
-
-        private string CalculateIncomeMore(IEnumerable<Result> expenses, IEnumerable<Result> incomes, string _write)
-        {
-            int i = 1;
-            bool sign = true;
-            foreach (var _incomes in incomes)
-            {
-                foreach (var _expenses in expenses)
-                {
-                    if (_expenses.monthAndYear == _incomes.monthAndYear && _expenses.Type == "Expense" && _incomes.Type == "Income")
-                    {
-                        if (i == incomes.Count())
-                        {
-                            _write += "['" + _expenses.monthAndYear + "'," + (_incomes.amount - _expenses.amount) + "]]);";
-                        }
-                        else
-                        {
-                            _write += "['" + _expenses.monthAndYear + "'," + (_incomes.amount - _expenses.amount) + "],";
-                        }
-                        i++;
-                        sign = true;
-                        break;
-                    }
-                    else
-                    {
-                        sign = false;
-                    }
-                }
-                if (sign == false && i != incomes.Count())
-                {
-                    _write += "['" + _incomes.monthAndYear + "'," + (_incomes.amount - 0) + "],";
-                    sign = true;
-                    i++;
-                }
-                else if (i == incomes.Count() && sign == false)
-                {
-                    _write += "['" + _incomes.monthAndYear + "'," + (_incomes.amount - 0) + "]]);";
-                }
-            }
-            return _write;
-        }
        
-
-
-       
-
-       
-
 
 
     }

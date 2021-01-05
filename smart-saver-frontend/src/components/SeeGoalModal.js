@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import MainForm from '../MainForm';
-import { AddExpense } from './AddExpense';
+import { SeeGoal } from './SeeGoal';
 
-export default function AddExpenseModal(){
+export default function SeeGoalModal(){
+    function refreshPage() {
+        window.location.reload();
+      }
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const customStyles = {
         overlay: {
@@ -13,7 +15,7 @@ export default function AddExpenseModal(){
             backgroundColor: 'rgb(95, 95, 95)',
             color: '#f2e0ff',
             width: '60%',
-            height: '80%',
+            height: '50%',
             opacity: '1',
             display: 'flex',
             flexDirection: 'column',
@@ -26,13 +28,14 @@ export default function AddExpenseModal(){
             marginLeft: '20%',
         },
     }
-
     return (
 
-        <div class="add-expense1-modal-frame">
-            <Modal portalClassName="add-expense1-modal" style={customStyles} centered
-            isOpen={() => setModalIsOpen(true)} onRequestClose={() => setModalIsOpen(false)}>
-                <AddExpense/>
+        <div class="add-income-modal-frame">
+            <button class="main-form-button-left" onClick = {() => setModalIsOpen(true)}>See Goal </button >
+            <Modal portalClassName="add-income-modal" style={customStyles} centered
+            isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                <SeeGoal/>
+                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage} >Close </button>
             </Modal>
         </div>
     )

@@ -19,15 +19,16 @@ export class Expense extends React.Component{
           }; 
 
           
-          this.handleBack = this.handleBack.bind(this);
+          this.handleCategory = this.handleCategory.bind(this);
       }
       
-    
+ 
+      handleCategory(){
+        window.open('/category');
+      }
       
 
-handleBack() {
-  alert(this);
-}
+
 
 
 
@@ -48,14 +49,8 @@ createUI(){
   return this.state.expensecategories.map((el, i) => 
   <div key={i} >
 
-    <label> {el||''} :  
-         <div>
-          {/*  <label> Expense by category:  {this.state.expensecategoryName}</label> kazkaip reiktu paduoti category  */}
-
-          <Link to={{pathname: "/addexpense", data: el||''}} >Add</Link>  
-         </div>
-
-         
+    <label> {el||''} :   <Link to={{pathname: "/addexpense", data: el||''}} >Add</Link>  
+        
     </label> 
     
   
@@ -63,9 +58,6 @@ createUI(){
         
 )
 }
-
-
-
 
     render(){
       
@@ -86,7 +78,7 @@ createUI(){
                  <button onClick={this.handleCategory}> Add Category</button>   
                  
                 
-                 <button onClick={this.handleBack}> Back</button>  
+               
 
               </form>
              
