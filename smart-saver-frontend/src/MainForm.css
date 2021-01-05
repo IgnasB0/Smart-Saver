@@ -51,6 +51,7 @@
 .status-column > p{
     color: white;
     font-family: 'Poppins', sans-serif;
+    width: 80%;
 }
 .spacer {
     margin:25px;
@@ -119,4 +120,10 @@
     color:rgb(242, 228, 255);
     width: 50%;
     display:inline-block;
+}
+#status-icon {
+    color:rgb(226, 102, 0);
+    font-size: 36pt;
+    width: 20%;
+    float: left;
 }

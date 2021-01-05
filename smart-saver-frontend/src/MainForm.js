@@ -63,18 +63,21 @@ class MainForm extends React.Component{
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
+        <i class="glyphicon glyphicon-upload" id="status-icon"/>
         <p class="status-label">Monthly Income: {this.state.incomes}</p>
     </div>
 </div>
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
+        <i class="glyphicon glyphicon-download" id="status-icon"/>
         <p class="status-label">Monthly Expenses Amount: {this.state.expenses}</p>
     </div>
 </div>
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
+        <i class="glyphicon glyphicon-circle-arrow-right" id="status-icon"/>
         <p class="status-label">Monthly Balance: {this.state.balance}</p>
     </div>
 </div>
