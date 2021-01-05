@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { RecurringIncome } from './RecurringIncome'
+import { SeeGoal } from './SeeGoal';
 
-export default function GoalModal(){
-     function refreshPage() {
+export default function SeeGoalModal(){
+    function refreshPage() {
         window.location.reload();
       }
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -29,12 +29,13 @@ export default function GoalModal(){
         },
     }
     return (
-        <div class="set-goal-modal-frame">
-            <button class="main-form-button-right" onClick = {() => setModalIsOpen(true)}>Set Recurring Income</button >
-            <Modal portalClassName="set-goal-modal" style={customStyles} centered
+
+        <div class="add-income-modal-frame">
+            <button class="main-form-button-left" onClick = {() => setModalIsOpen(true)}>See Goal </button >
+            <Modal portalClassName="add-income-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <RecurringIncome/>
-                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage}>Close</button>
+                <SeeGoal/>
+                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage} >Close </button>
             </Modal>
         </div>
     )

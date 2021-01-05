@@ -116,7 +116,7 @@ namespace Smart_Saver_API.Controllers
                                     };
             return traceableExpenses.ToList<TraceableExpense>();
         }
-
+        // https://localhost:44317/expenses/get-category-expense-amount?neededCategory=Transport
         [HttpGet]
         [Route("get-category-expense-amount")]
         public decimal GetCategoryExpenseAmount(string neededCategory)

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
+import {Link,useHistory} from 'react-router-dom';
+import { browserHistory, Router, Route,Switch } from 'react-router';
 
 export class AddCategory extends React.Component{
     constructor(props) {
@@ -8,6 +10,10 @@ export class AddCategory extends React.Component{
             categoryName: ''
         }
         this.InsertedCategory = this.InsertedCategory.bind(this);
+        this.handleBack = this.handleBack.bind(this);
+      }
+      handleBack(){
+        window.open('/');
       }
 
       InsertedCategory() {
@@ -51,6 +57,7 @@ export class AddCategory extends React.Component{
                 </div>
                 </label>
                 <Button type="submit">Add</Button>
+                <button onClick={this.handleBack}> Back</button>   
             </form>
         </div>
         )

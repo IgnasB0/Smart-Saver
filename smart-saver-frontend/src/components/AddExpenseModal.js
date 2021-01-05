@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { RecurringIncome } from './RecurringIncome'
+import MainForm from '../MainForm';
+import { AddExpense } from './AddExpense';
 
-export default function GoalModal(){
-     function refreshPage() {
-        window.location.reload();
-      }
+export default function AddExpenseModal(){
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const customStyles = {
         overlay: {
@@ -15,7 +13,7 @@ export default function GoalModal(){
             backgroundColor: 'rgb(95, 95, 95)',
             color: '#f2e0ff',
             width: '60%',
-            height: '50%',
+            height: '80%',
             opacity: '1',
             display: 'flex',
             flexDirection: 'column',
@@ -28,13 +26,13 @@ export default function GoalModal(){
             marginLeft: '20%',
         },
     }
+
     return (
-        <div class="set-goal-modal-frame">
-            <button class="main-form-button-right" onClick = {() => setModalIsOpen(true)}>Set Recurring Income</button >
-            <Modal portalClassName="set-goal-modal" style={customStyles} centered
-            isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <RecurringIncome/>
-                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage}>Close</button>
+
+        <div class="add-expense1-modal-frame">
+            <Modal portalClassName="add-expense1-modal" style={customStyles} centered
+            isOpen={() => setModalIsOpen(true)} onRequestClose={() => setModalIsOpen(false)}>
+                <AddExpense/>
             </Modal>
         </div>
     )

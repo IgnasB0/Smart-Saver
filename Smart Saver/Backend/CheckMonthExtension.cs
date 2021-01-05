@@ -12,6 +12,6 @@ namespace MonthCheckExtensions.Backend
             int monthToCheck = dateTocheck.Month;
 
             return monthNow == monthToCheck;
-        }
+        }        
     }
 }

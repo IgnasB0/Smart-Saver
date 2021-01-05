@@ -3,6 +3,9 @@ import Modal from 'react-modal';
 import { Income } from './Income'
 
 export default function IncomeModal(){
+    function refreshPage() {
+        window.location.reload();
+      }
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const customStyles = {
         overlay: {
@@ -26,12 +29,13 @@ export default function IncomeModal(){
         },
     }
     return (
+
         <div class="add-income-modal-frame">
             <button class="main-form-button-left" onClick = {() => setModalIsOpen(true)}>Add Income </button >
             <Modal portalClassName="add-income-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <Income/>
-                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}>Close</button>
+                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage} >Close </button>
             </Modal>
         </div>
     )

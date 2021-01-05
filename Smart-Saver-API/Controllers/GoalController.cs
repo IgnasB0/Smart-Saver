@@ -71,7 +71,7 @@ namespace Smart_Saver_API.Controllers
             try
             {
                 int monthCount;
-                List<TraceableBalance> balances = (List< TraceableBalance>) BalanceController.Instance().GetMonthlyBalances(); 
+                List<Balance> balances = (List<Balance>)ChartController.Instance().ChartRepresenation();
                 decimal averageBalance = 0;
                 decimal currentSum = 0;
 
@@ -93,10 +93,44 @@ namespace Smart_Saver_API.Controllers
                 return -1;
             }
         }
+        // https://localhost:44317/goal 
+        [HttpPost]
+        public void addGoal([FromBody] string goaltoAdd)
+        {
+            try
+            {
+
+                GoalDB _goal = new GoalDB();
+                string goalToAddString = goaltoAdd;
+                string[] elements = goalToAddString.Split(',');
+                foreach (string it in elements)
+                {
+                    string _goalName = elements[0];
+                    decimal _goalAmount = decimal.Parse(elements[1]);
+                    DateTime _goalDate = DateTime.Parse(elements[2]);
+                    int _userid = Int32.Parse(FrontendController.Instance().userId());
+
+                    _goal.goalName = _goalName;
+                    _goal.goalAmount = _goalAmount;
+                    _goal.goalDate = _goalDate;
+                    _goal.userId = _userid;
+                }
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+
+                    context.GoalDB.Add(_goal);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+            }
+        }
         /*--------------------------------------------------------------------------------------------------
          * Variables
          * -----------------------------------------------------------------------------------------------*/
 
-       // private string goalDBFilePath = DBPathConfig.Instance().GoalDBPath;
+        // private string goalDBFilePath = DBPathConfig.Instance().GoalDBPath;
     }
 }

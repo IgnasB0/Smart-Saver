@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { RecurringIncome } from './RecurringIncome'
+import { Income } from './Income'
 
-export default function GoalModal(){
-     function refreshPage() {
+export default function AddCategoryModal(){
+    function refreshPage() {
         window.location.reload();
       }
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -15,7 +15,7 @@ export default function GoalModal(){
             backgroundColor: 'rgb(95, 95, 95)',
             color: '#f2e0ff',
             width: '60%',
-            height: '50%',
+            height: '30%',
             opacity: '1',
             display: 'flex',
             flexDirection: 'column',
@@ -29,12 +29,13 @@ export default function GoalModal(){
         },
     }
     return (
-        <div class="set-goal-modal-frame">
-            <button class="main-form-button-right" onClick = {() => setModalIsOpen(true)}>Set Recurring Income</button >
-            <Modal portalClassName="set-goal-modal" style={customStyles} centered
+
+        <div class="add-category-modal-frame">
+           
+            <Modal portalClassName="add-category-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <RecurringIncome/>
-                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage}>Close</button>
+                <AddCategory/>
+
             </Modal>
         </div>
     )
