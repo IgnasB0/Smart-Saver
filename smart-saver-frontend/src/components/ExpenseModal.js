@@ -19,6 +19,7 @@ export default function ExpenseModal(){
             flexDirection: 'column',
             justifyContent: 'center',
             borderRadius: '25px',
+            fontSize: '20px',
             borderSize: '10px',
             border: 'solid 15px rgb(204, 92, 0)',
             position: 'absolete',

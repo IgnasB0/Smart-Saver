@@ -24,7 +24,7 @@ const Chart = () => {
             {
               label: "Balance of every month",
               data: empSal,
-              backgroundColor: ["rgba(75, 192, 192, 0.6)"],
+              backgroundColor: 'rgb(201, 141, 21)',
               borderWidth: 4
             }
           ]
@@ -41,10 +41,11 @@ const Chart = () => {
   }, []);
   return (
     <div className="App">
-      <h1>Chart</h1>
       <div>
         <Line
           data={chartData}
+          width={100}
+          height={50}
           options={{
             responsive: true,
             title: { text: "BALANCE EVERY MONTH", display: true },
@@ -53,7 +54,7 @@ const Chart = () => {
                 {
                   ticks: {
                     autoSkip: true,
-                    maxTicksLimit: 10,
+                    maxTicksLimit: 5,
                     beginAtZero: true
                   },
                   gridLines: {

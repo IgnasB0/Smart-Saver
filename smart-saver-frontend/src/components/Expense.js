@@ -16,6 +16,7 @@ export class Expense extends React.Component{
           this.state = {
             expensecategories: [],
             expensecategoryName: [],
+            element : ''
           }; 
 
           
@@ -26,37 +27,23 @@ export class Expense extends React.Component{
       handleCategory(){
         window.open('/category');
       }
-      
-
-
-
-
-
-
-componentDidMount(){
-  fetch("https://localhost:44317/expenses/get-category-expense-amount?neededCategory=Food" )
-        .then(res => res.json()).then(
-            result => {
-                this.setState({expensecategoryName:result});
-            }
-        ) }
-
-
-     
+        
 
 createUI(){
-  
   return this.state.expensecategories.map((el, i) => 
   <div key={i} >
 
     <label> {el||''} :   <Link to={{pathname: "/addexpense", data: el||''}} >Add</Link>  
-        
+
     </label> 
     
   
   </div>
         
 )
+
+
+
 }
 
     render(){
@@ -67,6 +54,12 @@ createUI(){
                 this.setState({expensecategories:result});
             }
         );
+        var disabled = this.props.disabled || false;
+        var style = { backgroundColor: 'red' };
+
+        if(disabled == false) {
+          style = { backgroundColor: 'rgb(201, 141, 21)' }
+        }
         
 
             return(
@@ -75,7 +68,7 @@ createUI(){
  
                 {this.createUI()}
               
-                 <button onClick={this.handleCategory}> Add Category</button>   
+                 <button style ={style} onClick={this.handleCategory}> Add Category</button>   
                  
                 
                

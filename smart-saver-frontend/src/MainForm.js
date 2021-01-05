@@ -9,6 +9,7 @@ import RecurringIncomeModal from './components/RecurringIncomeModal'
 import ExpenseModal from './components/ExpenseModal';
 import AddExpenseModal from './components/AddExpenseModal';
 import SeeGoalModal from './components/SeeGoalModal';
+import  Chart  from './components/Chart';
 class MainForm extends React.Component{
    
 
@@ -58,7 +59,7 @@ class MainForm extends React.Component{
        // const {expenses} = this.state;
     return (
 <div class="main-form-container">
-    
+
     <div class="row">   
         <div class="user-container">
             <div class="user-label">
@@ -79,6 +80,7 @@ class MainForm extends React.Component{
         <i class="glyphicon glyphicon-download" id="status-icon"/>
         <p class="status-label">Monthly Expenses Amount: {this.state.expenses}</p>
     </div>
+    
 </div>
 <div class="spacer"/>
 <div class="row">
@@ -87,6 +89,10 @@ class MainForm extends React.Component{
         <p class="status-label">Monthly Balance: {this.state.balance}</p>
     </div>
 </div>
+<div class="option-column">
+        <Chart/>
+    </div>
+
 <div class="spacer"/>
 <div class="row">
     <div class="option-column">
@@ -107,14 +113,10 @@ class MainForm extends React.Component{
     <div class="option-column">
         <SeeGoalModal/>
     </div>
+    
 </div>
 
-<div class="spacer"/>
-<div class="row">
-    <div class="status-column">
-    <button onClick={this.handleBack}> Show Chart</button> 
-    </div>
-</div>
+
 <div class="row">
     <p>*Here we can place graph*</p>
     <p>(Don't know how, though)</p>
