@@ -14,8 +14,8 @@ export default function GoalModal(){
         content: {
             backgroundColor: 'rgb(95, 95, 95)',
             color: '#f2e0ff',
-            width: '60%',
-            height: '50%',
+            width: '75%',
+            height: '40%',
             opacity: '1',
             display: 'flex',
             flexDirection: 'column',

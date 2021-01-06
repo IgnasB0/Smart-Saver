@@ -9,7 +9,9 @@ import RecurringIncomeModal from './components/RecurringIncomeModal'
 import ExpenseModal from './components/ExpenseModal';
 import AddExpenseModal from './components/AddExpenseModal';
 import SeeGoalModal from './components/SeeGoalModal';
+import { SeeGoal } from './components/SeeGoal';
 import  Chart  from './components/Chart';
+
 class MainForm extends React.Component{
    
 
@@ -61,24 +63,24 @@ class MainForm extends React.Component{
 <div class="main-form-container">
 
     <div class="row">   
-        <div class="user-container">
-            <div class="user-label">
-                <p class="user-label">User: {'user'}</p>
-            </div>
+        <div class="welcoming-container">
+            <p class="welcome-message">Welcome, {'User'}, to World's Best Smart Saver!</p>
         </div>
     </div>
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
         <i class="glyphicon glyphicon-upload" id="status-icon"/>
-        <p class="status-label">Monthly Income: {this.state.incomes}</p>
+        <p class="status-label">Monthly Income:</p>
+        <p class="status-number">{this.state.incomes}</p>
     </div>
 </div>
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
         <i class="glyphicon glyphicon-download" id="status-icon"/>
-        <p class="status-label">Monthly Expenses Amount: {this.state.expenses}</p>
+        <p class="status-label">Monthly Expenses Amount:</p>
+        <p class="status-number">{this.state.expenses}</p>
     </div>
     
 </div>
@@ -86,12 +88,10 @@ class MainForm extends React.Component{
 <div class="row">
     <div class="status-column">
         <i class="glyphicon glyphicon-circle-arrow-right" id="status-icon"/>
-        <p class="status-label">Monthly Balance: {this.state.balance}</p>
+        <p class="status-label">Monthly Balance:</p>
+        <p class="status-number">{this.state.balance}</p>
     </div>
 </div>
-<div class="option-column">
-        <Chart/>
-    </div>
 
 <div class="spacer"/>
 <div class="row">
@@ -102,7 +102,6 @@ class MainForm extends React.Component{
         <RecurringIncomeModal/>
     </div>
 </div>
-<div class="spacer"/>
 <div class="row">
     <div class="option-column">
         <ExpenseModal/>
@@ -110,20 +109,24 @@ class MainForm extends React.Component{
     <div class="option-column">
         <GoalModal/>
     </div>
-    <div class="option-column">
-        <SeeGoalModal/>
+</div>
+
+    <div class="spacer2"/>
+    <div class="chart-area">
+        <Chart/>
     </div>
-    
-</div>
-
-
-<div class="row">
-    <p>*Here we can place graph*</p>
-    <p>(Don't know how, though)</p>
-</div>
-<div class="row">
-    <p>Time left until goal is reached: {'N/A'} months</p>
-</div>
+    <div class="spacer2"/>
+    <div class="row">   
+        <div class="goal-info-container">
+            <p class="goal-info-message">Goal Progress Information</p>
+        </div>
+    </div>
+    <div class="spacer"/>
+    <div class="row">
+        <div class="status-column">
+            <SeeGoal/>
+        </div>
+    </div>
 </div>
     );
 }

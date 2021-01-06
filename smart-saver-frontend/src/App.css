@@ -84,7 +84,7 @@ nav .burger{
 
 .mainDiv {
   padding: 20px;
-  height: 100vh;
+  height: auto;
   width: 100%;
   background-color: rgb(26, 26, 26);
 }

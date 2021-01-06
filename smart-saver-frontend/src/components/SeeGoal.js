@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Button from 'react-bootstrap/Button';
+import { GoalProgressCircle } from './GoalProgressCircle'
 
 export class SeeGoal extends React.Component{
 
@@ -10,7 +10,8 @@ export class SeeGoal extends React.Component{
             expenseTotal: '',
             balanceTotal: '',
             amountToGoal: '',
-            timetoGoal: ''
+            timetoGoal: '',
+            goalAmount: ''
         }
      
       }
@@ -46,6 +47,12 @@ export class SeeGoal extends React.Component{
                 this.setState({timetoGoal:result});
             }
         )
+        fetch("https://localhost:44317/frontend/get-goal-amount")
+        .then(res => res.json()).then(
+            result => {
+                this.setState({goalAmount:result});
+            }
+        )
         
         
     }
@@ -54,33 +61,33 @@ export class SeeGoal extends React.Component{
         return  (
             
 
-    <div class="income-component">
+    <div class="goal-info-component">
             <form>
-                <div>
-                <label>
-                    Expense Total:  {this.state.expenseTotal}
-                </label>
+                <div class="option-column">
+                    <p class="goal-amount-label">
+                        Amount needed to reach goal:
+                    </p>
+                    <p class="goal-amount-number">
+                        {this.state.amountToGoal}
+                    </p>
                 </div>
-               <div>
-               <label>
-                    Income Total:  {this.state.incomeTotal}
-                </label>
-               </div>
-               <div>
-               <label>
-                    Balance:  {this.state.balanceTotal}
-                </label>
-               </div>
-               <div>
-               <label>
-                    Amount needed to reach goal:  {this.state.amountToGoal}
-                </label>
-               </div>
-               <div>
-               <label>
-                   Time left to reach a goal (in months):  {this.state.timetoGoal}
-                </label>
-               </div>
+                <div class="option-column">
+                    <p class="goal-time-label">
+                        Time left to reach the goal:
+                    </p>
+                    <p class="goal-amount-number">
+                        {this.state.timetoGoal}
+                    </p>
+                    <p class="goal-time-units">
+                        months
+                    </p>
+                    <div class="goal-progress-circle-container">
+                        <GoalProgressCircle
+                            radius={ 70 }
+                            stroke={ 12 }
+                            progress={ 100 * ((this.state.goalAmount - this.state.amountToGoal) / this.state.goalAmount) }/>
+                    </div>
+                </div>
             </form>
         </div>
         );

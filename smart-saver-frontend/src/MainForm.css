@@ -1,40 +1,31 @@
 .main-form-container {
-    text-align: center;
-    /*background-color: rgb(36, 36, 36);*/
     border-radius: 20px;
-    align-content: center;
 }
 .row:after {
     display: table;
     clear:both;
     content: "";
 }
-.status-label {
-    width: 100%;
-    float:left;
-    font-family:'Calibri';
-    font-size: 16px;
-    color: black;
-}
 
-/*2020-12-28*/
-
-.user-container {
+/*Status bars*/
+.welcoming-container {
     width: 75%;
     float: left;
     align-self:center;
     background-color: rgb(95, 95, 95);
     border-radius: 20px;
-    text-align: left;
+    text-align: center;
     vertical-align:middle;
-    padding: 5px 35px 5px 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin: auto;
 }
-.user-label {
+.welcome-message {
     color: white;
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size:14pt;
+    font-weight: 500;
+    font-size:20pt;
+    width: 100%;
 }
 
 .status-column {
@@ -44,19 +35,42 @@
     background-color: rgb(95, 95, 95);
     border-radius: 20px;
     text-align: left;
-    vertical-align:middle;
     padding: 5px 35px 5px 35px;
     margin: auto;
+    vertical-align:middle;
 }
-.status-column > p{
+#status-icon {
+    color:rgb(226, 102, 0);
+    font-size: 36pt;
+    width: 20%;
+    float: left;
+    padding-top: 20px;
+}
+.status-label {
+    width: 50%;
+    float:left;
+    font-family:'Poppins', sans-serif;
+    font-weight: 0;
+    font-size: 14pt;
     color: white;
-    font-family: 'Poppins', sans-serif;
-    width: 80%;
+    text-align: end;
+    padding-right: 25px;
+    padding-top: 10px;
 }
+.status-number {
+    width: 30%;
+    float:left;
+    font-family:'Calibri';
+    font-size: 42pt;
+    color:#E26600;
+}
+
 .spacer {
     margin:25px;
 }
-
+.spacer2 {
+    margin: 75px;
+}
 
 /*Options, modals etc.*/
 .option-column {
@@ -75,6 +89,7 @@
     float: right;
     margin:10px;
     border-width:0px;
+    outline: none!important;
 }
 .main-form-button-right {
     background-color:rgb(26, 26, 26);
@@ -89,6 +104,7 @@
     margin: 10px;
     border-width:5px;
     border-color: rgb(226, 102, 0);
+    outline: none!important;
 }
 .modal-button {
     background-color:rgb(226, 102, 0);
@@ -102,6 +118,7 @@
     align-self: center;
     border-width:0px;
     margin: 5px;
+    outline: none!important;
 }
 
 .modal-buton-container {
@@ -109,9 +126,12 @@
 }
 .income-component > form > input {
     background-color: rgb(26, 26, 26);
-    border-radius:10px;
+    border-radius: 20px;
     color: rgb(242, 228, 255);
     width: 40%;
+    font-size: 12pt;
+    padding: 5px 5px 5px 5px;
+    outline: none;
 }
 .income-component > form > p {
     font-size: 14pt;
@@ -121,9 +141,90 @@
     width: 50%;
     display:inline-block;
 }
-#status-icon {
-    color:rgb(226, 102, 0);
-    font-size: 36pt;
-    width: 20%;
+.recurring-income-component > form > input {
+    background-color: rgb(26, 26, 26);
+    border-radius: 20px;
+    color: rgb(242, 228, 255);
+    width: 40%;
+    font-size: 12pt;
+    padding: 5px 5px 5px 5px;
+    outline: none;
+}
+.recurring-income-component > form > p {
+    font-size: 14pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color:rgb(242, 228, 255);
+    width: 50%;
+    display:inline-block;
+}
+
+/*Goal Information section*/
+.goal-info-container {
+    width: 75%;
+    float: left;
+    align-self:center;
+    background-color: rgb(95, 95, 95);
+    border-radius: 20px;
+    text-align: center;
+    vertical-align:middle;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+}
+.goal-info-message {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size:20pt;
+    width: 100%;
+}
+.goal-amount-label {
+    font-family:'Poppins', sans-serif;
+    font-weight: 0;
+    font-size: 14pt;
+    color: white;
+    text-align: start;
+    padding-top: 10px;
+}
+.goal-time-label {
+    font-family:'Poppins', sans-serif;
+    font-weight: 0;
+    font-size: 14pt;
+    color: white;
+    text-align: start;
+    padding-top: 10px;
+}
+.goal-amount-number {
+    font-family:'Calibri';
+    font-size: 42pt;
+    color:#E26600;
+    width: 60px;
     float: left;
 }
+.goal-time-units {
+    font-family:'Calibri';
+    font-size: 18pt;
+    color:#E26600;
+    width: 10%;
+    float: left;
+    margin-left: 0vh;
+    margin-top: 3.5vh;
+}
+circle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+  .goal-progress-circle-container {
+      margin-left: 200px;
+  }
+  .progress-percentage {
+      color:white;
+      font-size: 18pt;
+      width:20%;
+      position: relative;
+      left: 40px;
+      top: -90px;
+      height: 0px;
+  }
