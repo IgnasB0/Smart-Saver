@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import MainForm from '../MainForm';
 import { AddExpense } from './AddExpense';
+import { Income } from './Income';
+import {Link,useHistory} from 'react-router-dom';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-export default function AddExpenseModal(){
+const AddExpenseModal = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const customStyles = {
         overlay: {
@@ -29,11 +32,14 @@ export default function AddExpenseModal(){
 
     return (
 
-        <div class="add-expense1-modal-frame">
-            <Modal portalClassName="add-expense1-modal" style={customStyles} centered
-            isOpen={() => setModalIsOpen(true)} onRequestClose={() => setModalIsOpen(false)}>
-                <AddExpense/>
+        <div class="add-expense-modal-frame">
+            <button  onClick = {() => setModalIsOpen(true)}>Add  </button >
+            <Modal portalClassName="add-expense-modal" style={customStyles} centered
+            isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                <AddExpense name = {props.name}/>
+                <Link to={{pathname: "/"}} onClick={()=> setModalIsOpen(false)} >Back</Link>  
             </Modal>
         </div>
     )
 }
+export default AddExpenseModal;

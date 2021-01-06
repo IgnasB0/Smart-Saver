@@ -25,6 +25,7 @@ function App() {
   <div class="mainDiv">
       <Switch>
           <Route path='/' component={MainForm} exact />
+          <Route path='/expensecategories' component={Expense} exact />
           <Route path='/addexpense' component={AddExpense} exact />
           <Route path='/category' component={AddCategory} exact />
           <Route path='/chart' component={Chart} exact />

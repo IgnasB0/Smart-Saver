@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
-
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
+import { Link } from "react-router-dom"; 
 export class SeeGoal extends React.Component{
 
     constructor(props) {
@@ -81,6 +82,7 @@ export class SeeGoal extends React.Component{
                    Time left to reach a goal (in months):  {this.state.timetoGoal}
                 </label>
                </div>
+
             </form>
         </div>
         );
