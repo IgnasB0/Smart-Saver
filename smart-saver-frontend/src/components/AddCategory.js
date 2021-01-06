@@ -10,10 +10,6 @@ export class AddCategory extends React.Component{
             categoryName: ''
         }
         this.InsertedCategory = this.InsertedCategory.bind(this);
-        this.handleBack = this.handleBack.bind(this);
-      }
-      handleBack(){
-        window.open('/');
       }
 
       InsertedCategory() {
@@ -26,9 +22,6 @@ export class AddCategory extends React.Component{
     submitHandler = e =>{
         e.preventDefault()
         const url="https://localhost:44317/categories"
-        const data ={
-            categoryName:this.state.categoryName
-        }
         const categoriespost = "\"" + this.state.categoryName + "\"" ;
 
         fetch(url,
@@ -56,10 +49,10 @@ export class AddCategory extends React.Component{
                 <input type="text" name="categoryName" value={categoryName} onChange={this.changeHandler} step="any"/>
                 </div>
                 </label>
-                <Button type="submit">Add</Button>
-                <button onClick={this.handleBack}> Back</button>   
+                <button class="main-form-button-left" type="submit">Add</button>
+                
             </form>
         </div>
         )
     }
-}
+} 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { GoalProgressCircle } from './GoalProgressCircle'
-
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
+import { Link } from "react-router-dom"; 
 export class SeeGoal extends React.Component{
 
     constructor(props) {

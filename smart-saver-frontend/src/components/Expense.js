@@ -6,46 +6,49 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import { AddCategory } from './AddCategory';
 import { Income } from './Income';
 import MainForm from '../MainForm';
+import ExpenseModal from './ExpenseModal';
+import AddExpenseModal from './AddExpenseModal';
+import AddCategoryModal from './AddCategoryModal';
 
 
 
-export class Expense extends React.Component{
+class Expense extends React.Component{
 
     constructor(props) {
         super(props);
           this.state = {
             expensecategories: [],
-            expensecategoryName: [],
-            element : ''
+            expensecategoryName: []
           }; 
+          this.expense = this.expense.bind(this);
+         
+      }
 
-          
-          this.handleCategory = this.handleCategory.bind(this);
+      expense(){
+        window.open('/');
       }
       
- 
-      handleCategory(){
-        window.open('/category');
-      }
+    
         
 
 createUI(){
   return this.state.expensecategories.map((el, i) => 
   <div key={i} >
-
-    <label> {el||''} :   <Link to={{pathname: "/addexpense", data: el||''}} >Add</Link>  
-
-    </label> 
+    <div class="row">   
+        <div class="expense-container">
+            <div class="expense-label">
+            <label> {el||''} :  <AddExpenseModal name = {el}/>
+          </label> 
+            </div>
+        </div>
+    </div>
     
-  
+    
   </div>
-        
+      
 )
 
-
-
 }
-
     render(){
       
         fetch("https://localhost:44317/categories/parse-categories")
@@ -54,33 +57,25 @@ createUI(){
                 this.setState({expensecategories:result});
             }
         );
-        var disabled = this.props.disabled || false;
-        var style = { backgroundColor: 'red' };
-
-        if(disabled == false) {
-          style = { backgroundColor: 'rgb(201, 141, 21)' }
-        }
-        
 
             return(
               
-              <form >
- 
-                {this.createUI()}
-              
-                 <button style ={style} onClick={this.handleCategory}> Add Category</button>   
-                 
-                
-               
+            <div>
+              {this.createUI()}
+             <AddCategoryModal/>
+             <button class="main-form-button-left" onClick={this.expense}> Back </button> 
 
-              </form>
-             
-            
+            </div>
+ 
             );
         
      }
 
 }
 export default Expense;
+
 const element = <Expense></Expense>
-ReactDOM.render(element, document.getElementById('root'));
+
+ReactDOM.render(element,document.getElementById("root"));
+
+

@@ -11,7 +11,8 @@ import AddExpenseModal from './components/AddExpenseModal';
 import SeeGoalModal from './components/SeeGoalModal';
 import { SeeGoal } from './components/SeeGoal';
 import  Chart  from './components/Chart';
-
+import Expense from './components/Expense';
+import { BrowserRouter } from 'react-router-dom';
 class MainForm extends React.Component{
    
 
@@ -26,7 +27,11 @@ class MainForm extends React.Component{
           this.state = {
             balance: []
           };
-          this.handleBack = this.handleBack.bind(this);
+          this.expense = this.expense.bind(this);
+      }
+      
+      expense(){
+        window.open('/expensecategories');
       }
 
       componentDidMount(){
@@ -50,15 +55,10 @@ class MainForm extends React.Component{
         )
         
     }
-    handleBack() {
-        window.open("/chart");
-      }
-
+   
 
 
     render() {
-      //  const {incomes} = this.state;
-       // const {expenses} = this.state;
     return (
 <div class="main-form-container">
 
@@ -104,7 +104,7 @@ class MainForm extends React.Component{
 </div>
 <div class="row">
     <div class="option-column">
-        <ExpenseModal/>
+         <button class="main-form-button-left" onClick={this.expense}> Add Expense </button> 
     </div>
     <div class="option-column">
         <GoalModal/>

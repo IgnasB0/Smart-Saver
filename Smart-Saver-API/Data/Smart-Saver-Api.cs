@@ -17,6 +17,8 @@ namespace Smart_Saver_API.Data
 
         public DbSet<IncomeDB> IncomeDB { get; set; }
 
+        public DbSet<LoginDB> LoginDB { get; set; }
+
         public DbSet<ReccuringIncomeDB> ReccuringIncomeDB { get; set; }
         public DbSet<UserDB> UserDB { get; set; }
 

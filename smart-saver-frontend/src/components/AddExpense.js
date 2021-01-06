@@ -14,6 +14,7 @@ export class AddExpense extends React.Component{
             expenseName: '',
             expenseAmount: '',
             expenseDate: '',
+            name: props.name
         }
         this.InsertedExpense = this.InsertedExpense.bind(this);
     }
@@ -27,13 +28,12 @@ export class AddExpense extends React.Component{
       }
 
 
-    submitHandler = e =>{
-        e.preventDefault()
-        const url="https://localhost:44317/expenses"
-          const {data} = this.props.location;
+    submitHandler = (e) =>{
+        e.preventDefault();
+        const url="https://localhost:44317/expenses";
 
         var now = moment().format();
-        const expensespost = "\"" + this.state.expenseName + "," + this.state.expenseAmount + "," + now +"," + data +   "\"" ;
+        const expensespost = "\"" + this.state.expenseName + "," + this.state.expenseAmount + "," + now +"," + this.state.name +   "\"" ;
 
         fetch(url,
             {
@@ -49,7 +49,6 @@ export class AddExpense extends React.Component{
 
       render(){
         const {expenseCategory, expenseName,expenseAmount} = this.state;
-         const {data} = this.props.location;
         return (
             
         <div>
@@ -64,18 +63,13 @@ export class AddExpense extends React.Component{
                 </div>
                 Expense category:
                 <div> 
-                <input type="text" name="expenseCategory" value={data} onChange={this.changeHandler} step="any"/>
+                <input type="text" name="expenseCategory" value={this.state.name} onChange={this.changeHandler} step="any"/>
                 </div>
 
                 <div class="modal2-buton-container">
                     <button class="modal2-button" type="submit">Submit</button>
                 </div>
                 </label>
-                <div>
-                <Link to={{pathname: "/"}} >Back</Link>  
-                </div>
-               
-
                 
             </form>
             
