@@ -53,7 +53,7 @@ export class Income extends React.Component{
                 <p>Date:</p>
                 <input type="date" name="incomeDate"value={incomeDate} onChange={this.changeHandler}/>
                 <div class="spacer"/>
-                <div class="modal-buton-container">
+                <div class="modal-button-container">
                     <button class="modal-button" type="submit">Submit</button>
                 </div>
             </form>

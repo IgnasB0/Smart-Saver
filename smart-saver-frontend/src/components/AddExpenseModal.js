@@ -16,11 +16,11 @@ const AddExpenseModal = (props) => {
             backgroundColor: 'rgb(95, 95, 95)',
             color: '#f2e0ff',
             width: '60%',
-            height: '80%',
+            height: '40%',
             opacity: '1',
             display: 'flex',
-            flexDirection: 'column',
             justifyContent: 'center',
+            flexDirection: 'column',
             borderRadius: '25px',
             borderSize: '10px',
             border: 'solid 15px rgb(204, 92, 0)',
@@ -30,14 +30,18 @@ const AddExpenseModal = (props) => {
         },
     }
 
+    function refreshPage() {
+        window.location.reload();
+      }
+
     return (
 
         <div class="add-expense-modal-frame">
-            <button  onClick = {() => setModalIsOpen(true)}>Add  </button >
+            <button class="expense-add-button" onClick = {() => setModalIsOpen(true)}>Add  </button >
             <Modal portalClassName="add-expense-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <AddExpense name = {props.name}/>
-                <Link to={{pathname: "/"}} onClick={()=> setModalIsOpen(false)} >Back</Link>  
+                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage} >Close </button>  
             </Modal>
         </div>
     )

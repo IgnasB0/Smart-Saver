@@ -39,18 +39,14 @@ export class AddCategory extends React.Component{
       render(){
         const {categoryName} = this.state;
         return (
-            
-        <div>
+        <div class="category-add-modal-component">
             <form onSubmit={this.submitHandler}>
-                <label>
-                    Category name:
-                
-                <div>
+                <p> Category name:</p>
                 <input type="text" name="categoryName" value={categoryName} onChange={this.changeHandler} step="any"/>
+                <div class="spacer"/>
+                <div class="modal-button-container">
+                    <button class="modal-button" type="submit">Add</button>
                 </div>
-                </label>
-                <button class="main-form-button-left" type="submit">Add</button>
-                
             </form>
         </div>
         )

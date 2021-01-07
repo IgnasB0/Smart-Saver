@@ -33,17 +33,10 @@ class Expense extends React.Component{
 
 createUI(){
   return this.state.expensecategories.map((el, i) => 
-  <div key={i} >
-    <div class="row">   
-        <div class="expense-container">
-            <div class="expense-label">
-            <label> {el||''} :  <AddExpenseModal name = {el}/>
-          </label> 
-            </div>
-        </div>
-    </div>
-    
-    
+  <div key={i} class="expense-container">   
+        <p class="expense-label"> {el||''} </p> 
+        <p class="expense-category-amount">{'N/A'}</p>
+        <AddExpenseModal name = {el}/>
   </div>
       
 )
@@ -60,11 +53,14 @@ createUI(){
 
             return(
               
-            <div>
-              {this.createUI()}
-             <AddCategoryModal/>
-             <button class="main-form-button-left" onClick={this.expense}> Back </button> 
-
+            <div class="category-load-container">
+              <div class="only-categories-container">
+                {this.createUI()}
+              </div>
+              <div class="category-load-button-row">
+                <AddCategoryModal/>
+                <button class="main-form-button-right" onClick={this.expense}> Back </button> 
+              </div>
             </div>
  
             );

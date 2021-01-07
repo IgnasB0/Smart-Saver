@@ -51,7 +51,7 @@ export class Goal extends React.Component{
                 <p>Goal Date:</p>
                 <input type="date" name="goalDate"value={goalDate} onChange={this.changeHandler}/>
                 <div class="spacer"/>
-                <div class="modal-buton-container">
+                <div class="modal-button-container">
                     <button class="modal-button" type="submit">Submit</button>
                 </div>
             </form>

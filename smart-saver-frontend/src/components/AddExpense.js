@@ -51,28 +51,25 @@ export class AddExpense extends React.Component{
         const {expenseCategory, expenseName,expenseAmount} = this.state;
         return (
             
-        <div>
+        <div class="expense-component">
             <form onSubmit={this.submitHandler}>
-                <label>Expense name:
-                <div>
-                <input type="text" name="expenseName" value={expenseName} onChange={this.changeHandler} step="any"/>
+                <div class="row">
+                    <p>Expense name: </p>
+                    <input type="text" name="expenseName" value={expenseName} onChange={this.changeHandler} step="any"/>
                 </div>
-                Expense amount: 
-                <div>
-                <input type="number" name="expenseAmount" value={expenseAmount} onChange={this.changeHandler} step="any"/>
+                <div class="row">
+                    <p>Expense amount: </p>
+                    <input type="number" name="expenseAmount" value={expenseAmount} onChange={this.changeHandler} step="any"/>
+                    </div>
+                <div class="row">
+                    <p>Expense category:</p>
+                    <input type="text" name="expenseCategory" value={this.state.name} onChange={this.changeHandler} step="any"/>
                 </div>
-                Expense category:
-                <div> 
-                <input type="text" name="expenseCategory" value={this.state.name} onChange={this.changeHandler} step="any"/>
+                <div class="spacer"/>
+                <div class="modal-button-container">
+                    <button class="modal-button" type="submit">Submit</button>
                 </div>
-
-                <div class="modal2-buton-container">
-                    <button class="modal2-button" type="submit">Submit</button>
-                </div>
-                </label>
-                
             </form>
-            
         </div>
         )
     }

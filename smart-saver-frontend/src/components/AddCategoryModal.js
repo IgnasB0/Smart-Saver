@@ -32,7 +32,7 @@ export default function AddCategoryModal(){
     return (
 
         <div class="add-category-modal-frame">
-           <button class="main-form-button-right" onClick = {() => setModalIsOpen(true)}>Add Category </button >
+           <button class="modal-button" onClick = {() => setModalIsOpen(true)}>Add Category </button >
             <Modal portalClassName="add-category-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <AddCategory/>
