@@ -77,8 +77,8 @@ namespace Smart_Saver_API.Controllers
                                Type = "Income"
                            };
 
-            var o = incomes.Concat(expenses);
-            var results = from p in o
+            var _join = incomes.Concat(expenses);
+            var results = from p in _join
                           orderby p.monthAndYear ascending
                           select new Result
                           {
@@ -89,11 +89,11 @@ namespace Smart_Saver_API.Controllers
                               Type = p.Type
                           };
 
-            var gautas = from h in CalculateEqual(results).ToList()
+            var _get = from h in CalculateEqual(results).ToList()
                          orderby h.Year, h.Month ascending
                          select h;
 
-            return gautas.ToList();
+            return _get.ToList();
 
         }
 

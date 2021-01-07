@@ -123,7 +123,7 @@ namespace Smart_Saver_API.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(message: e.ToString());        
+               // _logger.LogError(message: e.ToString());        
                 return -1;
             }
         }
