@@ -125,52 +125,17 @@ namespace Smart_Saver_API.Controllers
         [EnableCors("AllowOrigin")]
         public decimal OneUserMonthlyExpenses(String username, String Password)
         {
-            String passwordFromDatabase = "";
+            var expenses = ParseOneUserExpenses(username, Password);
 
-            System.Collections.Generic.List<Smart_Saver_API.Models.LoginDB> logins = new System.Collections.Generic.List<Smart_Saver_API.Models.LoginDB>();
+            decimal expensesTotal = 0m;
 
-            try
+            foreach(var expense in expenses)
             {
-                using (var context = new Data.Smart_Saver_APIContext())
-                {
-                    logins = context.LoginDB.ToList();
-                }
-            }
-            catch (Exception e)
-            {
-                //_logger?.LogError(e.ToString());
+                if (expense.expenseDate.CheckIfCurrentMonth())
+                    expensesTotal += expense.expenseAmount;
             }
 
-            Smart_Saver_API.Models.LoginDB foundUser = new Smart_Saver_API.Models.LoginDB();
-
-            bool userFound = false;
-
-            foreach (Smart_Saver_API.Models.LoginDB oneUser in logins)
-            {
-                if (oneUser.Username == username)
-                {
-                    foundUser = oneUser;
-                    userFound = true;
-                    break;
-                }
-            }
-
-            if (!userFound || foundUser.Password != Password)
-                return 0;
-
-            var expenses = ParseExpenses(); // Generics
-
-            decimal expenseTotal = 0;
-
-            foreach (ExpenseDB oneExpense in expenses)
-            {
-                if (oneExpense.expenseDate.CheckIfCurrentMonth() && oneExpense.UserId == foundUser.UserId)
-                {
-                    expenseTotal += oneExpense.expenseAmount;
-                }
-            }
-
-            return expenseTotal;
+            return expensesTotal;
         }
 
         [HttpGet]

@@ -123,18 +123,42 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
+        [Route("get-One-User-monthly-balance")]
+        public decimal GetOneUserMonthlyBalance(String username, String password)
+        {
+            return (IncomeController.Instance().OneUserMonthlyIncome(username, password) - ExpenseController.Instance().OneUserMonthlyExpenses(username,password));
+        }
+
+        [HttpGet]
         [Route("get-goal-amount")]
         public decimal GetGoalAmount()
         {
             List<GoalDB> returningValue = (List<GoalDB>)GoalController.Instance().ParseGoal();
             return returningValue[0].goalAmount;
         }
+
+        [HttpGet]
+        [Route("get-one-user-goal-amount")]
+        public decimal GetGoalAmount(String username, String password)
+        {
+            List<GoalDB> returningValue = (List<GoalDB>)GoalController.Instance().ParseOneUserGoal(username, password);
+            return returningValue[0].goalAmount;
+        }
+
         [HttpGet]
         [Route("get-amount-to-reach-goal")]
         public decimal GetAmountToReachGoal()
         {
             return (GetGoalAmount() - GetMonthlyBalance());
         }
+
+        [HttpGet]
+        [Route("get-one-user-amount-to-reach-goal")]
+        public decimal GetAmountToReachGoal(String username, String password)
+        {
+            return (GetGoalAmount(username, password) - GetOneUserMonthlyBalance(username, password));
+        }
+
         [HttpGet]
         [Route("time-left-until-goal")]
         public int TimeLeftUntilGoal()
@@ -142,6 +166,13 @@ namespace Smart_Saver_API.Controllers
             return (GoalController.Instance().GetMonthCountUntilGoalIsReached());
         }
 
+        [HttpGet]
+        [Route("time-left-until-goal-one-user")]
+        public int TimeLeftUntilGoal(String username, String password)
+        {
+            return (GoalController.Instance().GetMonthCountUntilGoalIsReachedOneUser(username, password));
+        }
+        
         /*-----------------------------------------------------------------------------------------
          * CategoriesLoad
          ------------------------------------------------------------------------------------------*/

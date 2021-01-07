@@ -70,6 +70,41 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
+        [Route("ParseOneUserIncomes")]
+        public IEnumerable<ReccuringIncomeDB> ParseOneUserIncomes(String username, String password)
+        {
+            LoginController loginC = new LoginController();
+
+            int userId = loginC.UserId(username, password);
+
+            List<ReccuringIncomeDB> income = new List<ReccuringIncomeDB>();
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    income = context.ReccuringIncomeDB.ToList();
+
+                }
+            }
+            catch (Exception e)
+            {
+                _logger?.LogError(e.ToString());
+            }
+
+             List<ReccuringIncomeDB> oneUserIncome = new List<ReccuringIncomeDB>();
+
+            foreach(var oneIncome in income)
+            {
+                if(oneIncome.userId == userId)
+                {
+                    oneUserIncome.Add(oneIncome);
+                }
+            }
+
+                return oneUserIncome;
+        }
+
+        [HttpGet]
         [Route("monthly-recurring-incomes")]
         public decimal MonthlyIncome()
         {
@@ -88,8 +123,26 @@ namespace Smart_Saver_API.Controllers
 
             return incomeTotal;
         }
-      
 
+        [HttpGet]
+        [Route("OneUserMonthlyIncome")]
+        public decimal OneUserMonthlyIncome(String username, String password)
+        {
+            var income = ParseOneUserIncomes(username, password);
+
+            decimal incomeTotal = 0;
+
+            foreach (ReccuringIncomeDB i in income)
+            {
+                if (i.reccuringincomeDateUntil >= DateTime.Now && i.reccuringincomeDateFrom <= DateTime.Now)
+                {
+                    incomeTotal += i.reccuringincomeAmount;
+                }
+
+            }
+
+            return incomeTotal;
+        }
 
         [HttpGet]
         [Route("add-recurring-income")]

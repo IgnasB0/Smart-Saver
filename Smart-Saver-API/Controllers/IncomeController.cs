@@ -104,6 +104,26 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
+        [Route("OneUserMonthlyIncome")]
+        [EnableCors("AllowOrigin")]
+        public decimal OneUserMonthlyIncome(String username, String password)
+        {
+            var income = parseOneUserIncomes(username, password);
+
+            decimal incomeTotal = 0;
+
+            foreach (Smart_Saver_API.Models.IncomeDB oneIncome in income)
+            {
+                if (oneIncome.incomeDate.CheckIfCurrentMonth())
+                {
+                    incomeTotal += oneIncome.incomeAmount;
+                }
+            }
+
+            return incomeTotal + RecurringIncomeController.Instance().OneUserMonthlyIncome(username, password);
+        }
+
+        [HttpGet]
         [Route("get-monthly-incomes")]
         public IEnumerable<TraceableIncome> GetMonthlyIncomes()
         {

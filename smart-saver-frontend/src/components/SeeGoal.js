@@ -14,41 +14,42 @@ export class SeeGoal extends React.Component{
             timetoGoal: '',
             goalAmount: ''
         }
-     
+        this.username = this.props.dataFromParent[0];
+        this.password = this.props.dataFromParent[1];
       }
 
       componentDidMount(){
-        fetch("https://localhost:44317/frontend/get-monthly-expenses")
+        fetch(`https://localhost:44317/expenses/OneUserMonthlyExpenses?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({expenseTotal:result});
             }
         )
-        fetch("https://localhost:44317/frontend/get-monthly-income")
+        fetch(`https://localhost:44317/incomes/OneUserMonthlyIncome?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({incomeTotal:result});
             }
         )
-        fetch("https://localhost:44317/frontend/get-monthly-balance")
+        fetch(`https://localhost:44317/frontend/get-One-User-monthly-balance?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({balanceTotal:result});
             }
         )
-        fetch("https://localhost:44317/frontend/get-amount-to-reach-goal")
+        fetch(`https://localhost:44317/frontend/get-one-user-amount-to-reach-goal?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({amountToGoal:result});
             }
         )
-        fetch("https://localhost:44317/frontend/time-left-until-goal")
+        fetch(`https://localhost:44317/frontend/time-left-until-goal-one-user?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({timetoGoal:result});
             }
         )
-        fetch("https://localhost:44317/frontend/get-goal-amount")
+        fetch(`https://localhost:44317/frontend/get-one-user-goal-amount?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({goalAmount:result});
