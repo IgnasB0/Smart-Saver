@@ -13,6 +13,7 @@ import { SeeGoal } from './components/SeeGoal';
 import  Chart  from './components/Chart';
 import Expense from './components/Expense';
 import { BrowserRouter } from 'react-router-dom';
+import  history  from './components/history';
 class MainForm extends React.Component{
    
 
@@ -28,6 +29,7 @@ class MainForm extends React.Component{
             balance: []
           };
           this.expense = this.expense.bind(this);
+          this.refreshPage = this.refreshPage.bind(this);
       }
       
       expense(){
@@ -55,6 +57,9 @@ class MainForm extends React.Component{
         )
         
     }
+    refreshPage() {
+        window.location.reload();
+      }
    
 
 
@@ -104,7 +109,8 @@ class MainForm extends React.Component{
 </div>
 <div class="row">
     <div class="option-column">
-         <button class="main-form-button-left" onClick={this.expense}> Add Expense </button> 
+         {/* <button class="main-form-button-left" onClick={this.expense}> Add Expense </button>  */}
+         <button class="main-form-button-left" onClick={()=> history.push('/expensecategories')}>Add Expense</button>
     </div>
     <div class="option-column">
         <GoalModal/>

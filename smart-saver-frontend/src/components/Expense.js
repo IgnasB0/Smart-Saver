@@ -9,6 +9,7 @@ import MainForm from '../MainForm';
 import ExpenseModal from './ExpenseModal';
 import AddExpenseModal from './AddExpenseModal';
 import AddCategoryModal from './AddCategoryModal';
+import  history  from './history';
 
 
 
@@ -59,7 +60,7 @@ createUI(){
               </div>
               <div class="category-load-button-row">
                 <AddCategoryModal/>
-                <button class="main-form-button-right" onClick={this.expense}> Back </button> 
+                <button class="main-form-button-right" onClick={()=> history.push('/')}> Back </button> 
               </div>
             </div>
  
