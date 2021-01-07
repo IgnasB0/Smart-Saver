@@ -96,6 +96,66 @@ namespace Smart_Saver_API.Controllers
             return gautas.ToList();
 
         }
+
+        [HttpGet]
+        [Route("show-chart-for-one-user")]
+        public IEnumerable<Balance> ChartRepresenationForOneUser(String username, String password)
+        {
+            IEnumerable<ExpenseDB> _expenses = ExpenseController.Instance().ParseOneUserExpenses(username, password);
+            IEnumerable<IncomeDB> _incomes = IncomeController.Instance().parseOneUserIncomes(username, password);
+            var expenses = from expense in _expenses
+                           orderby expense.expenseDate ascending
+                           group expense.expenseAmount by new
+                           {
+                               Year = expense.expenseDate.Year,
+                               Month = expense.expenseDate.Month                 // LINQ using
+                           } into g
+                           select new Result
+                           {
+                               monthAndYear = g.Key.Year + "-" + g.Key.Month,
+                               Year = g.Key.Year,
+                               Month = g.Key.Month,
+                               amount = g.Sum(),
+                               Type = "Expense"
+
+                           };
+
+            var incomes = from income in _incomes
+                          orderby income.incomeDate ascending
+                          group income.incomeAmount by new
+                          {
+                              Year = income.incomeDate.Year,
+                              Month = income.incomeDate.Month
+                          } into g
+                          select new Result
+                          {
+                              monthAndYear = g.Key.Year + "-" + g.Key.Month,
+                              Year = g.Key.Year,
+                              Month = g.Key.Month,
+                              amount = g.Sum(),
+                              Type = "Income"
+                          };
+
+            var o = incomes.Concat(expenses);
+            var results = from p in o
+                          orderby p.monthAndYear ascending
+                          select new Result
+                          {
+                              monthAndYear = p.monthAndYear,
+                              Year = p.Year,
+                              Month = p.Month,
+                              amount = p.amount,
+                              Type = p.Type
+                          };
+
+            var gautas = from h in CalculateEqual(results).ToList()
+                         orderby h.Year, h.Month ascending
+                         select h;
+
+            return gautas.ToList();
+
+        }
+
         private IEnumerable<Balance> CalculateEqual(IEnumerable<Result> both)
         {
             bool sign = false;

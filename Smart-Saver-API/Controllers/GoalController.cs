@@ -63,7 +63,41 @@ namespace Smart_Saver_API.Controllers
             return newGoal;
         }
 
-      
+        [HttpGet]
+        [Route("ParseOneUserGoal")]
+        public IEnumerable<GoalDB> ParseOneUserGoal(String username, String password) //Do not use this for several goals
+        {
+            LoginController loginC = new LoginController();
+
+            int userId = loginC.UserId(username, password);
+
+            List<GoalDB> newGoal = new List<GoalDB>();
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    newGoal = context.GoalDB.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(message: e.ToString());
+            }
+
+            List<GoalDB> oneUserGoals = new List<GoalDB>();
+
+            foreach (GoalDB oneGoal in newGoal)
+            {
+                if(oneGoal.userId == userId)
+                {
+                    oneUserGoals.Add(oneGoal);
+                }
+            }    
+
+            return oneUserGoals;
+        }
+
+
         [HttpGet]
         [Route("Get-Month-Count-Until-Goal-Is-Reached")]
         public int GetMonthCountUntilGoalIsReached() 
@@ -93,6 +127,37 @@ namespace Smart_Saver_API.Controllers
                 return -1;
             }
         }
+
+        [HttpGet]
+        [Route("Get-Month-Count-Until-Goal-Is-Reached-one-user")]
+        public int GetMonthCountUntilGoalIsReachedOneUser(String username, String password)
+        {
+            try
+            {
+                int monthCount;
+                List<Balance> balances = (List<Balance>)ChartController.Instance().ChartRepresenation();
+                decimal averageBalance = 0;
+                decimal currentSum = 0;
+
+                currentSum = balances.Sum(x => x.Amount);       //Su LINQ
+
+                averageBalance = currentSum / balances.Count;
+                //Goal goal = (Goal)ParseGoal();
+                var goal = ParseOneUserGoal(username, password);
+                var goals = from _goal in goal
+                            select (int)Math.Round((_goal.goalAmount - currentSum) / averageBalance);
+
+                monthCount = goals.Single();
+                return monthCount;
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(message: e.ToString());
+                return -1;
+            }
+        }
+
         // https://localhost:44317/goal 
         [HttpPost]
         public void addGoal([FromBody] string goaltoAdd)

@@ -4,6 +4,8 @@ import './MainForm.css';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import IncomeModal from './components/IncomeModal';
+import LoginModal from './LoginModal';
+import LoginForm from './LoginForm';
 import GoalModal from './components/GoalModal';
 import RecurringIncomeModal from './components/RecurringIncomeModal'
 import ExpenseModal from './components/ExpenseModal';
@@ -22,14 +24,26 @@ class MainForm extends React.Component{
         this.state = {
           incomes: []
         };
+        this.state = { 
+            loginInfo: [] 
+        };
         this.state = {
             expenses: []
           };
           this.state = {
             balance: []
           };
+          this.state = {
+            loggedIn: "no"
+          };
+          
+
           this.expense = this.expense.bind(this);
           this.refreshPage = this.refreshPage.bind(this);
+          this.user = ["Ignas","slaptazodis123"];
+          this.username = this.user[0];
+          this.password = this.user[1];
+
       }
       
       expense(){
@@ -37,19 +51,19 @@ class MainForm extends React.Component{
       }
 
       componentDidMount(){
-        fetch("https://localhost:44317/frontend/get-monthly-expenses")
+        fetch(`https://localhost:44317/expenses/OneUserMonthlyExpenses?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({expenses:result});
             }
         )
-        fetch("https://localhost:44317/frontend/get-monthly-income")
+        fetch(`https://localhost:44317/incomes/OneUserMonthlyIncome?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({incomes:result});
             }
         )
-        fetch("https://localhost:44317/frontend/get-monthly-balance")
+        fetch(`https://localhost:44317/frontend/get-One-User-monthly-balance?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
         .then(res => res.json()).then(
             result => {
                 this.setState({balance:result});
@@ -60,7 +74,10 @@ class MainForm extends React.Component{
     refreshPage() {
         window.location.reload();
       }
-   
+      
+      callbackFunction = (childData) => {
+            this.setState({message: childData})
+      }
 
 
     render() {
@@ -69,7 +86,8 @@ class MainForm extends React.Component{
 
     <div class="row">   
         <div class="welcoming-container">
-            <p class="welcome-message">Welcome, {'User'}, to World's Best Smart Saver!</p>
+            <LoginForm parentCallback = {this.callbackFunction}/>
+            {this.state.loginInfo}
         </div>
     </div>
 <div class="spacer"/>
@@ -119,7 +137,7 @@ class MainForm extends React.Component{
 
     <div class="spacer2"/>
     <div class="chart-area">
-        <Chart/>
+        <Chart dataFromParent = {this.user}/>
     </div>
     <div class="spacer2"/>
     <div class="row">   
@@ -130,7 +148,7 @@ class MainForm extends React.Component{
     <div class="spacer"/>
     <div class="row">
         <div class="status-column">
-            <SeeGoal/>
+            <SeeGoal dataFromParent = {this.user}/>
         </div>
     </div>
 </div>
@@ -143,3 +161,12 @@ const element = <MainForm></MainForm>
 
 ReactDOM.render(element,document.getElementById("root"));
 
+function Greeting(props) {
+    const isLoggedIn = props.state.loggedIn;
+    if (isLoggedIn == "yes") {
+      return <div><p class="welcome-message">Welcome, {this.username}, to World's Best Smart Saver!</p></div>;
+    }
+    return <div></div>;
+  }
+
+  

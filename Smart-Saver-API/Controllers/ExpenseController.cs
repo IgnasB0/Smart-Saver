@@ -69,6 +69,38 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
+        [Route("ParseOneUserExpenses")]
+        public IEnumerable<ExpenseDB> ParseOneUserExpenses(String username, string password)
+        {
+            LoginController loginC = new LoginController();
+
+            int userId = loginC.UserId(username, password);
+
+            List<ExpenseDB> expenses = new List<ExpenseDB>();
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    expenses = context.ExpenseDB.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                _logger?.LogError(e.ToString());
+            }
+
+            List<ExpenseDB> userExpenses = new List<ExpenseDB>();
+
+            foreach (ExpenseDB oneExpense in expenses)
+            {
+                if (oneExpense.UserId == userId)
+                    userExpenses.Add(oneExpense);
+            }
+
+            return userExpenses;
+        }
+
+        [HttpGet]
         [Route("monthly-expenses")]
        [EnableCors("AllowOrigin")]
         public decimal MonthlyExpenses()
@@ -86,6 +118,24 @@ namespace Smart_Saver_API.Controllers
             }
 
             return expenseTotal;
+        }
+
+        [HttpGet]
+        [Route("OneUserMonthlyExpenses")]
+        [EnableCors("AllowOrigin")]
+        public decimal OneUserMonthlyExpenses(String username, String Password)
+        {
+            var expenses = ParseOneUserExpenses(username, Password);
+
+            decimal expensesTotal = 0m;
+
+            foreach(var expense in expenses)
+            {
+                if (expense.expenseDate.CheckIfCurrentMonth())
+                    expensesTotal += expense.expenseAmount;
+            }
+
+            return expensesTotal;
         }
 
         [HttpGet]

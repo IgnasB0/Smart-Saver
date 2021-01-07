@@ -1,11 +1,16 @@
 import React from "react";
 
 export default class LoginPage extends React.Component {
+  sendData = () => {
+    this.props.parentCallback("suveike");
+  }
+
   constructor(LoginDetails) {
     super(LoginDetails);
     this.state = {
       Username: "",
-      password: ""
+      password: "",
+      loginStatus: false
     };
   }
 
@@ -16,17 +21,21 @@ export default class LoginPage extends React.Component {
   submitHandler = (e) => {
     
     e.preventDefault()
-        const url="https://localhost:44317/Login"
+        const url="https://localhost:44317/Login/AttemptLogin?userName=" + this.state.Username + "&password=" + this.state.Password
 
         fetch(url,
             {
-                method:'POST',
-                body: expensespost,
+                method:'GET',
                 headers:{'Content-Type':'application/json'}
             })
-            .then(res => res)
-            .catch(error => console.error('Error:',error))
-            .then(alert("Success"));
+            .then(res => res.json()).then(
+              result => {
+                  this.setState({loginStatus:result});
+                  alert(this.state.loginStatus);
+                  this.sendData();
+              }
+          )
+            
   };
 
   render() {
@@ -52,6 +61,7 @@ export default class LoginPage extends React.Component {
               onChange={this.changeHandler}
             />
           </div>
+          
           <button type="submit">Log In</button>
         </form>
       </div>
