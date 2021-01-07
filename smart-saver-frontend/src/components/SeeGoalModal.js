@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { Goal } from './Goal'
+import { SeeGoal } from './SeeGoal';
 
-export default function GoalModal(){
+export default function SeeGoalModal(){
+    function refreshPage() {
+        window.location.reload();
+      }
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const customStyles = {
         overlay: {
@@ -12,7 +15,7 @@ export default function GoalModal(){
             backgroundColor: 'rgb(95, 95, 95)',
             color: '#f2e0ff',
             width: '60%',
-            height: '40%',
+            height: '50%',
             opacity: '1',
             display: 'flex',
             flexDirection: 'column',
@@ -26,12 +29,13 @@ export default function GoalModal(){
         },
     }
     return (
-        <div class="set-goal-modal-frame">
-            <button class="main-form-button-right" onClick = {() => setModalIsOpen(true)}>Set Goal</button >
-            <Modal portalClassName="set-goal-modal" style={customStyles} centered
+
+        <div class="add-income-modal-frame">
+            <button class="main-form-button-left" onClick = {() => setModalIsOpen(true)}>See Goal </button >
+            <Modal portalClassName="add-income-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <Goal/>
-                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}>Close</button>
+                <SeeGoal/>
+                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage} >Close </button>
             </Modal>
         </div>
     )

@@ -3,6 +3,9 @@ import Modal from 'react-modal';
 import { RecurringIncome } from './RecurringIncome'
 
 export default function GoalModal(){
+     function refreshPage() {
+        window.location.reload();
+      }
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const customStyles = {
         overlay: {
@@ -11,8 +14,8 @@ export default function GoalModal(){
         content: {
             backgroundColor: 'rgb(95, 95, 95)',
             color: '#f2e0ff',
-            width: '60%',
-            height: '30%',
+            width: '75%',
+            height: '40%',
             opacity: '1',
             display: 'flex',
             flexDirection: 'column',
@@ -31,7 +34,7 @@ export default function GoalModal(){
             <Modal portalClassName="set-goal-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <RecurringIncome/>
-                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}>Close</button>
+                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage}>Close</button>
             </Modal>
         </div>
     )

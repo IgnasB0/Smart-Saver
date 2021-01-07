@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import moment from 'moment'; 
 import Expense from './Expense';
+import MainForm from '../MainForm';
+import {Link,useHistory} from 'react-router-dom';
+import { browserHistory, Router, Route,Switch } from 'react-router';
+
 export class AddExpense extends React.Component{
 
     constructor(props) {
@@ -9,10 +13,11 @@ export class AddExpense extends React.Component{
             expenseCategory: '',
             expenseName: '',
             expenseAmount: '',
-            expenseDate: ''
+            expenseDate: '',
+            name: props.name
         }
         this.InsertedExpense = this.InsertedExpense.bind(this);
-      }
+    }
 
       changeHandler = e =>{
         this.setState({[e.target.name]: e.target.value})
@@ -23,20 +28,12 @@ export class AddExpense extends React.Component{
       }
 
 
-    submitHandler = e =>{
-        e.preventDefault()
-        const url="https://localhost:44317/expenses"
-        const {data} = this.props.location;
-        const data1 ={
-            expenseName:this.state.expenseName,
-            expenseAmount:this.state.expenseAmount,
-            expenseDate:this.state.expenseDate,
-            expenseCategory: data
-            
-            
-        };
+    submitHandler = (e) =>{
+        e.preventDefault();
+        const url="https://localhost:44317/expenses";
+
         var now = moment().format();
-        const expensespost = "\"" + this.state.expenseName + "," + this.state.expenseAmount + "," + now +"," + data +   "\"" ;
+        const expensespost = "\"" + this.state.expenseName + "," + this.state.expenseAmount + "," + now +"," + this.state.name +   "\"" ;
 
         fetch(url,
             {
@@ -52,28 +49,26 @@ export class AddExpense extends React.Component{
 
       render(){
         const {expenseCategory, expenseName,expenseAmount} = this.state;
-        const {data} = this.props.location;
         return (
             
-        <div>
+        <div class="expense-component">
             <form onSubmit={this.submitHandler}>
-                <label>Expense name:
-                <div>
-                <input type="text" name="expenseName" value={expenseName} onChange={this.changeHandler} step="any"/>
+                <div class="row">
+                    <p>Expense name: </p>
+                    <input type="text" name="expenseName" value={expenseName} onChange={this.changeHandler} step="any"/>
                 </div>
-                Expense amount: 
-                <div>
-                <input type="number" name="expenseAmount" value={expenseAmount} onChange={this.changeHandler} step="any"/>
+                <div class="row">
+                    <p>Expense amount: </p>
+                    <input type="number" name="expenseAmount" value={expenseAmount} onChange={this.changeHandler} step="any"/>
+                    </div>
+                <div class="row">
+                    <p>Expense category:</p>
+                    <input type="text" name="expenseCategory" value={this.state.name} onChange={this.changeHandler} step="any"/>
                 </div>
-                Expense category:
-                <div> 
-                <input type="text" name="expenseCategory" value={data} onChange={this.changeHandler} step="any"/>
+                <div class="spacer"/>
+                <div class="modal-button-container">
+                    <button class="modal-button" type="submit">Submit</button>
                 </div>
-
-                <button type="submit">Submit</button>
-                </label>
-
-                
             </form>
         </div>
         )

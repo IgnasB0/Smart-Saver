@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { Goal } from './Goal'
+import MainForm from '../MainForm';
+import { AddExpense } from './AddExpense';
+import { Income } from './Income';
+import {Link,useHistory} from 'react-router-dom';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-export default function GoalModal(){
+const AddExpenseModal = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const customStyles = {
         overlay: {
@@ -15,8 +19,8 @@ export default function GoalModal(){
             height: '40%',
             opacity: '1',
             display: 'flex',
-            flexDirection: 'column',
             justifyContent: 'center',
+            flexDirection: 'column',
             borderRadius: '25px',
             borderSize: '10px',
             border: 'solid 15px rgb(204, 92, 0)',
@@ -25,14 +29,21 @@ export default function GoalModal(){
             marginLeft: '20%',
         },
     }
+
+    function refreshPage() {
+        window.location.reload();
+      }
+
     return (
-        <div class="set-goal-modal-frame">
-            <button class="main-form-button-right" onClick = {() => setModalIsOpen(true)}>Set Goal</button >
-            <Modal portalClassName="set-goal-modal" style={customStyles} centered
+
+        <div class="add-expense-modal-frame">
+            <button class="expense-add-button" onClick = {() => setModalIsOpen(true)}>Add  </button >
+            <Modal portalClassName="add-expense-modal" style={customStyles} centered
             isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <Goal/>
-                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}>Close</button>
+                <AddExpense name = {props.name}/>
+                <button class="modal-button" onClick = {()=> setModalIsOpen(false)}  onClick = {refreshPage} >Close </button>  
             </Modal>
         </div>
     )
 }
+export default AddExpenseModal;

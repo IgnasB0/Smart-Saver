@@ -52,7 +52,8 @@ export class Income extends React.Component{
                 <input type="number" name="incomeAmount" value={incomeAmount} onChange={this.changeHandler} step="any"/>
                 <p>Date:</p>
                 <input type="date" name="incomeDate"value={incomeDate} onChange={this.changeHandler}/>
-                <div class="modal-buton-container">
+                <div class="spacer"/>
+                <div class="modal-button-container">
                     <button class="modal-button" type="submit">Submit</button>
                 </div>
             </form>

@@ -6,7 +6,14 @@ import Button from 'react-bootstrap/Button';
 import IncomeModal from './components/IncomeModal';
 import GoalModal from './components/GoalModal';
 import RecurringIncomeModal from './components/RecurringIncomeModal'
-
+import ExpenseModal from './components/ExpenseModal';
+import AddExpenseModal from './components/AddExpenseModal';
+import SeeGoalModal from './components/SeeGoalModal';
+import { SeeGoal } from './components/SeeGoal';
+import  Chart  from './components/Chart';
+import Expense from './components/Expense';
+import { BrowserRouter } from 'react-router-dom';
+import  history  from './components/history';
 class MainForm extends React.Component{
    
 
@@ -21,6 +28,12 @@ class MainForm extends React.Component{
           this.state = {
             balance: []
           };
+          this.expense = this.expense.bind(this);
+          this.refreshPage = this.refreshPage.bind(this);
+      }
+      
+      expense(){
+        window.open('/expensecategories');
       }
 
       componentDidMount(){
@@ -44,40 +57,47 @@ class MainForm extends React.Component{
         )
         
     }
-
+    refreshPage() {
+        window.location.reload();
+      }
+   
 
 
     render() {
-      //  const {incomes} = this.state;
-       // const {expenses} = this.state;
     return (
 <div class="main-form-container">
-    
+
     <div class="row">   
-        <div class="user-container">
-            <div class="user-label">
-                <p class="user-label">User: {'user'}</p>
-            </div>
+        <div class="welcoming-container">
+            <p class="welcome-message">Welcome, {'User'}, to World's Best Smart Saver!</p>
         </div>
     </div>
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
-        <p class="status-label">Monthly Income: {this.state.incomes}</p>
+        <i class="glyphicon glyphicon-upload" id="status-icon"/>
+        <p class="status-label">Monthly Income:</p>
+        <p class="status-number">{this.state.incomes}</p>
     </div>
 </div>
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
-        <p class="status-label">Monthly Expenses Amount: {this.state.expenses}</p>
+        <i class="glyphicon glyphicon-download" id="status-icon"/>
+        <p class="status-label">Monthly Expenses Amount:</p>
+        <p class="status-number">{this.state.expenses}</p>
     </div>
+    
 </div>
 <div class="spacer"/>
 <div class="row">
     <div class="status-column">
-        <p class="status-label">Monthly Balance: {this.state.balance}</p>
+        <i class="glyphicon glyphicon-circle-arrow-right" id="status-icon"/>
+        <p class="status-label">Monthly Balance:</p>
+        <p class="status-number">{this.state.balance}</p>
     </div>
 </div>
+
 <div class="spacer"/>
 <div class="row">
     <div class="option-column">
@@ -87,22 +107,32 @@ class MainForm extends React.Component{
         <RecurringIncomeModal/>
     </div>
 </div>
-<div class="spacer"/>
 <div class="row">
     <div class="option-column">
-        <button class="main-form-button-left">Add Expense</button>
+         {/* <button class="main-form-button-left" onClick={this.expense}> Add Expense </button>  */}
+         <button class="main-form-button-left" onClick={()=> history.push('/expensecategories')}>Add Expense</button>
     </div>
     <div class="option-column">
         <GoalModal/>
     </div>
 </div>
-<div class="row">
-    <p>*Here we can place graph*</p>
-    <p>(Don't know how, though)</p>
-</div>
-<div class="row">
-    <p>Time left until goal is reached: {'N/A'} months</p>
-</div>
+
+    <div class="spacer2"/>
+    <div class="chart-area">
+        <Chart/>
+    </div>
+    <div class="spacer2"/>
+    <div class="row">   
+        <div class="goal-info-container">
+            <p class="goal-info-message">Goal Progress Information</p>
+        </div>
+    </div>
+    <div class="spacer"/>
+    <div class="row">
+        <div class="status-column">
+            <SeeGoal/>
+        </div>
+    </div>
 </div>
     );
 }

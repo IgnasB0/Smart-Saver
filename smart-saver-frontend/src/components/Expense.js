@@ -6,53 +6,43 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import { AddCategory } from './AddCategory';
 import { Income } from './Income';
 import MainForm from '../MainForm';
-import NavBar from '../NavBar';
+import ExpenseModal from './ExpenseModal';
+import AddExpenseModal from './AddExpenseModal';
+import AddCategoryModal from './AddCategoryModal';
+import  history  from './history';
 
 
 
-export class Expense extends React.Component{
+class Expense extends React.Component{
 
     constructor(props) {
         super(props);
           this.state = {
-            expensecategories: []
+            expensecategories: [],
+            expensecategoryName: []
           }; 
-          this.handleCategory = this.handleCategory.bind(this);
-          this.handleBack = this.handleBack.bind(this);
+          this.expense = this.expense.bind(this);
+         
       }
 
-
-
-handleBack() {
-  alert(this);
-}
-
-handleCategory() {
-alert(this);
-}
-
-
+      expense(){
+        window.open('/');
+      }
+      
+    
+        
 
 createUI(){
-  
   return this.state.expensecategories.map((el, i) => 
-  <div key={i}>
-
-    <label> {el||''}:  
-        <Link to={{pathname: "/addexpense", data: el||''}} >Add</Link>  
-    </label>
-
-     {/* <input type="text" value={el||''} /> */}
-     {/* <button onClick={() => this.handleSubmit(el||'')}> Add</button>    */}
-   
-     
-
+  <div key={i} class="expense-container">   
+        <p class="expense-label"> {el||''} </p> 
+        <p class="expense-category-amount">{'N/A'}</p>
+        <AddExpenseModal name = {el}/>
   </div>
-        
+      
 )
+
 }
-
-
     render(){
       
         fetch("https://localhost:44317/categories/parse-categories")
@@ -60,23 +50,29 @@ createUI(){
             result => {
                 this.setState({expensecategories:result});
             }
-        )
+        );
 
             return(
-              <form>
+              
+            <div class="category-load-container">
+              <div class="only-categories-container">
                 {this.createUI()}
-            
-                 <button onClick={this.handleCategory}> Add Category</button>    
-
-                  <button onClick={this.handleBack}> Back</button>  
-                
-                  
-              </form>
+              </div>
+              <div class="category-load-button-row">
+                <AddCategoryModal/>
+                <button class="main-form-button-right" onClick={()=> history.push('/')}> Back </button> 
+              </div>
+            </div>
+ 
             );
         
      }
 
 }
 export default Expense;
+
 const element = <Expense></Expense>
-ReactDOM.render(element, document.getElementById('root'));
+
+ReactDOM.render(element,document.getElementById("root"));
+
+
