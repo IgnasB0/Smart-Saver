@@ -71,6 +71,39 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
+        [Route("parseOneUserIncomes")]
+        public IEnumerable<Smart_Saver_API.Models.IncomeDB> parseOneUserIncomes(String username, string password)
+        {
+            LoginController loginC = new LoginController();
+
+            int userId = loginC.UserId(username, password);
+
+            List<IncomeDB> income = new List<IncomeDB>();
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    income = context.IncomeDB.ToList();
+
+                }
+            }
+            catch (Exception e)
+            {
+                _logger?.LogError(e.ToString());
+            }
+
+            List<IncomeDB> userIncome = new List<IncomeDB>();
+
+            foreach (IncomeDB oneIncome in income)
+            {
+                if (oneIncome.userId == userId)
+                    userIncome.Add(oneIncome);
+            }
+
+            return userIncome;
+        }
+
+        [HttpGet]
         [Route("get-monthly-incomes")]
         public IEnumerable<TraceableIncome> GetMonthlyIncomes()
         {

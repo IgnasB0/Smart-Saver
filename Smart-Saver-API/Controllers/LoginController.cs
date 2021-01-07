@@ -75,5 +75,41 @@ namespace Smart_Saver_API.Controllers
 
             return (passwordFromDatabase == password) && userFound;
         }
+
+        public int UserId(String username, String password)
+        {
+            System.Collections.Generic.List<Smart_Saver_API.Models.LoginDB> logins = new System.Collections.Generic.List<Smart_Saver_API.Models.LoginDB>();
+
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    logins = context.LoginDB.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                //_logger?.LogError(e.ToString());
+            }
+
+            Smart_Saver_API.Models.LoginDB foundUser = new Smart_Saver_API.Models.LoginDB();
+
+            bool userFound = false;
+
+            foreach (Smart_Saver_API.Models.LoginDB oneUser in logins)
+            {
+                if (oneUser.Username == username)
+                {
+                    foundUser = oneUser;
+                    userFound = true;
+                    if (password == foundUser.Password)
+                        return oneUser.UserId;
+                    else
+                        return -1;
+                }
+            }
+
+            return -1;
+        }
     }
 }

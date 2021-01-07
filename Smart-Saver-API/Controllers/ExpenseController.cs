@@ -69,6 +69,38 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
+        [Route("ParseOneUserExpenses")]
+        public IEnumerable<ExpenseDB> ParseOneUserExpenses(String username, string password)
+        {
+            LoginController loginC = new LoginController();
+
+            int userId = loginC.UserId(username, password);
+
+            List<ExpenseDB> expenses = new List<ExpenseDB>();
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    expenses = context.ExpenseDB.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                _logger?.LogError(e.ToString());
+            }
+
+            List<ExpenseDB> userExpenses = new List<ExpenseDB>();
+
+            foreach (ExpenseDB oneExpense in expenses)
+            {
+                if (oneExpense.UserId == userId)
+                    userExpenses.Add(oneExpense);
+            }
+
+            return userExpenses;
+        }
+
+        [HttpGet]
         [Route("monthly-expenses")]
        [EnableCors("AllowOrigin")]
         public decimal MonthlyExpenses()
@@ -80,6 +112,59 @@ namespace Smart_Saver_API.Controllers
             foreach (ExpenseDB oneExpense in expenses)
             {
                 if (oneExpense.expenseDate.CheckIfCurrentMonth())
+                {
+                    expenseTotal += oneExpense.expenseAmount;
+                }
+            }
+
+            return expenseTotal;
+        }
+
+        [HttpGet]
+        [Route("OneUserMonthlyExpenses")]
+        [EnableCors("AllowOrigin")]
+        public decimal OneUserMonthlyExpenses(String username, String Password)
+        {
+            String passwordFromDatabase = "";
+
+            System.Collections.Generic.List<Smart_Saver_API.Models.LoginDB> logins = new System.Collections.Generic.List<Smart_Saver_API.Models.LoginDB>();
+
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    logins = context.LoginDB.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                //_logger?.LogError(e.ToString());
+            }
+
+            Smart_Saver_API.Models.LoginDB foundUser = new Smart_Saver_API.Models.LoginDB();
+
+            bool userFound = false;
+
+            foreach (Smart_Saver_API.Models.LoginDB oneUser in logins)
+            {
+                if (oneUser.Username == username)
+                {
+                    foundUser = oneUser;
+                    userFound = true;
+                    break;
+                }
+            }
+
+            if (!userFound || foundUser.Password != Password)
+                return 0;
+
+            var expenses = ParseExpenses(); // Generics
+
+            decimal expenseTotal = 0;
+
+            foreach (ExpenseDB oneExpense in expenses)
+            {
+                if (oneExpense.expenseDate.CheckIfCurrentMonth() && oneExpense.UserId == foundUser.UserId)
                 {
                     expenseTotal += oneExpense.expenseAmount;
                 }

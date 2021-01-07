@@ -63,7 +63,41 @@ namespace Smart_Saver_API.Controllers
             return newGoal;
         }
 
-      
+        [HttpGet]
+        [Route("ParseOneUserGoal")]
+        public IEnumerable<GoalDB> ParseOneUserGoal(String username, String password) //Do not use this for several goals
+        {
+            LoginController loginC = new LoginController();
+
+            int userId = loginC.UserId(username, password);
+
+            List<GoalDB> newGoal = new List<GoalDB>();
+            try
+            {
+                using (var context = new Data.Smart_Saver_APIContext())
+                {
+                    newGoal = context.GoalDB.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(message: e.ToString());
+            }
+
+            List<GoalDB> oneUserGoals = new List<GoalDB>();
+
+            foreach (GoalDB oneGoal in newGoal)
+            {
+                if(oneGoal.userId == userId)
+                {
+                    oneUserGoals.Add(oneGoal);
+                }
+            }    
+
+            return oneUserGoals;
+        }
+
+
         [HttpGet]
         [Route("Get-Month-Count-Until-Goal-Is-Reached")]
         public int GetMonthCountUntilGoalIsReached() 
