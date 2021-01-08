@@ -14,8 +14,9 @@ export class SeeGoal extends React.Component{
             timetoGoal: '',
             goalAmount: ''
         }
-        this.username = this.props.dataFromParent[0];
-        this.password = this.props.dataFromParent[1];
+
+        this.username = "Ignas";
+        this.password = "slaptazodis123";
       }
 
       componentDidMount(){

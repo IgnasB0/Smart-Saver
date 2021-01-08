@@ -11,7 +11,7 @@ const Chart = () => {
     let empSal = [];
     let empAge = [];
     axios
-      .get("show-chart-for-one-user")
+      .get("https://localhost:44317/chart/show-chart-for-one-user?username=Ignas&password=slaptazodis123")
       .then(res => {
         console.log(res);
         for (const dataObj of res.data) {

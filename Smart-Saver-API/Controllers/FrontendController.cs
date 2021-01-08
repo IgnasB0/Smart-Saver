@@ -142,7 +142,10 @@ namespace Smart_Saver_API.Controllers
         public decimal GetGoalAmount(String username, String password)
         {
             List<GoalDB> returningValue = (List<GoalDB>)GoalController.Instance().ParseOneUserGoal(username, password);
-            return returningValue[0].goalAmount;
+            if (returningValue.Count > 0)
+                return returningValue[0].goalAmount;
+            else
+                return 0m;
         }
 
         [HttpGet]

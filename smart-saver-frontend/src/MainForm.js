@@ -22,6 +22,11 @@ class MainForm extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            Username: "",
+            password: "",
+            loginStatus: false
+          };
+        this.state = {
           incomes: []
         };
         this.state = { 
@@ -40,9 +45,7 @@ class MainForm extends React.Component{
 
           this.expense = this.expense.bind(this);
           this.refreshPage = this.refreshPage.bind(this);
-          this.user = ["Ignas","slaptazodis123"];
-          this.username = this.user[0];
-          this.password = this.user[1];
+          this.user = ["",""];
 
       }
       
@@ -51,24 +54,7 @@ class MainForm extends React.Component{
       }
 
       componentDidMount(){
-        fetch(`https://localhost:44317/expenses/OneUserMonthlyExpenses?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
-        .then(res => res.json()).then(
-            result => {
-                this.setState({expenses:result});
-            }
-        )
-        fetch(`https://localhost:44317/incomes/OneUserMonthlyIncome?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
-        .then(res => res.json()).then(
-            result => {
-                this.setState({incomes:result});
-            }
-        )
-        fetch(`https://localhost:44317/frontend/get-One-User-monthly-balance?username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`)
-        .then(res => res.json()).then(
-            result => {
-                this.setState({balance:result});
-            }
-        )
+        
         
     }
     refreshPage() {
@@ -79,15 +65,83 @@ class MainForm extends React.Component{
             this.setState({message: childData})
       }
 
+      loginChangeHandler = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+      };
+    
+      loginHandler = (e) => {
+        
+        e.preventDefault()
+            const url="https://localhost:44317/Login/AttemptLogin?userName=" + this.state.Username + "&password=" + this.state.Password
+    
+            fetch(url,
+                {
+                    method:'GET',
+                    headers:{'Content-Type':'application/json'}
+                })
+                .then(res => res.json()).then(
+                  result => {
+                      this.setState({loginStatus:result});
+                      if(this.state.loginStatus)
+                        alert("Login successful");
+                      else
+                        alert("Wrong password");
+                  }
+              )
+              fetch(`https://localhost:44317/expenses/OneUserMonthlyExpenses?username=${encodeURIComponent(this.state.Username)}&password=${encodeURIComponent(this.state.Password)}`)
+        .then(res => res.json()).then(
+            result => {
+                this.setState({expenses:result});
+            }
+        )
+        fetch(`https://localhost:44317/incomes/OneUserMonthlyIncome?username=${encodeURIComponent(this.state.Username)}&password=${encodeURIComponent(this.state.Password)}`)
+        .then(res => res.json()).then(
+            result => {
+                this.setState({incomes:result});
+            }
+        )
+        fetch(`https://localhost:44317/frontend/get-One-User-monthly-balance?username=${encodeURIComponent(this.state.Username)}&password=${encodeURIComponent(this.state.Password)}`)
+        .then(res => res.json()).then(
+            result => {
+                this.setState({balance:result});
+            }
+        )
+        
+                
+      };
+
 
     render() {
+        const { Username, Password } = this.state;
     return (
 <div class="main-form-container">
 
     <div class="row">   
         <div class="welcoming-container">
-            <LoginForm parentCallback = {this.callbackFunction}/>
-            {this.state.loginInfo}
+        <div>
+        <form onSubmit={this.loginHandler}>
+          <div>
+            Username:
+            <input
+              type="text"
+              name="Username"
+              value={Username}
+              onChange={this.loginChangeHandler}
+            />
+          </div>
+          <div>
+            Password:
+            <input
+              type="password"
+              name="Password"
+              value={Password}
+              onChange={this.loginChangeHandler}
+            />
+          </div>
+          
+          <button type="submit">Log In</button>
+        </form>
+      </div>
         </div>
     </div>
 <div class="spacer"/>
@@ -148,7 +202,7 @@ class MainForm extends React.Component{
     <div class="spacer"/>
     <div class="row">
         <div class="status-column">
-            <SeeGoal dataFromParent = {this.user}/>
+            <SeeGoal dataFromParent = {this.state}/>
         </div>
     </div>
 </div>
