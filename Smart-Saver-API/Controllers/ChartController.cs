@@ -148,7 +148,7 @@ namespace Smart_Saver_API.Controllers
                               Type = p.Type
                           };
 
-            var gautas = from h in CalculateEqual(results).ToList()
+            var gautas = from h in CalculateEqualForOneUser(results,username,password).ToList()
                          orderby h.Year, h.Month ascending
                          select h;
 
@@ -316,7 +316,166 @@ namespace Smart_Saver_API.Controllers
             }
             return tBalances;
         }
-       
+        private IEnumerable<Balance> CalculateEqualForOneUser(IEnumerable<Result> both, String username, String password)
+        {
+            bool sign = false;
+            var array = both.ToArray();
+            List<Balance> tBalances = new List<Balance>();
+
+            for (int i = 0; i < array.Count(); i++)
+            {
+                if (i != array.Count() - 1)
+                {
+                    if (array[i].monthAndYear == array[i + 1].monthAndYear)
+                    {
+                        sign = true;
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount - array[i + 1].amount) + RecurringIncomeController.Instance().OneUserMonthlyIncome(username, password),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount - array[i + 1].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+
+
+
+                    }
+                    else if (array[i].Type == "Expense" && sign == false)
+                    {
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount) + RecurringIncomeController.Instance().OneUserMonthlyIncome(username, password),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+
+                    }
+                    else if (array[i].Type == "Income" && sign == false)
+                    {
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount) + RecurringIncomeController.Instance().OneUserMonthlyIncome(username, password),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+
+                    }
+                    else
+                    {
+                        sign = false;
+                    }
+                }
+                else
+                {
+                    if (array[i].Type == "Expense" && sign == false)
+                    {
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount) + RecurringIncomeController.Instance().OneUserMonthlyIncome(username, password),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (-array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+
+                    }
+                    else if (array[i].Type == "Income" && sign == false)
+                    {
+                        if (array[i].Year == DateTime.Now.Year && array[i].Month == DateTime.Now.Month)
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount) + RecurringIncomeController.Instance().OneUserMonthlyIncome(username, password),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+                        else
+                        {
+                            Balance tBalance = new Balance()
+                            {
+                                Amount = (array[i].amount),
+                                monthAndYear = array[i].monthAndYear,
+                                Year = array[i].Year,
+                                Month = array[i].Month
+                            };
+                            tBalances.Add(tBalance);
+                        }
+
+                    }
+                    else
+                    {
+                        sign = false;
+                    }
+                }
+
+
+            }
+            return tBalances;
+        }
 
 
     }

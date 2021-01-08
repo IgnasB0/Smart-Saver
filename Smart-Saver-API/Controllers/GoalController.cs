@@ -129,7 +129,7 @@ namespace Smart_Saver_API.Controllers
         }
 
         [HttpGet]
-        [Route("Get-Month-Count-Until-Goal-Is-Reached-one-user")]
+        [Route("Get-Month-Count-Until-Goal-Is-Reached-one-user")] 
         public int GetMonthCountUntilGoalIsReachedOneUser(String username, String password)
         {
             try
